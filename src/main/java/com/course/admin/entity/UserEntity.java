@@ -1,8 +1,6 @@
 package com.course.admin.entity;
 
-import com.course.admin.repository.RoleJPA;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.annotation.Id;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,16 +14,16 @@ import java.util.List;
  * Created by 84074 on 2017/10/19.
  */
 @Entity
-@Table(name="ADMINISTRATOR")
-public class AdministratorEntity implements UserDetails{
+@Table(name="USER")
+public class UserEntity {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @javax.persistence.Id
     private int id;
     private String username;
     private String password;
-
-    public AdministratorEntity() {
+    private int roleId;
+    public UserEntity() {
 
     }
     public int getId() {
@@ -49,36 +47,15 @@ public class AdministratorEntity implements UserDetails{
         this.password = password;
     }
 
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
+    public int getRoleId() {
+        return roleId;
     }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
     }
 
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
 
-    @Override
-    public boolean isEnabled() {
-        return false;
-    }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> auths = new ArrayList<>();
-        List <String> roles = new ArrayList<>();
-        roles.add("ADMIN");
-        for (String role:roles){
-           auths.add(new SimpleGrantedAuthority(role));
-        }
-        return auths;
-    }
 
 }
