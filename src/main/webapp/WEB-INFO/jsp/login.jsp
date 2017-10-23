@@ -74,13 +74,13 @@
             </div>
             <div class="col-md-4 col-md-offset-4 text-center">
 
-                    <form class="form-horizontal login-form " action="/toLogin" method="post">
+                    <form class="form-horizontal login-form " action="/toLogin" method="POST">
                         <h1 class="heading">欢迎登录</h1>
                         <div class="form-group">
                            <div class="label">
                                <label class="w3" for="username">用户名</label>
                            </div>
-                          <input class="login-input"  type="text" id="username"  nasme="username">
+                          <input class="login-input"  type="text" id="username"  name="username">
                     </div>
                         <div class="form-group">
                             <div class="label">
