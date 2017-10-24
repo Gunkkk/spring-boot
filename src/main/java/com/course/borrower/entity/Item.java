@@ -12,14 +12,20 @@ public class Item {
     @GeneratedValue
     private int Id;
     private String libraryCode;
-    private int m_Loan;
+/*    private int m_Loan;
     private int m_LoseBook;
-
-    private int m_Reservation;
+    private int m_Reservation;*/
     @Column(name = "TITLE_ID")
     private int titleId;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "M_RESERVATION")
     private Reservation reservation;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "M_LOSEBOOK")
+    private Losebook losebook;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "M_LOAN")
+    private Loan loan;
     public int getId() {
         return Id;
     }
@@ -36,30 +42,6 @@ public class Item {
         this.libraryCode = libraryCode;
     }
 
-    public int getM_Loan() {
-        return m_Loan;
-    }
-
-    public void setM_Loan(int m_Loan) {
-        this.m_Loan = m_Loan;
-    }
-
-    public int getM_LoseBook() {
-        return m_LoseBook;
-    }
-
-    public void setM_LoseBook(int m_LoseBook) {
-        this.m_LoseBook = m_LoseBook;
-    }
-
-    public int getM_Reservation() {
-        return m_Reservation;
-    }
-
-    public void setM_Reservation(int m_Reservation) {
-        this.m_Reservation = m_Reservation;
-    }
-
     public int getTitleId() {
         return titleId;
     }
@@ -67,12 +49,27 @@ public class Item {
     public void setTitleId(int titleId) {
         this.titleId = titleId;
     }
-
     public Reservation getReservation() {
         return reservation;
     }
 
     public void setReservation(Reservation reservation) {
         this.reservation = reservation;
+    }
+
+    public Losebook getLosebook() {
+        return losebook;
+    }
+
+    public void setLosebook(Losebook losebook) {
+        this.losebook = losebook;
+    }
+
+    public Loan getLoan() {
+        return loan;
+    }
+
+    public void setLoan(Loan loan) {
+        this.loan = loan;
     }
 }

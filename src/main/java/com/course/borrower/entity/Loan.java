@@ -7,20 +7,19 @@ import java.util.Date;
  * Created by 84074 on 2017/10/24.
  */
 @Entity
-@Table(name = "RESERVATION")
-public class Reservation {
+@Table(name = "LOAN")
+public class Loan {
+
     @GeneratedValue
     @Id
     private int id;
     @Temporal(TemporalType.DATE)
-    private Date reserveDate;
+    private Date loandate;
     @Column(name = "BORROWER_ID")
     private int borrowerId;
-    @Column(name = "TITLE_ID")
-    private int titleId;
-
-
-    @OneToOne(mappedBy = "m_Reservation")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "M_DUEDATE")
+    private Duedate duedate;
     public int getId() {
         return id;
     }
@@ -29,6 +28,13 @@ public class Reservation {
         this.id = id;
     }
 
+    public Date getLoandate() {
+        return loandate;
+    }
+
+    public void setLoandate(Date loandate) {
+        this.loandate = loandate;
+    }
 
     public int getBorrowerId() {
         return borrowerId;
@@ -38,21 +44,11 @@ public class Reservation {
         this.borrowerId = borrowerId;
     }
 
-    public int getTitleId() {
-        return titleId;
+    public Duedate getDuedate() {
+        return duedate;
     }
 
-    public void setTitleId(int titleId) {
-        this.titleId = titleId;
+    public void setDuedate(Duedate duedate) {
+        this.duedate = duedate;
     }
-
-    public Date getReserveDate() {
-        return reserveDate;
-    }
-
-    public void setReserveDate(Date reserveDate) {
-        this.reserveDate = reserveDate;
-    }
-
-
 }

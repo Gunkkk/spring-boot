@@ -7,20 +7,17 @@ import java.util.Date;
  * Created by 84074 on 2017/10/24.
  */
 @Entity
-@Table(name = "RESERVATION")
-public class Reservation {
+@Table(name = "LOSEBOOK")
+public class Losebook {
     @GeneratedValue
     @Id
+    @Column(name = "ID")
     private int id;
     @Temporal(TemporalType.DATE)
-    private Date reserveDate;
+    private Date losedate;
     @Column(name = "BORROWER_ID")
     private int borrowerId;
-    @Column(name = "TITLE_ID")
-    private int titleId;
 
-
-    @OneToOne(mappedBy = "m_Reservation")
     public int getId() {
         return id;
     }
@@ -29,6 +26,13 @@ public class Reservation {
         this.id = id;
     }
 
+    public Date getLosedate() {
+        return losedate;
+    }
+
+    public void setLosedate(Date losedate) {
+        this.losedate = losedate;
+    }
 
     public int getBorrowerId() {
         return borrowerId;
@@ -37,22 +41,4 @@ public class Reservation {
     public void setBorrowerId(int borrowerId) {
         this.borrowerId = borrowerId;
     }
-
-    public int getTitleId() {
-        return titleId;
-    }
-
-    public void setTitleId(int titleId) {
-        this.titleId = titleId;
-    }
-
-    public Date getReserveDate() {
-        return reserveDate;
-    }
-
-    public void setReserveDate(Date reserveDate) {
-        this.reserveDate = reserveDate;
-    }
-
-
 }
