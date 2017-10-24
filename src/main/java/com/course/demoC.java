@@ -3,6 +3,8 @@ package com.course;
 import com.course.admin.repository.UserJPA;
 import com.course.admin.service.LoginService;
 
+import com.course.borrower.entity.Book;
+import com.course.borrower.repository.BookJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -19,10 +21,16 @@ import java.util.Map;
 public class demoC {
     @Autowired
     LoginService loginService;
-
+    @Autowired
+    BookJPA bookJPA;
     @RequestMapping(value = "/index")
-    public String hello(String aa){
-        return "index"+aa;
+    public String hello(int id,String author,String press){
+        Book book = new Book();
+       // book.setId(id);
+        book.setPress(press);
+        book.setAuthor(author);
+        bookJPA.save(book);
+        return "index"+id;
     }
 
 
