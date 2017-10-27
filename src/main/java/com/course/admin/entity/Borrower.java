@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 @Table(name="BORROWER")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class BorrowerEntity {
+public class Borrower {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private int id;

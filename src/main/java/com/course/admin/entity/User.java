@@ -1,42 +1,32 @@
 package com.course.admin.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
- * Created by Yan on 2017/10/24.
+ * Created by 84074 on 2017/10/19.
  */
 @Entity
-@Table(name="ADMINISTRATOR")
-public class AdminEntity {
+@Table(name="USER")
+public class User {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @javax.persistence.Id
+    @Id
     private int id;
     private String username;
     private String password;
     private int roleId;
-    //if roleId == 0, it is a librarian;
-    //if roleId == 1, it is a system administrator;
-
-    public AdminEntity() {
+    public User() {
 
     }
-
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
     public String getUsername() {
         return username;
     }
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -56,4 +46,8 @@ public class AdminEntity {
     public void setRoleId(int roleId) {
         this.roleId = roleId;
     }
+
+
+
+
 }

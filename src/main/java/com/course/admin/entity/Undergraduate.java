@@ -5,11 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "GRADUATE")
-public class GraduateEntity extends BorrowerEntity  {
+@Table(name = "UNDERGRADUATE")
+public class Undergraduate extends Borrower {
+
     @Column
     private String major;
-    private String director;
 
     public String getMajor() {
         return major;
@@ -17,13 +17,5 @@ public class GraduateEntity extends BorrowerEntity  {
 
     public void setMajor(String major) {
         this.major = major;
-    }
-
-    public String getDirector() {
-        return director;
-    }
-
-    public void setDirector(String director) {
-        this.director = director;
     }
 }
