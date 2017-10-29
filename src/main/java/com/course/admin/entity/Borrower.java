@@ -105,4 +105,16 @@ public class Borrower {
     public void setLoanList(List<Loan> loanList) {
         this.loanList = loanList;
     }
+
+    @Override
+    public String toString() {
+        return "Borrower{" +
+                "id=" + id +
+                ", cardNo='" + cardNo + '\'' +
+                ", department='" + department + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

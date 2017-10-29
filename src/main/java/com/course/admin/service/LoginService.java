@@ -1,6 +1,6 @@
 package com.course.admin.service;
 
-import com.course.admin.entity.UserEntity;
+import com.course.admin.entity.User;
 import com.course.admin.repository.UserJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ public class LoginService {
 
     public Map<String, Object> login(String userName, String password) {
         Map<String, Object> map = new HashMap<String, Object>();
-        UserEntity user = UserJPA.findByUsername(userName);
+        User user = UserJPA.findByUsername(userName);
         if (user == null) {
             map.put("result", "fail");
             map.put("msg", "用户不存在");

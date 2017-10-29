@@ -1,6 +1,6 @@
 package com.course.config;
 
-import com.course.admin.entity.UserEntity;
+import com.course.admin.entity.User;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,7 +25,7 @@ public class UserInterceptor implements HandlerInterceptor {
         }
         //获取Session
         HttpSession session = request.getSession();
-        UserEntity user = (UserEntity) session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
 
         if(user!=null){
             return true;
