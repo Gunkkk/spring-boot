@@ -41,8 +41,9 @@ public class TestServicesTest {
 
     @Test
     public void testFind() {
-        operateService.findById(1);
-        operateService.findByUsername("Yanyufeng");
+//        operateService.findById(1);
+//        operateService.findByUsername("Yanyufeng");
+        operateService.findByCondition("YYF","011","graduate");
     }
 
     @Test
