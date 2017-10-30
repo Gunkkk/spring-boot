@@ -2,7 +2,10 @@ package com.course.admin.service;
 
 import com.course.admin.entity.Borrower;
 import com.course.admin.repository.BorrowerJPA;
+import com.course.admin.repository.BorrowerPagingAndSortingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +22,10 @@ public class OperateService {
     @Autowired
     BorrowerJPA borrowerJPA;
 
+    @Autowired
+    BorrowerPagingAndSortingRepository borrowerPagingAndSortingRepository;
+
+    public Page<Borrower> findAll(Pageable page){ return borrowerPagingAndSortingRepository.findAll(page);}
 
     public void save(Borrower borrower) {
         borrowerJPA.save(borrower);
@@ -36,6 +43,11 @@ public class OperateService {
     }
 
 
+    public List<Borrower> findAll() {
+        List<Borrower> borrower = borrowerJPA.findAll();
+        showList(borrower);
+        return borrower;
+    }
 
     public List<Borrower> findById(int id) {
         List<Borrower> borrower = borrowerJPA.findById(id);
