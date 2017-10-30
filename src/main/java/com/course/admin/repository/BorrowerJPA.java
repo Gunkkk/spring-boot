@@ -44,5 +44,5 @@ public interface BorrowerJPA extends JpaRepository<Borrower,Integer> {
     public List<Borrower> findByDepartment (String department);
     public List<Borrower> findByType (String type);
     public List<Borrower> findAll (Specification querySpecifi);
-    
+
 }
