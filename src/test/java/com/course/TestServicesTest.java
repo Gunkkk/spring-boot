@@ -43,12 +43,14 @@ public class TestServicesTest {
     public void testFind() {
 //        operateService.findById(1);
 //        operateService.findByUsername("Yanyufeng");
-        operateService.findByCondition("YYF","011","graduate");
+//        operateService.findByCondition("YYF","011","graduate");
+          operateService.findAll();
     }
 
     @Test
     public void testUpdate() {
-        operateService.updateBorrowerById("YYF","011","123456","graduate","Dp.CS",1);
+        operateService.updateBorrowerById("YYF","011","123456","graduate","Dp.CS",2);
         operateService.findByUsername("YYF");
     }
+
 }

@@ -43,7 +43,7 @@ public class demoC {
         if (result.get("result").equals("success")){
             HttpSession session=request.getSession();
             session.setAttribute("user",result.get("user"));
-            modelAndView.setViewName("/index");
+            modelAndView.setViewName("/findAllBorrowers");
         }else{
             modelAndView.setViewName("/login");
             modelAndView.addObject("msg",result.get("msg"));
