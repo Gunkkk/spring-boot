@@ -2,10 +2,12 @@ package com.course.admin.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "GRADUATE")
+@PrimaryKeyJoinColumn(name = "ID")
 public class Graduate extends Borrower {
     @Column
     private String major;
