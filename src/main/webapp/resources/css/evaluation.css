@@ -1,0 +1,19 @@
+.stu-photo{
+    float: left;
+    width: 16.666666666666664%
+
+}
+img{
+    width: 130px;
+    height: 150px;
+    border: 2px solid #708dbb ;
+    border-radius: 4px;
+}
+.information{
+    float: left;
+    width: 83.33333333333334%;
+}
+hr{
+clear: both;
+    border-bottom:1px solid #708dbb;
+}

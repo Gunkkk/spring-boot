@@ -1,0 +1,33 @@
+/*top*/
+.index-top {
+    height: 80px;
+    margin: 0;
+    background: #FFFFFF;
+    border-bottom: 2px solid #4b7ecc
+}
+.index-top-head{
+    float: left;
+    width: 75%;
+}
+.index-top-head-info{
+
+    font: 600 2.5em "Microsoft YaHei",微软雅黑, Arial sans-serif;
+    color: #3f66a4;
+    letter-spacing: 8px;
+    line-height: 2;
+    margin:0px 20px;
+
+}
+.index-top-user{
+    float: left;
+    width: 25%;
+    text-align: right;
+}
+.index-top-user-info{
+    float: right;
+    font: 600 1.4em "Microsoft YaHei",微软雅黑, Arial sans-serif;
+    color: #3f66a4;
+    line-height: 5;
+    margin:0 20px 0 0;
+
+}

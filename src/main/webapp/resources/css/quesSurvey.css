@@ -1,0 +1,78 @@
+html {
+    background: #fff;
+    direction: ltr;
+    font-family: "Microsoft YaHei",微软雅黑, Arial sans-serif;
+}
+h1,h2,h3{
+    margin: 0;
+    padding: 0;
+}
+.container-body{
+    margin: 20px auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 3px;
+    background: #fff;
+    padding: 10px 20px;
+}
+.ques-head {
+    text-align: center;
+    background: #FFF;
+    border-bottom: 2px solid #2c72bc;
+    border-top: none;
+
+}
+.ques-head > .ques-head-font{
+    font: 400 2.5em "Microsoft YaHei",微软雅黑, Arial sans-serif;
+    height: 80px;
+    line-height: 80px;
+   letter-spacing: 0.5em;
+}
+.profile-caption {
+    padding-bottom: 5px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #d4d4d4;
+    overflow: hidden;
+}
+.profile-info{
+    text-indent: 2em;
+    font: 1.3em "Microsoft YaHei",微软雅黑, Arial sans-serif;
+    border: 1px solid #d4d4d4;
+    margin: 5px auto;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+.info-title {
+    font:inherit;
+    font-weight: bold;
+    font-size: 1.3em;
+    color: #00BC9B;
+    margin-top: 5px ;
+    line-height: 22px;
+}
+.label-add{
+    padding-top: 7px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.input-addon:last-child {
+    border-left: 0;
+}
+
+.input-addon{
+    display: table-cell;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1;
+    text-align: center;
+
+}
+.input-addon {
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.input-group-addon-font{
+    font-size: 14px;
+}
+

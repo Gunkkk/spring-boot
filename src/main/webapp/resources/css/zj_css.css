@@ -1,0 +1,163 @@
+.zj_father {
+	width: 100%;
+}
+.zj_text
+{
+	float: left;
+	width: 60%;
+	height: 300px;
+}
+.zj_midtext
+{
+	width: 60%;
+	height: 250px;
+	margin-top: 25px;
+	margin-left: 20%;
+	background-color: rgba(242, 231, 145, 1);
+	border-radius: 25px;
+}
+.zj_position1,
+.zj_position2,
+.zj_position3,
+.zj_position4,
+.zj_position5,
+.zj_position6,
+.zj_position7,
+.zj_position8
+ {
+ 	float: left;
+	height: 300px;
+	width: 180px;
+	position: relative;
+}
+.zj_position1,
+.zj_position2,
+.zj_position3,
+.zj_position6,
+.zj_position7,
+.zj_position8
+{
+	width: 33%;
+}
+.zj_position1,
+.zj_position6
+{
+	text-align: right;
+}
+.zj_position2,
+.zj_position7
+{
+	text-align: center;
+}
+.zj_position3,
+.zj_position8
+{
+	text-align: left;
+}
+.zj_position4,
+.zj_position5
+{
+	width: 20%;
+}
+.zj_position4
+{
+	padding-top: 60px;
+	text-align: right;
+}
+.zj_position5
+{
+	padding-top: 60px;
+	text-align: left;
+}
+.zj_top
+{
+	margin-top: 10%;
+	width: 180px;
+	height: 180px;
+}
+.zj_part2
+{
+
+}
+.zj_hr
+{
+	width: 80%;
+	height: 3px;
+	border: none;
+	border-top:2px solid #555555;
+}
+.zj_plate1,
+.zj_plate2,
+.zj_plate3,
+.zj_plate4
+{
+	margin-left: 10px;
+	float: left;
+	width: 23%;
+	height: 500px;
+}
+.zj_plate1
+{
+	margin-left: 4%;
+	background-image: url(../../resources/image/2.jpg);
+	background-size: cover;
+}
+.zj_plate2
+{
+	background-image: url(../../resources/image/3.jpg);
+	background-size: cover;
+}
+.zj_plate3
+{
+	background-image: url(../../resources/image/zj_4.jpg);
+	background-size: cover;
+}
+.zj_plate4
+{
+	background-image: url(../../resources/image/1.jpg);
+	background-size: cover;
+}
+.zj_title
+{
+	font-size: 25px;
+	margin: 2px 0px 0px 20px;
+
+}
+.zj_content
+{
+	font-size: 35px;
+	margin-top: 50px;
+	font-family: "SimHei";
+	text-align: center;
+}
+.zj_induction1,
+.zj_induction2,
+.zj_induction3,
+.zj_induction4
+{
+	margin: 30% 10% 0 10%;
+	width: 80%;
+	color: white;
+	font-family: 24px/1.5 Tahoma,Helvetica,Arial,'ËÎÌו',sans-serif;
+}
+.right_bar
+{
+	z-index: 9999;
+	position: absolute;
+	bottom: 100px;
+	right: 10px;
+	width: 150px;
+	height: 150px;
+}
+.zj_p
+{
+	position: absolute;
+	margin: 5% 0 0 25%;
+}
+.zj_p p
+{
+	font-family: Tahoma,Helvetica,Arial,'ËÎÌו',sans-serif;
+	font-size: 60px;
+	color: white;
+}
+/*#4A4747*/

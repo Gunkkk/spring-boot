@@ -1,0 +1,64 @@
+.zj_leftR
+{
+	height: 500px;
+	width: 35px;
+	float: left;
+	margin: 50px 0 0 60px;
+}
+.zj_rightR
+{
+	height: 500px;
+	float: left;
+	width: 35px;
+	margin: 50px 0 0 60px;
+}
+.zj_leftR img
+{
+	margin-top: 240px;
+}
+.zj_rightR img
+{
+	margin-top: 240px;
+}
+.zj_leftR img:hover
+{
+	background-color: black;
+	opacity: 0.3;
+}
+.zj_rightR img:hover
+{
+	background-color: black;
+	opacity: 0.3;
+}
+.zj_Teacher
+{
+	width: 25%;
+	float: left;
+	height: 500px;
+	background-color: black;
+	opacity: 0.5;
+	margin-top: 50px;
+	margin-left: 40px;
+	text-align: center;
+	transition: transform 2s;
+}
+.zj_tPhoto
+{
+	width: auto;
+	max-height: 120px;
+	margin: 100px;
+}
+.zj_Teacher:hover
+{
+	background-color: white;
+	transform: rotateY(360deg);
+}
+.zj_Teacher p
+{
+	margin-left: 10%;
+	text-align: center;
+	width: 80%;
+	font-family: SimSun;
+	font-weight: 700;
+	font-size: 20px;
+}
