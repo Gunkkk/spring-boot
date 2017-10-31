@@ -1,0 +1,480 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"to",
+				"toString"
+			],
+			[
+				"arg",
+				"arg2"
+			],
+			[
+				"me",
+				"message"
+			],
+			[
+				"type",
+				"typeof"
+			],
+			[
+				"key",
+				"keys"
+			],
+			[
+				"lo",
+				"log"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"a",
+				"ajax\t$.ajax()"
+			],
+			[
+				"dat",
+				"datetime"
+			],
+			[
+				"table",
+				"table-bordered"
+			],
+			[
+				"txt",
+				"text-center"
+			],
+			[
+				"org",
+				"org_full_name"
+			],
+			[
+				"cont",
+				"control-label"
+			],
+			[
+				"btn",
+				"btn-primary"
+			],
+			[
+				"b",
+				"button"
+			],
+			[
+				"magin",
+				"margin-right"
+			],
+			[
+				"fee",
+				"fee_total"
+			],
+			[
+				"fe",
+				"fee_total"
+			],
+			[
+				"app",
+				"append"
+			],
+			[
+				"fee_",
+				"fee_total"
+			],
+			[
+				"feE",
+				"fee_total"
+			],
+			[
+				"tra",
+				"transport1"
+			],
+			[
+				"va",
+				"val"
+			],
+			[
+				"tr",
+				"transport1"
+			],
+			[
+				"onc",
+				"onclick\tAttr"
+			],
+			[
+				"add",
+				"add_table"
+			],
+			[
+				"de",
+				"detail"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"col",
+				"col-md-2"
+			],
+			[
+				"date",
+				"date"
+			],
+			[
+				"ma",
+				"margin-right"
+			],
+			[
+				"date_",
+				"date_start"
+			],
+			[
+				"ta",
+				"table_input"
+			],
+			[
+				"text",
+				"text-center"
+			],
+			[
+				"form",
+				"form-group"
+			],
+			[
+				"margin",
+				"margin-right"
+			],
+			[
+				"fla",
+				"float"
+			],
+			[
+				"pa",
+				"padding-top"
+			],
+			[
+				"wi",
+				"max-width"
+			],
+			[
+				"FOR",
+				"form-control"
+			],
+			[
+				"COL",
+				"col-md-1"
+			],
+			[
+				"sty",
+				"style"
+			],
+			[
+				"for",
+				"form"
+			],
+			[
+				"m",
+				"col-md-4"
+			],
+			[
+				"bo",
+				"bootstrap-3"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "pcip",
+		"selected_items":
+		[
+			[
+				"pcip",
+				"Package Control: Install Package"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"pci",
+				"Package Control: Install Package"
+			],
+			[
+				"PCI",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"insp",
+				"Install Package Control"
+			]
+		],
+		"width": 528.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/E/OA/htmltools/Ueditor/third-party/highcharts/modules/canvas-tools.js",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 3/Packages/User/node.sublime-build",
+		"/C/Users/Administrator/Downloads/jq22.com-bootstrapvalidator-master/bootstrapvalidator-master/demo/dynamic2.html",
+		"/E/OA/htmltools/editor.html",
+		"/C/Users/Administrator/Documents/Tencent Files/965911681/FileRecv/5.OA系统_需求、DEMO、外部设计、数据库设计/2. DEMO/OA系统一期静态界面/oa/login.html",
+		"/C/Users/Administrator/Downloads/jq22.com-bootstrapvalidator-master/bootstrapvalidator-master/demo/group.html",
+		"/E/OA/html/张红霞/test.html",
+		"/E/OA/OA一期静态界面/oa/Index.html",
+		"/C/Users/Administrator/Documents/Tencent Files/965911681/FileRecv/5.OA系统_需求、DEMO、外部设计、数据库设计/2. DEMO/OA系统一期静态界面/oa/Index.html",
+		"/C/Users/Administrator/Documents/Tencent Files/965911681/FileRecv/5.OA系统_需求、DEMO、外部设计、数据库设计/2. DEMO/人事档案+项目组管理+考勤管理静态页面DEMO/index.html",
+		"/C/Users/Administrator/Downloads/jq22.com-bootstrapvalidator-master/bootstrapvalidator-master/demo/remote.html",
+		"/E/OA/htmltools/Ueditor/themes/default/css/ueditor.css",
+		"/E/OA/htmltools/Ueditor/ueditor.config.js",
+		"/E/OA/htmltools/Ueditor/themes/default/css/ueditor.min.css",
+		"/E/OA/htmltools/Ueditor/ueditor.all.js",
+		"/E/OA/htmltools/index.html",
+		"/C/Users/Administrator/Downloads/jq22.com-bootstrapvalidator-master/bootstrapvalidator-master/demo/ajaxSubmit.html",
+		"/C/Users/Administrator/Downloads/jq22.com-bootstrapvalidator-master/bootstrapvalidator-master/demo/index.html",
+		"/C/Users/Administrator/Downloads/jq22.com-bootstrapvalidator-master/bootstrapvalidator-master/demo/dynamic4.html",
+		"/E/OA/htmltools/date.html",
+		"/C/Users/Administrator/Desktop/valid/bootstrap/css/bootstrap.css",
+		"/C/Users/Administrator/AppData/Local/Temp/date.js-revHEAD.svn002.tmp.js",
+		"/C/Users/Administrator/Downloads/jq22.com-bootstrapvalidator-master/bootstrapvalidator-master/demo/ajaxSubmit.php",
+		"/C/Users/Administrator/AppData/Local/Temp/Rar$DIa0.339/demo.css",
+		"/E/OA/OA一期静态界面/oa/login.html",
+		"/E/OA/html/张红霞/style/style.css",
+		"/E/OA/htmltools/sysManage/orgManage.html",
+		"/E/OA/OA一期静态界面/oa/UI/SystemManage/OrgManage.html",
+		"/E/OA/htmltools/bootstrap/css/bootstrap.css",
+		"/E/OA/htmltools/js/date.js",
+		"/C/Users/Administrator/AppData/Local/Temp/Rar$DIa0.304/zTreeStyle.css",
+		"/C/Users/Administrator/AppData/Local/Temp/Rar$DIa0.892/demo.css",
+		"/C/Users/Administrator/AppData/Local/Temp/Rar$DIa0.292/zTreeStyle.css",
+		"/E/OA/htmltools/bootstrap/css/bootstrap.min.css",
+		"/D/javaweb/TestProject1/WebContent/comm/jsp/gywm_menu.jsp",
+		"/E/OA/OA一期静态界面/oa/UI/Login/Main.html",
+		"/C/Users/Administrator/Desktop/whoa/src/main/webapp/static/index.html",
+		"/D/javaweb/TestProject/WebContent/qt/page/gywm/flsm_list.jsp",
+		"/D/javaweb/TestProject/WebContent/qt/page/home/index.jsp",
+		"/D/javaweb/TestProject/WebContent/comm/jsp/gywm_menu.jsp",
+		"/E/OA/bootstrap/js/printer.js",
+		"/E/OA/bootstrap/date.html",
+		"/E/OA/bootstrap/js/date.js",
+		"/C/Users/Administrator/Desktop/公共插件实例/插件选择.html",
+		"/E/OA/bootstrap/upload.html",
+		"/E/OA/bootstrap/Ueditor/jsp/controller.jsp",
+		"/E/OA/bootstrap/Ueditor/dialogs/anchor/anchor.html",
+		"/E/OA/bootstrap/pinter.html",
+		"/E/OA/bootstrap/editor.html",
+		"/E/OA/bootstrap/ueditor/js/ueditor.all.min.js",
+		"/E/OA/bootstrap/js/upload.html",
+		"/C/Users/Administrator/Downloads/sample in bootstrap v3/js/bootstrap-datetimepicker.zh-CN.js",
+		"/E/OA/bootstrap/jquery/jquery-1.8.3.min.js",
+		"/E/OA/bootstrap/bootstrap/js/bootstrap.js",
+		"/E/OA/bootstrap/bootstrap/css/bootstrap.css",
+		"/E/OA/bootstrap/bootstrap/css/bootstrap-datetimepicker.min.css",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
+		"/E/OA/bootstrap/bootstrap/css/bootstrap.min.css",
+		"/E/OA/bootstrap/bootstrap/css/bootstrap-theme.min.css",
+		"/E/OA/bootstrap/bootstrap/js/bootstrap-datetimepicker.js",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/Administrator/AppData/Roaming/Sublime Text 3/Packages/User/Package Control.sublime-settings",
+		"/D/HtmlProject/htmltest/style/bootstrap-3.3.7-dist/css/bootstrap.css",
+		"/E/百盛佳/html/洪文博/index.html",
+		"/D/HtmlProject/htmltest/test.html",
+		"/E/百盛佳/html/鄢裕丰/鄢裕丰-报销待审 2.html",
+		"/E/百盛佳/html/王飞/page.html",
+		"/E/百盛佳/html/梁飞/鄢裕丰-报销待审 2.html",
+		"/E/百盛佳/html/黄宝金/index.html",
+		"/E/百盛佳/html/黄宝金/index.jsp",
+		"/D/HtmlProject/htmltest/style/style.css",
+		"/D/HtmlProject/htmltest/a.html",
+		"/D/HtmlProject/htmltest/b.html",
+		"/D/HtmlProject/htmltest/style/bootstrap-datetimepicker-master/test/screen-capture/t1.html",
+		"/D/HtmlProject/htmltest/style/bootstrap-datetimepicker-master/test/screen-capture/base.html",
+		"/D/HtmlProject/htmltest/style/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.css",
+		"/D/HtmlProject/htmltest/style/bootstrap-datetimepicker-master/src/js/bootstrap-datetimepicker.js",
+		"/D/HtmlProject/htmltest/style/moment.min.js",
+		"/D/Program Files/apache-maven-3.3.9/conf/settings.xml"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"number",
+			"span",
+			"font",
+			"font、、",
+			"font",
+			"zTreeDeno",
+			" >",
+			"input-group-",
+			"datetimepicker",
+			"data-data",
+			"date",
+			"department",
+			"p",
+			"vertical-middle",
+			"input",
+			"input-table",
+			"table-input",
+			"form-datetime",
+			"form_datetime",
+			"date",
+			"input-group",
+			"input-group ",
+			"input-group date",
+			"control-label",
+			"control",
+			"row",
+			"</div>",
+			"row",
+			"input",
+			"input-group-addon",
+			"group-form",
+			"text",
+			"h3"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "apic3595.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 211.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

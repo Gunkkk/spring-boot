@@ -1,0 +1,247 @@
+.top{
+    height: 80px;
+    margin: 0;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#258dc8+0,258dc8+100;%234b7ecc */
+    background: #258dc8; /* Old browsers */
+    background: -moz-linear-gradient(45deg, #258dc8 0%, #258dc8 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(45deg, #258dc8 0%,#258dc8 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #258dc8 0%,#258dc8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#258dc8', endColorstr='#258dc8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.top-head{
+    font: 400 2.5em "Microsoft YaHei",微软雅黑, Arial sans-serif;
+    color: #ffffff;
+    letter-spacing: 8px;
+    line-height: 80px;
+    margin:0px 20px;
+}
+.login-form{
+    text-align: center;
+    margin-top:150px;
+}
+.heading{
+    display: block;
+    color: #3d65ae;
+    font: 600 2.5em  "Microsoft YaHei",微软雅黑, Arial, sans-serif;
+    letter-spacing: 7px;
+    padding:10px 0;
+    margin-bottom: 20px;
+}
+
+.label{
+    float: left;
+    display:block;
+    text-align:justify;
+    vertical-align: middle;
+    margin: auto 10px;
+    font: 600 1.5em  "Microsoft YaHei",微软雅黑, Arial, sans-serif;
+    color: #3d67a2;
+    height: 34px;
+    width: 4em;
+}
+.control-label{
+
+}
+.login-input{
+    float: right;
+    display: block;
+
+    height: 34px;
+    padding-top: 7px;
+    padding-right:20px;
+    margin: auto 20px;
+    width: 60%;
+
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #555555;
+    vertical-align: middle;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+.login-input-check-img{
+    float: left;
+
+    display: block;
+
+    height: 34px;
+    padding-top: 7px;
+    padding-right:20px;
+    margin: auto 20px;
+    width: 20%;
+
+    font-size: 14px;
+    line-height: 1.428571429;
+    vertical-align: middle;
+
+}
+.login-input-check{
+    float: right;
+    display: block;
+
+    height: 34px;
+    padding-top: 7px;
+    padding-right:20px;
+    margin: auto 20px;
+    width: 30%;
+
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #555555;
+    vertical-align: middle;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+.w2{
+    float: left;
+    letter-spacing:2em; /*如果需要y个字两端对齐，则为(x-y)/(y-1),这里是（4-2）/(2-1)=2em */
+    /*margin-right:-2em; !*同上*!*/
+    display: block;
+
+
+}
+.w3{
+    float: left;
+    letter-spacing:0.5em; /*如果需要y个字两端对齐，则为(x-y)/(y-1),这里是（4-3）/(3-1)=0.5em */
+    /*margin-right:-0.5em; !*同上*!*/
+    display: block;
+
+}
+.label-warning{
+    float: right;
+    margin: auto 20px;
+    font: 500 1.5em  "Microsoft YaHei",微软雅黑, Arial, sans-serif;
+}
+.submit{
+    padding: 0 20px;
+    margin: 0 0 25px 0;
+    height: 50px;
+}
+.submit-input{
+    background: #4b7ecc;
+    width: 100%;
+    height: 50px;
+    font: 500 1.5em  "Microsoft YaHei",微软雅黑, Arial, sans-serif ;
+    color: #FFFFFF;
+}
+
+.form-horizontal .form-group{
+    padding: 0 40px;
+    margin: 0 0 25px 0;
+    position: relative;
+}
+.form-horizontal .form-control{
+    background: #f0f0f0;
+    border: none;
+    border-radius: 16px;
+    box-shadow: none;
+    padding: 0 20px 0 45px;
+    height: 40px;
+    transition: all 0.3s ease 0s;
+}
+.form-horizontal .form-control:focus{
+    background: #e0e0e0;
+    box-shadow: none;
+    outline: 0 none;
+}
+.form-horizontal .form-group i{
+    position: absolute;
+    top: 12px;
+    left: 60px;
+    font-size: 17px;
+    color: #c8c8c8;
+    transition : all 0.5s ease 0s;
+}
+.form-horizontal .form-control:focus + i{
+    color: #00b4ef;
+}
+.form-horizontal .fa-question-circle{
+    display: inline-block;
+    position: absolute;
+    top: 12px;
+    right: 60px;
+    font-size: 20px;
+    color: #808080;
+    transition: all 0.5s ease 0s;
+}
+.form-horizontal .fa-question-circle:hover{
+    color: #000;
+}
+.form-horizontal .main-checkbox{
+    float: left;
+    width: 20px;
+    height: 20px;
+    background: #11a3fc;
+    border-radius: 50%;
+    position: relative;
+    margin: 5px 0 0 5px;
+    border: 1px solid #11a3fc;
+}
+.form-horizontal .main-checkbox label{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+.form-horizontal .main-checkbox label:after{
+    content: "";
+    width: 10px;
+    height: 5px;
+    position: absolute;
+    top: 5px;
+    left: 4px;
+    border: 3px solid #fff;
+    border-top: none;
+    border-right: none;
+    background: transparent;
+    opacity: 0;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.form-horizontal .main-checkbox input[type=checkbox]{
+    visibility: hidden;
+}
+.form-horizontal .main-checkbox input[type=checkbox]:checked + label:after{
+    opacity: 1;
+}
+.form-horizontal .text{
+    float: left;
+    margin-left: 7px;
+    line-height: 20px;
+    padding-top: 5px;
+    text-transform: capitalize;
+}
+.form-horizontal .btn{
+    float: right;
+    font-size: 14px;
+    color: #fff;
+    background: #00b4ef;
+    border-radius: 30px;
+    padding: 10px 25px;
+    border: none;
+    text-transform: capitalize;
+    transition: all 0.5s ease 0s;
+}
+@media only screen and (max-width: 479px){
+    .form-horizontal .form-group{
+        padding: 0 25px;
+    }
+    .form-horizontal .form-group i{
+        left: 45px;
+    }
+    .form-horizontal .btn{
+        padding: 10px 20px;
+    }
+}
