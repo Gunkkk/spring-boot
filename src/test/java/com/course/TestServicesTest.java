@@ -21,16 +21,18 @@ public class TestServicesTest {
     @Test
     public void testSave() {
         Graduate graduate = new Graduate();
-        graduate.setId(1);
-        graduate.setCardNo("001");
-        graduate.setDirector("Di.Wang");
+        graduate.setId(8);
+        graduate.setCardNo("007");
+        graduate.setDirector("Di.HAHA");
         graduate.setMajor("CS");
         graduate.setDepartment("Dp.CS");
         graduate.setType("graduate");
-        graduate.setUsername("Yanyufeng");
+        graduate.setUsername("HongWenbo");
         graduate.setPassword("123456");
 
         operateService.save(graduate);
+
+
 
     }
 
@@ -43,12 +45,14 @@ public class TestServicesTest {
     public void testFind() {
 //        operateService.findById(1);
 //        operateService.findByUsername("Yanyufeng");
-        operateService.findByCondition("YYF","011","graduate");
+//        operateService.findByCondition("YYF","011","graduate");
+          operateService.findAll();
     }
 
     @Test
     public void testUpdate() {
-        operateService.updateBorrowerById("YYF","011","123456","graduate","Dp.CS",1);
+        operateService.updateBorrowerById("YYF","011","123456","graduate","Dp.CS",2);
         operateService.findByUsername("YYF");
     }
+
 }
