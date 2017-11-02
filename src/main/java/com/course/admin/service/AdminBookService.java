@@ -7,6 +7,10 @@ import com.course.borrower.entity.Book;
 import com.course.borrower.entity.Magazine;
 import com.course.borrower.entity.Title;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,29 +28,46 @@ public class AdminBookService {
     @Autowired
     MagazineJPA magazineJPA;
 
+    int pageSize=10;
     /**
-     * 多条件模糊查询
+     * 条件查询书籍
+     * @param id
      * @param name
      * @param author
      * @param isbn
+     * @param currentPage
      * @return
      */
-    public List<Book> queryBook(int id,String name,String author,String isbn){
-        List<Book> list =bookJPA.findByIdOrNameLikeOrAuthorOrIsbn(id,name,author,isbn);
-        return list;
+    public Page<Book> queryBook(int id, String name, String author, String isbn,int currentPage){
+
+        //排序
+        Sort.Order idOrder = new Sort.Order(Sort.Direction.ASC, "id");
+        Sort.Order usernameOrder = new Sort.Order(Sort.Direction.ASC,"name");
+        Sort sort = new Sort(idOrder,usernameOrder);
+        Pageable pageRequest  = new PageRequest(currentPage, pageSize, sort);
+       // Page<Book> page = bookJPA.findByIdOrNameLikeOrAuthorOrIsbn(pageRequest);
+        Page<Book> page =bookJPA.findByIdOrNameLikeOrAuthorOrIsbn(id,name,author,isbn,pageRequest);
+        return page;
     }
 
     /**
-     * 多条件模糊查询
+     * 模糊查询杂志
+     * @param id
      * @param name
      * @param author
      * @param isbn
+     * @param currentPage
      * @return
      */
-    public List<Magazine> queryMagazine(int id,String name,String author,String isbn){
-        List<Magazine> list =magazineJPA.findByIdOrNameLikeOrAuthorOrIsbn(id,name,author,isbn);
+    public Page<Magazine> queryMagazine(int id,String name,String author,String isbn,int currentPage){
+        //排序
+        Sort.Order idOrder = new Sort.Order(Sort.Direction.ASC, "id");
+        Sort.Order usernameOrder = new Sort.Order(Sort.Direction.ASC,"name");
+        Sort sort = new Sort(idOrder,usernameOrder);
+        Pageable pageRequest  = new PageRequest(currentPage, pageSize, sort);
+        Page<Magazine> page =magazineJPA.findByIdOrNameLikeOrAuthorOrIsbn(id,name,author,isbn,pageRequest);
 
-        return list;
+        return page;
     }
     /**
      * 新增杂志

@@ -1,14 +1,17 @@
 package com.course.borrower.repository;
 
 import com.course.borrower.entity.Book;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.Temporal;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TemporalType;
+import java.awt.print.Pageable;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +21,7 @@ import java.util.List;
 @Repository
 public interface BookJPA extends JpaRepository<Book,Integer> {
 
-    public List<Book> findByIdOrNameLikeOrAuthorOrIsbn(int id, String name, String author, String isbn);
+     Page<Book> findByIdOrNameLikeOrAuthorOrIsbn(int id, String name, String author, String isbn, org.springframework.data.domain.Pageable pageable);
    // @Modifying
    /* @Query("update Book b set b.")
     public void updateBookById(String name, String author, String borrowedNumber, String isbn, float price, int totalNumber,
