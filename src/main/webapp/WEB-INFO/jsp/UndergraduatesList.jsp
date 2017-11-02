@@ -22,7 +22,7 @@
     <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
     <link rel="stylesheet" href="${ctx}/resources/css/jquery.paginate.css" />
     <link rel="stylesheet" href="${ctx}/resources/css/jquery.yhhDataTable.css" />
-    <script type="text/javascript" src="${ctx}/resources/js/jquery-1.10.2.min"></script>
+    <%--<script type="text/javascript" src="${ctx}/resources/js/jquery-1.10.2.min"></script>--%>
     <script type="text/javascript" src="${ctx}/resources/js/jquery.paginate.js" ></script>
     <script type="text/javascript" src="${ctx}/resources/js/jquery.yhhDataTable.js" ></script>
     <script type="text/javascript" src="${ctx}/resources/js/indexForPaging.js" ></script>
@@ -126,11 +126,11 @@
 
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    其他<b class="caret"></b>
+                    用户类型选择<b class="caret"></b>
                 </a>
                 <ul  class="dropdown-menu" >
-                    <li ><a href="/findAllBorrowers.action" target="ibody">用户管理</a></li>
-                    <li id="groupSearch" ><a href="/toGroupSearch.action" target="ibody" >团体查询</a></li>
+                    <li ><a href="/findAllGraduates.action" target="ibody">研究生用户</a></li>
+                    <li><a href="/findAllUndergraduates.action" target="ibody" >本科生用户</a></li>
                 </ul>
 
             </li>
@@ -148,23 +148,38 @@
     <div class="container">
         <div class="container-body">
             <button class="zj_button1 btn btn-warning" style="float:right">增加用户</button>
-            <form action="/selectBorrowers.action" class="form-inline" role="form">
-                <div class="form-group">
-                    <label>ID</label>
-                    <input type="text" class="form-control" id="idSelect" name="idSelect"
-                           placeholder="${id}">
-                </div>
+            <form action="/findUndergraduatesByConditions.action" class="form-inline" role="form">
+
                 <div class="form-group">
                     <label>用户名</label>
                     <input type="text" class="form-control" id="userNameSelect" name="userNameSelect"
                            placeholder="${username}">
                 </div>
                 <div class="form-group">
-                    <label>类型</label>
-                    <input type="text" class="form-control" id="userTypeSelect" name="userTypeSelect"
-                           placeholder="${type}">
+                    <label>密码</label>
+                    <input type="text" class="form-control" id="passwordSelect" name="passwordSelect"
+                           placeholder="${password}">
                 </div>
-
+                <div class="form-group">
+                    <label>卡号</label>
+                    <input type="text" class="form-control" id="cardNoSelect" name="cardNoSelect"
+                           placeholder="${cardNo}">
+                </div>
+                <div class="form-group">
+                    <label>学院</label>
+                    <input type="text" class="form-control" id="departmentSelect" name="departmentSelect"
+                           placeholder="${department}">
+                </div>
+                <div class="form-group">
+                    <label>专业</label>
+                    <input type="text" class="form-control" id="majorSelect" name="majorSelect"
+                           placeholder="${major}">
+                </div>
+                <%--<div class="form-group">--%>
+                    <%--<label>导师</label>--%>
+                    <%--<input type="text" class="form-control" id="directorSelect" name="directorSelect"--%>
+                           <%--placeholder="${director}">--%>
+                <%--</div>--%>
                 <button onclick="form.submit();" class="btn btn-default">查询</button>
             </form>
             <div class="box-content">
@@ -174,26 +189,28 @@
                         <th>序号</th>
                         <th>ID</th>
                         <th>用户名</th>
+                        <th>卡号</th>
                         <th>密码</th>
                         <th>类型</th>
-                        <th>卡号</th>
                         <th>学院</th>
+                        <th>专业</th>
                         <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${BorrowerList}" var="BL" varStatus="i">
+                    <c:forEach items="${UndergraduateList}" var="BL" varStatus="i">
                     <tr>
                         <td>${i.index + 1}</td>
                         <td class="center">${BL.id}</td>
                         <td class="center">${BL.username}</td>
+                        <td class="center">${BL.cardNo}</td>
                         <td class="center">${BL.password}</td>
                         <td class="center">${BL.type}</td>
-                        <td class="center">${BL.cardNo}</td>
                         <td class="center">${BL.department}</td>
+                        <td class="center">${BL.major}</td>
                         <td class="center">
-                            <button class="zj_button2 btn btn-success">修改</button>
-                            <a class="btn btn-danger" href="/deleteBorrower.action?id=${BL.id}">删除</a>
+                            <button class="zj_button3 btn btn-success">修改</button>
+                            <a class="btn btn-danger" href="/deleteUndergraduate.action?id=${BL.id}">删除</a>
                         </td>
                     </tr>
                     </tbody>
@@ -201,11 +218,11 @@
                 </table>
 
 
-                </div>
-
             </div>
+
         </div>
     </div>
+</div>
 
 </div>
 <div style="display: none;" class="zj_popWindow1">
@@ -213,36 +230,36 @@
         <img onclick="doHide1(this)" src="${ctx}/resources/back/img/zj_end.png">
     </div>
     <div class="zj_popBottom">
-        <form action="/addUser.action" class="form-inline" name="addForm" id="addForm">
+        <form action="/addUndergraduate.action" class="form-inline" name="addForm" id="addForm">
             <div class="form-group">
                 <label>用户名</label>
                 <input type="text" class="form-control" id="userNameAdd" name="userNameAdd"
                        placeholder="请输入用户名">
             </div>
             <div class="form-group">
-                <label>密码</label>
-                <input type="text" class="form-control" id="userPasswordAdd" name="userPasswordAdd"
-                       placeholder="请输入密码">
-            </div>
-            <div class="form-group">
-                <label>类型</label>
-                <input type="text" class="form-control" id="userTypeAdd" name="userTypeAdd"
-                       placeholder="请输入类型">
-            </div>
-            <div class="form-group">
                 <label>卡号</label>
-                <input type="text" class="form-control" id="stuNameAdd" name="stuNameAdd"
+                <input type="text" class="form-control" id="cardNoAdd" name="cardNoAdd"
                        placeholder="请输入卡号">
             </div>
             <div class="form-group">
+                <label>密码</label>
+                <input type="text" class="form-control" id="passwordAdd" name="passwordAdd"
+                       placeholder="请输入密码">
+            </div>
+            <div class="form-group">
                 <label>学院</label>
-                <input type="text" class="form-control" id="stuClassAdd" name="stuClassAdd"
+                <input type="text" class="form-control" id="departmentAdd" name="departmentAdd"
                        placeholder="请输入学院">
+            </div>
+            <div class="form-group">
+                <label>专业</label>
+                <input type="text" class="form-control" id="majorAdd" name="majorAdd"
+                       placeholder="请输入专业">
             </div>
 
         </form>
         <div class="zj_check1">
-            <button name="addUser" id="addUser">
+            <button name="add" id="add">
                 <img src="${ctx}/resources/back/img/zj_check.png">&nbsp;&nbsp;提交
             </button>
         </div>
@@ -259,41 +276,48 @@
         <img onclick="doHide2(this)" src="${ctx}/resources/back/img/zj_end.png">
     </div>
     <div class="zj_popBottom">
-        <form action="/editUser.action" class="form-inline" name="addForm" id="editForm">
-            <div class="form-group">
+        <form action="/updateUndergraduate.action" class="form-inline" name="editForm" id="editForm">
+            <div class="form-group" hidden="hidden">
                 <label>id</label>
-                <input  readonly="readonly" type="text" class="form-control" id="userIdEdit" name="userIdEdit"
+                <input  readonly="readonly" type="text" class="form-control" id="idUpdate" name="idUpdate"
                         placeholder="">
             </div>
             <div class="form-group">
                 <label>用户名</label>
-                <input type="text" class="form-control" id="userNameEdit" name="userNameEdit"
+                <input type="text" class="form-control" id="userNameUpdate" name="userNameUpdate"
                        placeholder="请输入用户名">
             </div>
             <div class="form-group">
+                <label>卡号</label>
+                <input type="text" class="form-control" id="cardNoUpdate" name="cardNoUpdate"
+                       placeholder="请输入卡号">
+            </div>
+            <div class="form-group">
                 <label>密码</label>
-                <input type="text" class="form-control" id="userPasswordEdit" name="userPasswordEdit"
+                <input type="text" class="form-control" id="passwordUpdate" name="passwordUpdate"
                        placeholder="请输入密码">
             </div>
             <div class="form-group">
                 <label>类型</label>
-                <input type="text" class="form-control" id="userTypeEdit" name="userTypeEdit"
-                       placeholder="请输入类型">
-            </div>
-            <div class="form-group">
-                <label>卡号</label>
-                <input type="text" class="form-control" id="stuNameEdit" name="stuNameEdit"
-                       placeholder="请输入卡号">
+                <select class="form-control"id="typeUpdate" name="typeUpdate">
+                    <option>graduate</option>
+                    <option>undergraduate</option>
+                </select>
             </div>
             <div class="form-group">
                 <label>学院</label>
-                <input type="text" class="form-control" id="stuClassEdit" name="stuClassEdit"
+                <input type="text" class="form-control" id="departmentUpdate" name="departmentUpdate"
                        placeholder="请输入学院">
+            </div>
+            <div class="form-group">
+                <label>专业</label>
+                <input type="text" class="form-control" id="majorUpdate" name="majorUpdate"
+                       placeholder="请输入专业">
             </div>
 
         </form>
         <div class="zj_check1">
-            <button name="editUser" id="editUser">
+            <button name="edit" id="edit">
                 <img src="${ctx}/resources/back/img/zj_check.png">&nbsp;&nbsp;提交
             </button>
         </div>
@@ -322,13 +346,13 @@
     }
 </script>
 <script>
-    $("#editUser").click(function () {
+    $("#edit").click(function () {
         document.getElementById('editForm').submit();
-        $("#editUser").attr("disabled", "disabled");
+        $("#edit").attr("disabled", "disabled");
     });
-    $("#addUser").click(function () {
+    $("#add").click(function () {
         document.getElementById('addForm').submit();
-        $("#addUser").attr("disabled", "disabled");
+        $("#add").attr("disabled", "disabled");
     });
 </script>
 <script type="text/javascript" src="${ctx}/resources/back/js/popWindow.js"></script>

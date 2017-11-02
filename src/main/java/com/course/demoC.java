@@ -1,17 +1,11 @@
 package com.course;
 
-import com.course.admin.entity.Borrower;
-import com.course.admin.repository.UserJPA;
+import com.course.admin.service.GraduateService;
 import com.course.admin.service.LoginService;
 
-import com.course.admin.service.OperateService;
 import com.course.borrower.entity.Book;
 import com.course.borrower.repository.BookJPA;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,7 +21,7 @@ public class demoC {
     @Autowired
     LoginService loginService;
     @Autowired
-    OperateService operateService;
+    GraduateService graduateService;
     @Autowired
     BookJPA bookJPA;
     @RequestMapping(value = "/index")
@@ -50,10 +44,7 @@ public class demoC {
         if (result.get("result").equals("success")){
             HttpSession session=request.getSession();
             session.setAttribute("user",result.get("user"));
-            String currentPage = "0";
-            modelAndView.addObject("currentPage",currentPage);
-//            modelAndView.setViewName("redirect:/findAllBorrowersByPage.action");
-            modelAndView.setViewName("redirect:/findAllBorrowers.action");
+            modelAndView.setViewName("redirect:/findAllGraduates.action");
             return modelAndView;
         }else{
 

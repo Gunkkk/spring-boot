@@ -3,12 +3,14 @@ package com.course;
 
 
 import com.course.admin.entity.*;
-import com.course.admin.service.OperateService;
+import com.course.admin.service.GraduateService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 
 @RunWith(SpringRunner.class)
@@ -16,43 +18,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class TestServicesTest {
 
     @Autowired
-    OperateService operateService;
+    GraduateService graduateService;
 
     @Test
-    public void testSave() {
-        Graduate graduate = new Graduate();
-        graduate.setId(8);
-        graduate.setCardNo("007");
-        graduate.setDirector("Di.HAHA");
-        graduate.setMajor("CS");
-        graduate.setDepartment("Dp.CS");
-        graduate.setType("graduate");
-        graduate.setUsername("HongWenbo");
-        graduate.setPassword("123456");
-
-        operateService.save(graduate);
-
-
-
+    public void findGraduateByCondition(){
+        graduateService.findGraduateByCondition(null,null,"123456",null,null,null);
+        List<Graduate> GraduateListFound =
+                graduateService.findGraduateByCondition(null,null,null,null,null,null);
+        graduateService.showList(GraduateListFound);
     }
-
-    @Test
-    public void testDelete() {
-        operateService.delete(1);
-    }
-
-    @Test
-    public void testFind() {
-//        operateService.findById(1);
-//        operateService.findByUsername("Yanyufeng");
-//        operateService.findByCondition("YYF","011","graduate");
-          operateService.findAll();
-    }
-
-    @Test
-    public void testUpdate() {
-        operateService.updateBorrowerById("YYF","011","123456","graduate","Dp.CS",2);
-        operateService.findByUsername("YYF");
-    }
-
 }
