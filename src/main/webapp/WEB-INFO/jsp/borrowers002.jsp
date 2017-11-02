@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2017/6/7
-  Time: 10:37
+  User: yanyufeng
+  Date: 2017/11/1
+  Time: 11:33
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -10,14 +10,22 @@
 <html>
 <%request.setAttribute("ctx", request.getContextPath()); %>
 <head>
-    <meta charset="utf-8">
-    <title>首页</title>
+    <title></title>
+
     <link rel="stylesheet" type="text/css" href="${ctx}/resources/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="${ctx}/resources/css/index.css">
     <link rel="stylesheet" href="${ctx}/resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/resources/back/css/popWindow.css">
     <script src="${ctx}/resources/js/jquery-3.1.1.min.js"></script>
     <script src="${ctx}/resources/bootstrap/js/bootstrap.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+    <link rel="stylesheet" href="${ctx}/resources/css/jquery.paginate.css" />
+    <link rel="stylesheet" href="${ctx}/resources/css/jquery.yhhDataTable.css" />
+    <script type="text/javascript" src="${ctx}/resources/js/jquery-1.10.2.min"></script>
+    <script type="text/javascript" src="${ctx}/resources/js/jquery.paginate.js" ></script>
+    <script type="text/javascript" src="${ctx}/resources/js/jquery.yhhDataTable.js" ></script>
+    <script type="text/javascript" src="${ctx}/resources/js/indexForPaging.js" ></script>
 
     <style>
         img{
@@ -107,26 +115,6 @@
         }
 
     </style>
-
-    <%--<script>--%>
-        <%--function go() {--%>
-            <%--var url = document.getElementById("url").value;--%>
-            <%--var pc = document.getElementById("pc").value;--%>
-            <%--var tp = document.getElementById("tp").value;--%>
-            <%--if (parseInt(pc)<1 ) {--%>
-                <%--pc=1;--%>
-            <%--}else if (parseInt(pc)>parseInt(tp)) {--%>
-                <%--pc=tp;--%>
-            <%--}--%>
-            <%--var fUrl = url + "&pc=" + pc;--%>
-            <%--window.location.href = fUrl;--%>
-        <%--}--%>
-    <%--</script>--%>
-    <%--<script>--%>
-        <%--var  =${user};--%>
-    <%--</script>--%>
-
-
 </head>
 <body>
 <div class="index-top">
@@ -180,7 +168,7 @@
                 <button onclick="form.submit();" class="btn btn-default">查询</button>
             </form>
             <div class="box-content">
-                <table class="table table-striped table-bordered">
+                <table id="testtable1">
                     <thead>
                     <tr>
                         <th>序号</th>
@@ -194,10 +182,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${page.getContent()}" var="BL" varStatus="i">
+                    <c:forEach items="${BorrowerList}" var="BL" varStatus="i">
                     <tr>
-                        <td>${i.index + 1 + page.getNumber()*page.getSize()}</td>
-
+                        <td>${i.index + 1}</td>
                         <td class="center">${BL.id}</td>
                         <td class="center">${BL.username}</td>
                         <td class="center">${BL.password}</td>
@@ -213,42 +200,12 @@
                     </c:forEach>
                 </table>
 
-                <div align="right">
-                    <table>
-                        <tr>
-                            <%--<form height="16px" class="recode">--%>
-                            <td><span id="recode1" class="recode">总记录数：${page.getTotalElements()}条</span></td>
-                            <td><a href=""><img src="${ctx}/resources/image/page/page_home.png" class="recode"></a></td>
-                            <c:if test="${page.getNumber()>0}">
-                                <td><a href="/findAllBorrowers.action?currentPage=0"><img src="${ctx}/resources/image/page/page_prev.png" class="recode"></a></td>
-                            </c:if>
-                            <c:if test="${page.getNumber()+1<page.getTotalPages()}">
-                                <td><a href="/findAllBorrowers.action?currentPage=${page.getNumber()+1}"><img src="${ctx}/resources/image/page/page_next.png" class="recode"></a></td>
-                            </c:if>
-                            <td><a href="/findAllBorrowers.action?currentPage=${page.getTotalPages()-1}"><img src="${ctx}/resources/image/page/page_end.png" class="recode"></a></td>
-                            <td><span id="recode2" class="recode">第${(page.getNumber()+1)}页/共${page.getTotalPages()}页&nbsp;&nbsp;转到</span></td>
 
-
-                            <%--下面的input标签顺序不要变--%>
-                            <%--<input type="hidden" name="no" value="${pb.beanList.no}">--%>
-                            <td>
-                                <input  type="text" onkeyup="value=value.replace(/[^\d]/g,'')" id="pc">
-                            </td>
-                            <td>
-                                <%--<input type="hidden" id="url" value="${pb.url}">--%>
-                                <input type="hidden" id="tp" value="${page.getTotalPages()}">
-                                <input type="image" class="recode" src="${ctx}/resources/image/page/page_go.png" onclick="go();return false;"/>
-                            </td>
-
-                            <%--<td><a href="checkOneProject.action?no=1&projectId=20170400&pc=${projectUser.pc}"><img src="../../../../image/page/page_go.png"></a></td>--%>
-
-                        </tr>
-                    </table>
                 </div>
 
+            </div>
         </div>
     </div>
-</div>
 
 </div>
 <div style="display: none;" class="zj_popWindow1">
@@ -306,7 +263,7 @@
             <div class="form-group">
                 <label>id</label>
                 <input  readonly="readonly" type="text" class="form-control" id="userIdEdit" name="userIdEdit"
-                       placeholder="">
+                        placeholder="">
             </div>
             <div class="form-group">
                 <label>用户名</label>
@@ -366,8 +323,8 @@
 </script>
 <script>
     $("#editUser").click(function () {
-    document.getElementById('editForm').submit();
-    $("#editUser").attr("disabled", "disabled");
+        document.getElementById('editForm').submit();
+        $("#editUser").attr("disabled", "disabled");
     });
     $("#addUser").click(function () {
         document.getElementById('addForm').submit();
@@ -375,5 +332,6 @@
     });
 </script>
 <script type="text/javascript" src="${ctx}/resources/back/js/popWindow.js"></script>
+
 </body>
 </html>

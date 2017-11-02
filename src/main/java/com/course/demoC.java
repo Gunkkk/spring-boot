@@ -52,6 +52,7 @@ public class demoC {
             session.setAttribute("user",result.get("user"));
             String currentPage = "0";
             modelAndView.addObject("currentPage",currentPage);
+//            modelAndView.setViewName("redirect:/findAllBorrowersByPage.action");
             modelAndView.setViewName("redirect:/findAllBorrowers.action");
             return modelAndView;
         }else{
@@ -67,34 +68,6 @@ public class demoC {
         ModelAndView modelAndView = new ModelAndView();
 
         modelAndView.setViewName("login");
-        return modelAndView;
-    }
-
-    @RequestMapping(value = "/findAllBorrowers.action")
-    public ModelAndView findAllBorrower(@RequestParam("currentPage")String currentPage){
-        ModelAndView modelAndView = new ModelAndView();
-
-        int currentPageNum = Integer.parseInt(currentPage,10);
-
-        int pageSize = 5;
-
-        //排序
-        Sort.Order idOrder = new Sort.Order(Sort.Direction.ASC, "id");
-        Sort.Order usernameOrder = new Sort.Order(Sort.Direction.ASC,"username");
-        Sort sort = new Sort(idOrder,usernameOrder);
-        PageRequest pageRequest  = new PageRequest(currentPageNum, pageSize, sort);
-        Page<Borrower> page = operateService.findAll(pageRequest);
-
-//        System.out.println("总记录数:" + page.getTotalElements());
-//        System.out.println("总页数:" + page.getTotalPages());
-//        System.out.println("当前页（request):" + page.getNumber());
-//        System.out.println("当前页总记录数（request):" + page.getSize());
-//        System.out.println("当前页记录总数：" + page.getNumberOfElements());
-//        List<Borrower> borrowers = page.getContent();
-
-        modelAndView.addObject("page",page);
-
-        modelAndView.setViewName("borrowers");
         return modelAndView;
     }
 }

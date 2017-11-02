@@ -1,14 +1,11 @@
 package com.course;
 
         import com.course.admin.entity.Borrower;
-        import com.course.admin.repository.BorrowerPagingAndSortingRepository;
         import com.course.admin.service.OperateService;
         import org.junit.Test;
         import org.junit.runner.RunWith;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.boot.test.context.SpringBootTest;
-        import org.springframework.context.ApplicationContext;
-        import org.springframework.context.support.ClassPathXmlApplicationContext;
         import org.springframework.data.domain.Page;
         import org.springframework.data.domain.PageRequest;
         import org.springframework.data.domain.Sort;

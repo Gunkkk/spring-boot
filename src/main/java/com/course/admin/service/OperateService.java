@@ -2,7 +2,6 @@ package com.course.admin.service;
 
 import com.course.admin.entity.Borrower;
 import com.course.admin.repository.BorrowerJPA;
-import com.course.admin.repository.BorrowerPagingAndSortingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,10 +21,7 @@ public class OperateService {
     @Autowired
     BorrowerJPA borrowerJPA;
 
-    @Autowired
-    BorrowerPagingAndSortingRepository borrowerPagingAndSortingRepository;
-
-    public Page<Borrower> findAll(Pageable page){ return borrowerPagingAndSortingRepository.findAll(page);}
+    public Page<Borrower> findAll(Pageable page){ return borrowerJPA.findAll(page);}
 
     public void save(Borrower borrower) {
         borrowerJPA.save(borrower);
