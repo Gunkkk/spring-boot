@@ -49,7 +49,10 @@ public class AdminBookService {
         Page<Book> page =bookJPA.findByIdOrNameLikeOrAuthorOrIsbn(id,name,author,isbn,pageRequest);
         return page;
     }
-
+    public List<Book> queryBook(int id,String name,String author,String isbn){
+        List<Book> list =bookJPA.findByIdOrNameLikeOrAuthorOrIsbn(id,name,author,isbn);
+        return list;
+    }
     /**
      * 模糊查询杂志
      * @param id
@@ -68,6 +71,10 @@ public class AdminBookService {
         Page<Magazine> page =magazineJPA.findByIdOrNameLikeOrAuthorOrIsbn(id,name,author,isbn,pageRequest);
 
         return page;
+    }
+    public List<Magazine> queryMagazine(int id,String name,String author,String isbn){
+        List<Magazine> list =magazineJPA.findByIdOrNameLikeOrAuthorOrIsbn(id,name,author,isbn);
+        return list;
     }
     /**
      * 新增杂志

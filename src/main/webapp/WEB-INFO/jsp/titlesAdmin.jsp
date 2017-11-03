@@ -37,7 +37,7 @@
         }
         .module-box{
             width: 100%;
-            margin: 0 auto 20px auto;
+                margin: 0 auto 20px auto;
             position: relative;
         }
         /*.module-box {*/
@@ -209,10 +209,10 @@
 
                 </div>
 
-                <button onclick="javascript:submit();" class="btn btn-default">查询</button>
+                <button onclick="form.submit();" class="btn btn-default">查询</button>
             </form>
             <div class="box-content">
-                <table class="table table-striped table-bordered">
+                <table class="table table-striped table-bordered" id="testtable1">
                     <thead>
                     <tr>
                         <th>序号</th>
@@ -264,10 +264,10 @@
                     </c:forEach>
                 </table>
 
-                <div align="right">
+<%--                <div align="right">
                     <table>
                         <tr>
-                            <%--<form height="16px" class="recode">--%>
+                            &lt;%&ndash;<form height="16px" class="recode">&ndash;%&gt;
                             <td><span id="recode1" class="recode">总记录数：${page.getTotalElements()}条</span></td>
                             <td><a href=""><img src="${ctx}/resources/image/page/page_home.png" class="recode"></a></td>
                             <c:if test="${page.getNumber()>0}">
@@ -280,22 +280,22 @@
                             <td><span id="recode2" class="recode">第${(page.getNumber()+1)}页/共${page.getTotalPages()}页&nbsp;&nbsp;转到</span></td>
 
 
-                            <%--下面的input标签顺序不要变--%>
-                            <%--<input type="hidden" name="no" value="${pb.beanList.no}">--%>
+                            &lt;%&ndash;下面的input标签顺序不要变&ndash;%&gt;
+                            &lt;%&ndash;<input type="hidden" name="no" value="${pb.beanList.no}">&ndash;%&gt;
                             <td>
                                 <input  type="text" onkeyup="value=value.replace(/[^\d]/g,'')" id="pc">
                             </td>
                             <td>
-                                <%--<input type="hidden" id="url" value="${pb.url}">--%>
+                                &lt;%&ndash;<input type="hidden" id="url" value="${pb.url}">&ndash;%&gt;
                                 <input type="hidden" id="tp" value="${page.getTotalPages()}">
                                 <input type="image" class="recode" src="${ctx}/resources/image/page/page_go.png" onclick="go();return false;"/>
                             </td>
 
-                            <%--<td><a href="checkOneProject.action?no=1&projectId=20170400&pc=${projectUser.pc}"><img src="../../../../image/page/page_go.png"></a></td>--%>
+                            &lt;%&ndash;<td><a href="checkOneProject.action?no=1&projectId=20170400&pc=${projectUser.pc}"><img src="../../../../image/page/page_go.png"></a></td>&ndash;%&gt;
 
                         </tr>
                     </table>
-                </div>
+                </div>--%>
 
             </div>
         </div>

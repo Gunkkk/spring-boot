@@ -51,10 +51,10 @@ public class AdminBookController {
             currentPage="0";
 
         if (type.equals("书籍")){
-            Page<Book> bookPage = adminBookService.queryBook(id,name,author,isbn,Integer.parseInt(currentPage));
+            List<Book> bookPage = adminBookService.queryBook(id,name,author,isbn);
             modelAndView.addObject("page",bookPage);
         }else{
-            Page<Magazine> magazinePage = adminBookService.queryMagazine(id,name,author,isbn,Integer.parseInt(currentPage));
+            List<Magazine> magazinePage = adminBookService.queryMagazine(id,name,author,isbn);
             modelAndView.addObject("page",magazinePage);
         }
         modelAndView.setViewName("/titlesAdmin");

@@ -22,7 +22,9 @@ import java.util.List;
 public interface BookJPA extends JpaRepository<Book,Integer> {
 
      Page<Book> findByIdOrNameLikeOrAuthorOrIsbn(int id, String name, String author, String isbn, org.springframework.data.domain.Pageable pageable);
-   // @Modifying
+     List<Book> findByIdOrNameLikeOrAuthorOrIsbn(int id, String name, String author, String isbn);
+
+     // @Modifying
    /* @Query("update Book b set b.")
     public void updateBookById(String name, String author, String borrowedNumber, String isbn, float price, int totalNumber,
                                String press, @Temporal(TemporalType.DATE) Date publishDate, String version);*/

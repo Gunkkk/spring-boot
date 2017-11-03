@@ -12,4 +12,6 @@ import java.util.List;
  */
 public interface MagazineJPA extends JpaRepository<Magazine,Integer> {
     Page<Magazine> findByIdOrNameLikeOrAuthorOrIsbn(int id, String name, String author, String isbn, Pageable pageable);
+    List<Magazine> findByIdOrNameLikeOrAuthorOrIsbn(int id, String name, String author, String isbn);
+
 }
