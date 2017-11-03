@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -40,19 +41,17 @@ public class AdminBookController {
      * @return
      */
     @RequestMapping(value = "/queryBook.action")
-    public ModelAndView queryBook( HttpServletRequest request){
+    public ModelAndView queryBook(@RequestParam ("id") int id,@RequestParam("name") String name,@RequestParam("author") String author,
+                                  @RequestParam("isbn") String isbn,@RequestParam("type") String type,
+                                  HttpServletRequest request ){
         ModelAndView modelAndView = new ModelAndView();
-        int id = Integer.parseInt(String.valueOf(request.getAttribute("id")));
-        String name = String.valueOf(request.getAttribute("name"));
-        String author = String.valueOf(request.getAttribute("author"));
-        String isbn = String.valueOf(request.getAttribute("isbn"));
-        String type = String.valueOf(request.getAttribute("type"));
-        String currentPage =String.valueOf(request.getAttribute("currentPage"));
-        if (currentPage.isEmpty())
-            currentPage="1";
+        String currentPage = null;
+        currentPage = request.getParameter("currentPage");
+        if (currentPage==null)
+            currentPage="0";
 
         if (type.equals("书籍")){
-            Page<Book> bookPage = adminBookService.queryBook(id,name,author,isbn,0);
+            Page<Book> bookPage = adminBookService.queryBook(id,name,author,isbn,Integer.parseInt(currentPage));
             modelAndView.addObject("page",bookPage);
         }else{
             Page<Magazine> magazinePage = adminBookService.queryMagazine(id,name,author,isbn,Integer.parseInt(currentPage));
