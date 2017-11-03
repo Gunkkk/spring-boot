@@ -41,7 +41,7 @@ public class demoC {
     }
 
 
-    @RequestMapping (value = "/toLogin.action")
+    @RequestMapping (value = "/toLogin")
     public ModelAndView login1(@RequestParam("username")String username,
                                @RequestParam("password")String password,
                                HttpServletRequest request){
@@ -70,7 +70,7 @@ public class demoC {
         return modelAndView;
     }
 
-   // @RequestMapping(value = "/findAllBorrowers.action")
+    @RequestMapping(value = "/findAllBorrowers.action")
     public ModelAndView findAllBorrower(@RequestParam("currentPage")String currentPage){
         ModelAndView modelAndView = new ModelAndView();
 

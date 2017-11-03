@@ -4,7 +4,7 @@
 	position: absolute;
 	z-index: 999;
 	width: 400px;
-	height: 550px;
+	height: 575px;
 	-moz-border-radius: 15px;
 	border-radius: 15px;
 }
@@ -27,7 +27,7 @@
 }
 .zj_popBottom
 {
-	height: 508px;
+	height: 580px;
 	background-color: #DADADA;
 	border-radius: 0 0 15px 15px;
 }
@@ -42,7 +42,7 @@
 .zj_check2
 {
 	position: absolute;
-	top: 490px;
+	top: 565px;
 	left: 100px;
 	width: 80px;
 	height: 25px;
@@ -59,7 +59,7 @@
 .zj_cancle
 {
 	position: absolute;
-	top: 490px;
+	top: 565px;
 	left: 230px;
 	width: 80px;
 	height: 25px;

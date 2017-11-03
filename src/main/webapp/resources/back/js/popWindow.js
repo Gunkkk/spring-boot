@@ -9,43 +9,59 @@ $(".zj_button2").click(function(){
     $(".zj_popWindow2").show();
     $(".zj_shade").show();
     //主要语句
-    $("input[name='userIdEdit']").val($this.parent().prev().prev().prev().prev().prev().prev().prev().text());
-    $("input[name='userNameEdit']").val($this.parent().prev().prev().prev().prev().prev().prev().text());
-    $("input[name='userPasswordEdit']").val($this.parent().prev().prev().prev().prev().prev().text());
-    $("input[name='userTypeEdit']").val($this.parent().prev().prev().prev().prev().text());
-    $("input[name='stuNameEdit']").val($this.parent().prev().prev().prev().text());
-    $("input[name='stuClassEdit']").val($this.parent().prev().prev().text());
-    $("input[name='stuSchoolEdit']").val($this.parent().prev().text());
+    $("input[name='idUpdate']").val($this.parent().prev().prev().prev().prev().prev().prev().prev().prev().text());
+    $("input[name='userNameUpdate']").val($this.parent().prev().prev().prev().prev().prev().prev().prev().text());
+    $("input[name='cardNoUpdate']").val($this.parent().prev().prev().prev().prev().prev().prev().text());
+    $("input[name='passwordUpdate']").val($this.parent().prev().prev().prev().prev().prev().text());
+    $("input[name='typeUpdate']").val($this.parent().prev().prev().prev().prev().text());
+    $("input[name='departmentUpdate']").val($this.parent().prev().prev().prev().text());
+    $("input[name='majorUpdate']").val($this.parent().prev().prev().text());
+    $("input[name='directorUpdate']").val($this.parent().prev().text());
+
+});
+$(".zj_button3").click(function(){
+    var $this = $(this);
+    $(".zj_popWindow2").show();
+    $(".zj_shade").show();
+    //主要语句
+    $("input[name='idUpdate']").val($this.parent().prev().prev().prev().prev().prev().prev().prev().text());
+    $("input[name='userNameUpdate']").val($this.parent().prev().prev().prev().prev().prev().prev().text());
+    $("input[name='cardNoUpdate']").val($this.parent().prev().prev().prev().prev().prev().text());
+    $("input[name='passwordUpdate']").val($this.parent().prev().prev().prev().prev().text());
+    $("input[name='typeUpdate']").val($this.parent().prev().prev().prev().text());
+    $("input[name='departmentUpdate']").val($this.parent().prev().prev().text());
+    $("input[name='majorUpdate']").val($this.parent().prev().ext());
 
 });
 function doHide1(e){
 	$(".zj_popWindow1").hide();
 	$(".zj_shade").hide();
     $(".input[name='userNameAdd']").val("");
-    $(".input[name='userPasswordAdd']").val("");
-    $(".input[name='userTypeAdd']").val("");
-    $(".input[name='stuNameAdd']").val("");
-    $(".input[name='stuClassAdd']").val("");
-    $(".input[name='stuSchoolAdd']").val("");
+    $(".input[name='cardNoAdd']").val("");
+    $(".input[name='passwordAdd']").val("");
+    $(".input[name='departmentAdd']").val("");
+    $(".input[name='majorAdd']").val("");
+    $(".input[name='directorAdd']").val("");
 }
 function doHide2(e){
     $(".zj_popWindow2").hide();
     $(".zj_shade").hide();
-    $("input[name='userIdEdit']").val("");
-    $(".input[name='userNameEdit']").val("");
-    $(".input[name='userPasswordEdit']").val("");
-    $(".input[name='userTypeEdit']").val("");
-    $(".input[name='stuNameEdit']").val("");
-    $(".input[name='stuClassEdit']").val("");
-    $("input[name='stuSchoolEdit']").val("");
+    $("input[name='idUpdate']").val("");
+    $(".input[name='userNameUpdate']").val("");
+    $(".input[name='cardNoUpdate']").val("");
+    $(".input[name='passwordUpdate']").val("");
+    $(".input[name='typeUpdate']").val("");
+    $(".input[name='departmentUpdate']").val("");
+    $("input[name='majorUpdate']").val("");
+    $("input[name='directorUpdate']").val("");
 }
 
 $("#zj_check1").click(function () {
-    document.getElementById('addForm').submit();
+    document.getElementById('add').submit();
     $("#zj_check1").attr("disabled", "disabled");
 });
 $("#zj_check2").click(function () {
-    document.getElementById('editForm').submit();
+    document.getElementById('edit').submit();
     $("#zj_check2").attr("disabled", "disabled");
 });
 
