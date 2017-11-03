@@ -43,7 +43,7 @@ public class demoC {
             session.setAttribute("user",result.get("user"));
             String currentPage = "0";
             modelAndView.addObject("currentPage",currentPage);
-            modelAndView.setViewName("redirect:/findAllBorrowers.action");
+            modelAndView.setViewName("redirect:/adminBook.action");
             return modelAndView;
         }else{
 

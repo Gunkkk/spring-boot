@@ -11,6 +11,7 @@ import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TemporalType;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.awt.print.Pageable;
 import java.util.Date;
 import java.util.List;
@@ -21,8 +22,8 @@ import java.util.List;
 @Repository
 public interface BookJPA extends JpaRepository<Book,Integer> {
 
-     Page<Book> findByIdOrNameLikeOrAuthorOrIsbn(int id, String name, String author, String isbn, org.springframework.data.domain.Pageable pageable);
-     List<Book> findByIdOrNameLikeOrAuthorOrIsbn(int id, String name, String author, String isbn);
+     Page<Book> findByIdOrNameLikeOrAuthorOrIsbn(Integer id, String name, String author, String isbn, org.springframework.data.domain.Pageable pageable);
+     List<Book> findByIdOrNameLikeOrAuthorOrIsbn(Integer id, String name, String author, String isbn);
 
      // @Modifying
    /* @Query("update Book b set b.")

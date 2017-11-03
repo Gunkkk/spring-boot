@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.authority.mapping.MapBasedAttributes2GrantedAuthoritiesMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,7 +39,7 @@ public class AdminBookService {
      * @param currentPage
      * @return
      */
-    public Page<Book> queryBook(int id, String name, String author, String isbn,int currentPage){
+    public Page<Book> queryBook(Integer id, String name, String author, String isbn,int currentPage){
 
         //排序
         Sort.Order idOrder = new Sort.Order(Sort.Direction.ASC, "id");
@@ -49,9 +50,12 @@ public class AdminBookService {
         Page<Book> page =bookJPA.findByIdOrNameLikeOrAuthorOrIsbn(id,name,author,isbn,pageRequest);
         return page;
     }
-    public List<Book> queryBook(int id,String name,String author,String isbn){
-        List<Book> list =bookJPA.findByIdOrNameLikeOrAuthorOrIsbn(id,name,author,isbn);
+    public List<Book> queryBook(Integer id,String name,String author,String isbn){
+        List<Book> list =bookJPA.findByIdOrNameLikeOrAuthorOrIsbn(id,"%"+name+"%",author,isbn);
         return list;
+    }
+    public List<Book> queryBook(){
+        return bookJPA.findAll();
     }
     /**
      * 模糊查询杂志
@@ -62,7 +66,7 @@ public class AdminBookService {
      * @param currentPage
      * @return
      */
-    public Page<Magazine> queryMagazine(int id,String name,String author,String isbn,int currentPage){
+    public Page<Magazine> queryMagazine(Integer id,String name,String author,String isbn,int currentPage){
         //排序
         Sort.Order idOrder = new Sort.Order(Sort.Direction.ASC, "id");
         Sort.Order usernameOrder = new Sort.Order(Sort.Direction.ASC,"name");
@@ -72,9 +76,12 @@ public class AdminBookService {
 
         return page;
     }
-    public List<Magazine> queryMagazine(int id,String name,String author,String isbn){
-        List<Magazine> list =magazineJPA.findByIdOrNameLikeOrAuthorOrIsbn(id,name,author,isbn);
+    public List<Magazine> queryMagazine(Integer id,String name,String author,String isbn){
+        List<Magazine> list =magazineJPA.findByIdOrNameLikeOrAuthorOrIsbn(id,"%"+name+"%",author,isbn);
         return list;
+    }
+    public List<Magazine> queryMagazine(){
+        return magazineJPA.findAll();
     }
     /**
      * 新增杂志

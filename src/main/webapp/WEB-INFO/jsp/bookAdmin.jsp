@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <%request.setAttribute("ctx", request.getContextPath()); %>
 <head>
@@ -19,6 +20,13 @@
     <script src="${ctx}/resources/js/jquery-3.1.1.min.js"></script>
     <script src="${ctx}/resources/bootstrap/js/bootstrap.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+    <link rel="stylesheet" href="${ctx}/resources/css/jquery.paginate.css" />
+    <link rel="stylesheet" href="${ctx}/resources/css/jquery.yhhDataTable.css" />
+    <%--<script type="text/javascript" src="${ctx}/resources/js/jquery-1.10.2.min"></script>--%>
+    <script type="text/javascript" src="${ctx}/resources/js/jquery.paginate.js" ></script>
+    <script type="text/javascript" src="${ctx}/resources/js/jquery.yhhDataTable.js" ></script>
+    <script type="text/javascript" src="${ctx}/resources/js/indexForPaging.js" ></script>
     <style>
         img{
             float: left;
@@ -109,11 +117,6 @@
     </style>
 
     <script>
-        function submit(){
-            var getUrl = window.location.href;
-            document.getElementById("queryForm").submit();
-
-        }
         function go() {
             var url = document.getElementById("url").value;
             var pc = document.getElementById("pc").value;
@@ -126,20 +129,8 @@
             var fUrl = url + "&pc=" + pc;
             window.location.href = fUrl;
         }
-        function page(){
-            var currentPage = ${page.getNumber()+1}
-            var formUrl = getCookie("url");
-            var furl = formUrl+"&currentPage="+currentPage;
-            window.location.href = furl;
-        }
-        function getCookie(objName) {//获取指定名称的cookie的值
-            var arrStr = document.cookie.split("; ");
-            for (var i = 0; i < arrStr.length; i++) {
-                var temp = arrStr[i].split("=");
-                if (temp[0] == objName) return unescape(temp[1]);
-            }
-            return "";
-        }
+
+
     </script>
     <%--<script>--%>
     <%--var  =${user};--%>
@@ -160,8 +151,8 @@
                     其他<b class="caret"></b>
                 </a>
                 <ul  class="dropdown-menu" >
-                    <li ><a href="/findAllBorrowers.action" target="ibody">用户管理</a></li>
-                    <li id="groupSearch" ><a href="/toGroupSearch.action" target="ibody" >团体查询</a></li>
+                    <li ><a href="/adminMagazine.action" target="ibody">杂志管理</a></li>
+                    <li id="groupSearch" ><a href="/toGroupSearch.action" target="ibody" >返回主界面</a></li>
                 </ul>
 
             </li>
@@ -178,7 +169,7 @@
 <div class="content">
     <div class="container">
         <div class="container-body">
-            <button class="zj_button1 btn btn-warning" style="float:right">增加用户</button>
+            <button class="book_button1 btn btn-warning" style="float:right">增加书籍</button>
             <form action="/queryBook.action" class="form-inline" role="form">
                 <div class="form-group">
                     <label>ID</label>
@@ -200,14 +191,6 @@
                     <input type="text" class="form-control" id="isbn" name="isbn"
                            placeholder="">
                 </div>
-                <div class="form-group">
-                    <label>类型</label>
-                    <select name="type" id="type">
-                        <option selected value="书籍">书籍</option>
-                        <option value="杂志">杂志</option>
-                    </select>
-
-                </div>
 
                 <button onclick="form.submit();" class="btn btn-default">查询</button>
             </form>
@@ -225,20 +208,15 @@
                         <th>总数</th>
                         <th>价格</th>
                         <th>出版社</th>
-                        <c:if test="${BL.type=='书籍'}">
                         <th>出版日期</th>
                         <th>版本</th>
-                        </c:if>
-                        <c:if test="${BL.type=='杂志'}">
-                        <th>Volume</th>
-                        </c:if>
                         <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${page.getContent()}" var="BL" varStatus="i">
+                    <c:forEach items="${page}" var="BL" varStatus="i">
                     <tr>
-                        <td>${i.index + 1 + page.getNumber()*page.getSize()}</td>
+                        <td>${i.index + 1}</td>
                         <td class="center">${BL.id}</td>
                         <td class="center">${BL.name}</td>
                         <td class="center">${BL.author}</td>
@@ -248,16 +226,11 @@
                         <td class="center">${BL.totalNumber}</td>
                         <td class="center">${BL.price}</td>
                         <td class="center">${BL.press}</td>
-                        <c:if test="${BL.type=='书籍'}">
                         <td class="center">${BL.publishDate}</td>
                         <td class="center">${BL.version}</td>
-                        </c:if>
-                        <c:if test="${BL.type=='杂志'}">
-                        <td class="center">${BL.volumn}</td>
-                        </c:if>
                         <td class="center">
-                            <button class="zj_button2 btn btn-success">修改</button>
-                            <a class="btn btn-danger" href="/deleteTitle.action?id=${BL.id}">删除</a>
+                            <button class="book_button2 btn btn-success">修改</button>
+                            <a class="btn btn-danger" href="/deleteBook.action?id=${BL.id}">删除</a>
                         </td>
                     </tr>
                     </tbody>
@@ -304,39 +277,53 @@
 </div>
 <div style="display: none;" class="zj_popWindow1">
     <div class="zj_popTop">
-        <img onclick="doHide1(this)" src="${ctx}/resources/back/img/zj_end.png">
+        <img onclick="doHideBook1(this)" src="${ctx}/resources/back/img/zj_end.png">
     </div>
     <div class="zj_popBottom">
-        <form action="/addUser.action" class="form-inline" name="addForm" id="addForm">
+        <form action="/addBook.action" class="form-inline" name="addForm" id="addForm">
             <div class="form-group">
-                <label>用户名</label>
-                <input type="text" class="form-control" id="userNameAdd" name="userNameAdd"
-                       placeholder="请输入用户名">
+                <label>书名</label>
+                <input type="text" class="form-control" id="nameAdd" name="nameAdd"
+                       placeholder="请输入书名">
             </div>
             <div class="form-group">
-                <label>密码</label>
-                <input type="text" class="form-control" id="userPasswordAdd" name="userPasswordAdd"
-                       placeholder="请输入密码">
+                <label>作者</label>
+                <input type="text" class="form-control" id="authorAdd" name="authorAdd"
+                       placeholder="请输入作者">
             </div>
             <div class="form-group">
-                <label>类型</label>
-                <input type="text" class="form-control" id="userTypeAdd" name="userTypeAdd"
-                       placeholder="请输入类型">
+                <label>ISBN</label>
+                <input type="text" class="form-control" id="isbnAdd" name="isbnAdd"
+                       placeholder="请输入ISBN">
             </div>
             <div class="form-group">
-                <label>卡号</label>
-                <input type="text" class="form-control" id="stuNameAdd" name="stuNameAdd"
-                       placeholder="请输入卡号">
+                <label>总数</label>
+                <input type="text" class="form-control" id="totalNumberAdd" name="totalNumberAdd"
+                       placeholder="请输入总数">
             </div>
             <div class="form-group">
-                <label>学院</label>
-                <input type="text" class="form-control" id="stuClassAdd" name="stuClassAdd"
-                       placeholder="请输入学院">
+                <label>价格</label>
+                <input type="text" class="form-control" id="priceAdd" name="priceAdd"
+                       placeholder="请输入价格">
             </div>
-
+            <div class="form-group">
+                <label>出版社</label>
+                <input type="text" class="form-control" id="pressAdd" name="pressAdd"
+                       placeholder="请输入出版社">
+            </div>
+            <div class="form-group">
+                <label>出版日期(yyyy-MM-dd)</label>
+                <input type="text" class="form-control" id="publishDateAdd" name="publishDateAdd"
+                       placeholder="请输入出版日期(yyyy-MM-dd)">
+            </div>
+            <div class="form-group">
+                <label>版本</label>
+                <input type="text" class="form-control" id="versionAdd" name="versionAdd"
+                       placeholder="请输入版本">
+            </div>
         </form>
         <div class="zj_check1">
-            <button name="addUser" id="addUser">
+            <button name="addBook" id="addBook">
                 <img src="${ctx}/resources/back/img/zj_check.png">&nbsp;&nbsp;提交
             </button>
         </div>
@@ -350,44 +337,59 @@
 
 <div style="display: none;" class="zj_popWindow2">
     <div class="zj_popTop">
-        <img onclick="doHide2(this)" src="${ctx}/resources/back/img/zj_end.png">
+        <img onclick="doHideBook2(this)" src="${ctx}/resources/back/img/zj_end.png">
     </div>
     <div class="zj_popBottom">
-        <form action="/editUser.action" class="form-inline" name="addForm" id="editForm">
-            <div class="form-group">
-                <label>id</label>
-                <input  readonly="readonly" type="text" class="form-control" id="userIdEdit" name="userIdEdit"
-                        placeholder="">
+        <form action="/changeBook.action" class="form-inline" name="editForm" id="editForm">
+            <div class="form-group" hidden="hidden">
+                <label>ID</label>
+                <input type="text" class="form-control" id="idUpdate" name="idUpdate"
+                       placeholder="" readonly>
             </div>
             <div class="form-group">
-                <label>用户名</label>
-                <input type="text" class="form-control" id="userNameEdit" name="userNameEdit"
-                       placeholder="请输入用户名">
+                <label>书名</label>
+                <input type="text" class="form-control" id="nameUpdate" name="nameUpdate"
+                       placeholder="请输入书名">
             </div>
             <div class="form-group">
-                <label>密码</label>
-                <input type="text" class="form-control" id="userPasswordEdit" name="userPasswordEdit"
-                       placeholder="请输入密码">
+                <label>作者</label>
+                <input type="text" class="form-control" id="authorUpdate" name="authorUpdate"
+                       placeholder="请输入作者">
             </div>
             <div class="form-group">
-                <label>类型</label>
-                <input type="text" class="form-control" id="userTypeEdit" name="userTypeEdit"
-                       placeholder="请输入类型">
+                <label>ISBN</label>
+                <input type="text" class="form-control" id="isbnUpdate" name="isbnUpdate"
+                       placeholder="请输入ISBN">
             </div>
             <div class="form-group">
-                <label>卡号</label>
-                <input type="text" class="form-control" id="stuNameEdit" name="stuNameEdit"
-                       placeholder="请输入卡号">
+                <label>总数</label>
+                <input type="text" class="form-control" id="totalNumberUpdate" name="totalNumberUpdate"
+                       placeholder="请输入总数">
             </div>
             <div class="form-group">
-                <label>学院</label>
-                <input type="text" class="form-control" id="stuClassEdit" name="stuClassEdit"
-                       placeholder="请输入学院">
+                <label>价格</label>
+                <input type="text" class="form-control" id="priceUpdate" name="priceUpdate"
+                       placeholder="请输入价格">
+            </div>
+            <div class="form-group">
+                <label>出版社</label>
+                <input type="text" class="form-control" id="pressUpdate" name="pressUpdate"
+                       placeholder="请输入出版社">
+            </div>
+            <div class="form-group">
+                <label>出版日期(yyyy-MM-dd)</label>
+                <input type="text" class="form-control" id="publishDateUpdate" name="publishDateUpdate"
+                       placeholder="请输入出版日期(yyyy-MM-dd)">
+            </div>
+            <div class="form-group">
+                <label>出版日期</label>
+                <input type="text" class="form-control" id="versionUpdate" name="versionUpdate"
+                       placeholder="请输入版本">
             </div>
 
         </form>
         <div class="zj_check1">
-            <button name="editUser" id="editUser">
+            <button name="editBook" id="editBook">
                 <img src="${ctx}/resources/back/img/zj_check.png">&nbsp;&nbsp;提交
             </button>
         </div>
@@ -416,13 +418,13 @@
     }
 </script>
 <script>
-    $("#editUser").click(function () {
+    $("#editBook").click(function () {
         document.getElementById('editForm').submit();
-        $("#editUser").attr("disabled", "disabled");
+        $("#editBook").attr("disabled", "disabled");
     });
-    $("#addUser").click(function () {
+    $("#addBook").click(function () {
         document.getElementById('addForm').submit();
-        $("#addUser").attr("disabled", "disabled");
+        $("#addBook").attr("disabled", "disabled");
     });
 </script>
 <script type="text/javascript" src="${ctx}/resources/back/js/popWindow.js"></script>
