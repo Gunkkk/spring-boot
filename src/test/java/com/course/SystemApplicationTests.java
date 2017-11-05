@@ -3,6 +3,7 @@ package com.course;
 import com.course.admin.service.AdminBookService;
 import com.course.borrower.entity.Book;
 import com.course.borrower.repository.BookJPA;
+import com.course.libraryAdmin.service.ItemAdminService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +37,27 @@ public class SystemApplicationTests {
 
 	}*/
 	@Test
-	public void testUpdate (){
+	public void testUpdate () {
 		Book book = new Book();
 		book.setId(1);
 		book.setName("fwuhfe");
 		adminBookService.changeBook(book);
 
+	}
+	@Autowired
+	ItemAdminService itemAdminService;
+	@Test
+	public void addItem(){
+		itemAdminService.addItem("xxxx11",4);
+
+	}
+	@Test
+	public void deleteItem(){
+		itemAdminService.deleteItem(4,4);
+	}
+
+	@Test
+	public void addLoan(){
+		itemAdminService.loanBook("1","xxxx11");
 	}
 }

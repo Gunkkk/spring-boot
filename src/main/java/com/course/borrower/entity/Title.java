@@ -20,11 +20,11 @@ public class Title {
     private float price;
     private int totalNumber;
     private String type;
-    @OneToMany(targetEntity = Item.class,cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Item.class,cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name="TITLE_ID")
     private List<Item> items;
 
-    @OneToMany(targetEntity = Reservation.class,cascade =  CascadeType.ALL)
+    @OneToMany(targetEntity = Reservation.class,cascade =  CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "TITLE_ID")
     private List<Reservation> reservations;
     public int getId() {
@@ -91,5 +91,19 @@ public class Title {
         this.type = type;
     }
 
+    public List<Item> getItems() {
+        return items;
+    }
 
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
 }
