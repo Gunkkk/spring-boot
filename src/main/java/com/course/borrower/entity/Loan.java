@@ -1,6 +1,7 @@
 package com.course.borrower.entity;
 
 import com.course.config.entity.LoanStrategy;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Calendar;
@@ -18,6 +19,7 @@ public class Loan {
     @Id
     private int id;
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date loandate;
     @Column(name = "BORROWER_ID")
     private int borrowerId;
