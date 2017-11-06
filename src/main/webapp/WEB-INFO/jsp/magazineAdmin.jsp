@@ -128,13 +128,21 @@
 
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    其他<b class="caret"></b>
+                    用户管理<b class="caret"></b>
+                </a>
+                <ul  class="dropdown-menu" >
+                    <li ><a href="/findAllGraduates.action" target="ibody">研究生用户</a></li>
+                    <li><a href="/findAllUndergraduates.action" target="ibody" >本科生用户</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    图书管理<b class="caret"></b>
                 </a>
                 <ul  class="dropdown-menu" >
                     <li ><a href="/adminBook.action" target="ibody">书籍管理</a></li>
-                    <li id="groupSearch" ><a href="/toGroupSearch.action" target="ibody" >返回主界面</a></li>
+                    <li><a href="/adminMagazine.action" target="ibody" >杂志管理</a></li>
                 </ul>
-
             </li>
 
         </ul>

@@ -28,16 +28,16 @@ public class Loan {
         return id;
     }
 
-    //Loan() made by YYF for temporary usage.
-    Loan()
-    {
-        LoanStrategy loanStrategy = new LoanStrategy();
-
-        Calendar calendar = new GregorianCalendar();
-        calendar.setTime(loandate);
-        calendar.add(Calendar.DATE,loanStrategy.getLoanDuration());//把日期往后增加一天.正数往后推,负数往前推
-        duedate.setDuedate(calendar.getTime());   //这个时间就是日期往后推一天的结果
-    }
+//    //Loan() made by YYF for temporary usage.
+//    Loan()
+//    {
+//        LoanStrategy loanStrategy = new LoanStrategy();
+//
+//        Calendar calendar = new GregorianCalendar();
+//        calendar.setTime(loandate);
+//        calendar.add(Calendar.DATE,loanStrategy.getLoanDuration());//把日期往后增加一天.正数往后推,负数往前推
+//        duedate.setDuedate(calendar.getTime());   //这个时间就是日期往后推一天的结果
+//    }
 
     public void setId(int id) {
         this.id = id;
