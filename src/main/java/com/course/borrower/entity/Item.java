@@ -15,8 +15,9 @@ public class Item {
 /*    private int m_Loan;
     private int m_LoseBook;
     private int m_Reservation;*/
-    @Column(name = "TITLE_ID")
-    private int titleId;
+    @JoinColumn(name = "TITLE_ID")
+    @ManyToOne
+    private Title title;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "M_RESERVATION")
     private Reservation reservation;
@@ -42,13 +43,14 @@ public class Item {
         this.libraryCode = libraryCode;
     }
 
-    public int getTitleId() {
-        return titleId;
+    public Title getTitle() {
+        return title;
     }
 
-    public void setTitleId(int titleId) {
-        this.titleId = titleId;
+    public void setTitle(Title title) {
+        this.title = title;
     }
+
     public Reservation getReservation() {
         return reservation;
     }

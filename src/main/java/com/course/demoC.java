@@ -1,6 +1,5 @@
 package com.course;
 
-import com.course.admin.service.GraduateService;
 import com.course.admin.service.LoginService;
 
 import com.course.borrower.entity.Book;
@@ -20,8 +19,6 @@ import java.util.Map;
 public class demoC {
     @Autowired
     LoginService loginService;
-    @Autowired
-    GraduateService graduateService;
     @Autowired
     BookJPA bookJPA;
     @RequestMapping(value = "/index")
@@ -44,7 +41,9 @@ public class demoC {
         if (result.get("result").equals("success")){
             HttpSession session=request.getSession();
             session.setAttribute("user",result.get("user"));
-            modelAndView.setViewName("redirect:/findAllGraduates.action");
+            String currentPage = "0";
+            modelAndView.addObject("currentPage",currentPage);
+            modelAndView.setViewName("redirect:/adminBook.action");
             return modelAndView;
         }else{
 
@@ -61,4 +60,6 @@ public class demoC {
         modelAndView.setViewName("login");
         return modelAndView;
     }
+
+
 }

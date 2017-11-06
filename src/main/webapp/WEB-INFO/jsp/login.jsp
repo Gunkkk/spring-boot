@@ -74,7 +74,7 @@
             </div>
             <div class="col-md-4 col-md-offset-4 text-center">
 
-                    <form class="form-horizontal login-form " action="/toLogin" method="POST">
+                    <form class="form-horizontal login-form " action="/toLogin.action" method="POST">
                         <h1 class="heading">欢迎登录</h1>
                         <div class="form-group">
                            <div class="label">

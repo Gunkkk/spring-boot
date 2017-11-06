@@ -1,5 +1,7 @@
 package com.course.borrower.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -13,6 +15,7 @@ public class Duedate {
     @Id
     private int id;
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date duedate;
     public int getId() {
         return id;
