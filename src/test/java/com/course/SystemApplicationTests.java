@@ -60,4 +60,24 @@ public class SystemApplicationTests {
 	public void addLoan(){
 		itemAdminService.loanBook("1","xxxx11");
 	}
+
+	@Test
+	public void returnBook(){
+		itemAdminService.returnBook("xxxx11");
+	}
+
+	@Test
+	public void addLosebook(){
+		itemAdminService.addLose("xxxx11");
+	}
+	@Test
+	public  void addReservation(){
+		itemAdminService.addReservation("xxxx11","1");
+	}
+	@Test
+	public void isAvailable(){
+		if(itemAdminService.isAvailable("xxxx11"))
+			System.out.print("===================");
+		else System.out.print("----------------------");
+	}
 }

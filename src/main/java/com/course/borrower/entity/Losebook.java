@@ -1,5 +1,7 @@
 package com.course.borrower.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -14,6 +16,7 @@ public class Losebook {
     @Column(name = "ID")
     private int id;
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date losedate;
     @Column(name = "BORROWER_ID")
     private int borrowerId;

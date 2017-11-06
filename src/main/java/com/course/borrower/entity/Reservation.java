@@ -1,5 +1,7 @@
 package com.course.borrower.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -13,12 +15,13 @@ public class Reservation {
     @Id
     private int id;
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date reserveDate;
     @Column(name = "BORROWER_ID")
     private int borrowerId;
-    @Column(name = "TITLE_ID")
-    private int titleId;
-
+    @ManyToOne
+    @JoinColumn(name = "TITLE_ID")
+    private Title title;
 
     @OneToOne(mappedBy = "m_Reservation")
     public int getId() {
@@ -38,13 +41,7 @@ public class Reservation {
         this.borrowerId = borrowerId;
     }
 
-    public int getTitleId() {
-        return titleId;
-    }
 
-    public void setTitleId(int titleId) {
-        this.titleId = titleId;
-    }
 
     public Date getReserveDate() {
         return reserveDate;
@@ -54,5 +51,11 @@ public class Reservation {
         this.reserveDate = reserveDate;
     }
 
+    public Title getTitle() {
+        return title;
+    }
 
+    public void setTitle(Title title) {
+        this.title = title;
+    }
 }

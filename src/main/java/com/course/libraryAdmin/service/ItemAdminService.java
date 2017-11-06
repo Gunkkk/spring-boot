@@ -5,10 +5,12 @@ import com.course.admin.repository.BorrowerJPA;
 import com.course.borrower.entity.*;
 import com.course.borrower.repository.BookJPA;
 import com.course.borrower.repository.ItemJPA;
+import com.course.borrower.repository.LoanJPA;
 import com.course.borrower.repository.TitleJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -23,8 +25,8 @@ public class ItemAdminService {
     TitleJPA titleJPA;
     @Autowired
     BorrowerJPA borrowerJPA;
-
-
+    @Autowired
+    LoanJPA loanJPA;
     /**
      * 新增书项
      * 每个书项对应一个书目
@@ -67,24 +69,93 @@ public class ItemAdminService {
         Item item = itemJPA.findByLibraryCode(libraryCode);
        // 获取title信息
         Title title = item.getTitle();
+        title.setBorrowedNumber(title.getBorrowedNumber()+1);
         Loan loan = new Loan();
         Duedate duedate= new Duedate();
-        Date d = new Date();
-        loan.setLoandate(d);
-        d.setMonth(d.getMonth()+1);
+        Date loandate = new Date();
+        Date due = new Date();
+        loan.setLoandate(loandate);
+        due.setMonth(due.getMonth()+1);
 
-        duedate.setDuedate(d);
+        duedate.setDuedate(due);
         loan.setDuedate(duedate);
         loan.setBorrowerId(borrower.getId());
         item.setLoan(loan);
+        //itemJPA.save(item);
+        titleJPA.save(title); //自动修改item
     }
+
 
     /**
      * 还书
-     * @param cardNo
      * @param libraryCode
      */
-    public void returnBook(int cardNo, int libraryCode){
+    public void returnBook( String libraryCode){
+        Item item = itemJPA.findByLibraryCode(libraryCode);
+        Title title = item.getTitle();
+        title.setBorrowedNumber(title.getBorrowedNumber()-1);
+        Loan loan = item.getLoan();
+        item.setLoan(null);
+        itemJPA.save(item);    //删除次序不能改变  外键先删除
+        loanJPA.delete(loan.getId());
+        titleJPA.save(title);
+    }
 
+    /**
+     * 书项丢失
+     * @param libraryCode
+     */
+    public void addLose(String libraryCode){
+        Item item = itemJPA.findByLibraryCode(libraryCode);
+        Losebook losebook = new Losebook();
+        losebook.setBorrowerId(item.getLoan().getBorrowerId());
+        losebook.setLosedate(new Date());
+        item.setLosebook(losebook);
+        itemJPA.save(item);
+    }
+
+    /**
+     * 预定书
+     * @param libraryCode
+     * @param cardNo
+     */
+    public void addReservation(String libraryCode,String cardNo){
+        Borrower borrower = borrowerJPA.findByCardNo(cardNo);
+        Item item = itemJPA.findByLibraryCode(libraryCode);
+        Title title = item.getTitle();
+        Reservation reservation = new Reservation();
+        reservation.setBorrowerId(borrower.getId());
+        reservation.setReserveDate(new Date());
+        reservation.setTitle(title);
+        item.setReservation(reservation);
+     //   title.getReservations().add(reservation);
+        titleJPA.save(title);
+
+    }
+
+    /**
+     * 可以不删除预定
+     */
+    public void cancelReservation(){
+
+
+    }
+    /**
+     * 是否存在
+     * @param libraryCode
+     * @return
+     */
+    public boolean isExist (String libraryCode){
+        Item item = itemJPA.findByLibraryCode(libraryCode);
+        if (item!=null){
+            return true;
+        }
+        return false;
+    }
+    public boolean isAvailable(String libraryCode){
+        Item item = itemJPA.findByLibraryCode(libraryCode);
+        if (item.getLoan()!=null||item.getLosebook()!=null||item.getReservation()!=null)
+            return false;
+        return true;
     }
 }

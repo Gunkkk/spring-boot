@@ -24,7 +24,7 @@ public class Title {
     @JoinColumn(name="TITLE_ID")
     private List<Item> items;
 
-    @OneToMany(targetEntity = Reservation.class,cascade =  CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = Reservation.class,cascade =  CascadeType.ALL)
     @JoinColumn(name = "TITLE_ID")
     private List<Reservation> reservations;
     public int getId() {
