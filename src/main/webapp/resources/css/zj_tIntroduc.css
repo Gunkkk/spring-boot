@@ -30,57 +30,35 @@
 	background-color: black;
 	opacity: 0.3;
 }
-.zj_style
-{
-	min-width: 900px;
-}
 .zj_Teacher
 {
 	width: 25%;
 	float: left;
 	height: 500px;
+	background-color: black;
+	opacity: 0.5;
 	margin-top: 50px;
 	margin-left: 40px;
 	text-align: center;
-	perspective: 1000;
-	transition: 0.8s;
-	transform-style: preserve-3d;
-	position: relative;
-	background-color:rgba(0, 0, 0, 0.3);
-	/*background: black;*/
-	/*filter: alpha(opacity=50);*/
-}
-.zj_Teacher:hover
-{
-	transform: rotateY(180deg);
-}
-.zj_front
-{
-	z-index: 10;
-	backface-visibility: hidden;
-	position: absolute;
-	width: 100%;
-	height: 100%;
-}
-.zj_back
-{
-	z-index: 9;
-	backface-visibility: hidden;
-	position: absolute;
-	transform: rotateY(180deg);
+	transition: transform 2s;
 }
 .zj_tPhoto
 {
 	width: auto;
-	max-height: 130px;
+	max-height: 120px;
 	margin: 100px;
+}
+.zj_Teacher:hover
+{
+	background-color: white;
+	transform: rotateY(360deg);
 }
 .zj_Teacher p
 {
-	margin-top: -40px;
 	margin-left: 10%;
+	text-align: center;
 	width: 80%;
 	font-family: SimSun;
 	font-weight: 700;
-	font-size: 15px;
+	font-size: 20px;
 }

@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.Temporal;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TemporalType;

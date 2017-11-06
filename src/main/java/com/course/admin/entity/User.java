@@ -15,6 +15,9 @@ public class User {
     private String username;
     private String password;
     private int roleId;
+    //if roleId == 0, it is a librarian;
+    //if roleId == 1, it is a system administrator;
+
     public User() {
 
     }
