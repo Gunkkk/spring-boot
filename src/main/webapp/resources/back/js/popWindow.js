@@ -30,47 +30,8 @@ $(".zj_button3").click(function(){
     $("input[name='passwordUpdate']").val($this.parent().prev().prev().prev().prev().text());
     $("input[name='typeUpdate']").val($this.parent().prev().prev().prev().text());
     $("input[name='departmentUpdate']").val($this.parent().prev().prev().text());
-    $("input[name='majorUpdate']").val($this.parent().prev().text());
+    $("input[name='majorUpdate']").val($this.parent().prev().ext());
 
-});
-$(".book_button1").click(function(){
-    var $this = $(this);
-    $(".zj_popWindow1").show();
-    $(".zj_shade").show();
-});
-$(".book_button2").click(function(){
-    var $this = $(this);
-    $(".zj_popWindow2").show();
-    $(".zj_shade").show();
-    //主要语句
-    $("input[name='idUpdate']").val($this.parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text());
-    $("input[name='nameUpdate']").val($this.parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text());
-    $("input[name='authorUpdate']").val($this.parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().text());
-    $("input[name='isbnUpdate']").val($this.parent().prev().prev().prev().prev().prev().prev().prev().text());
-    $("input[name='totalNumberUpdate']").val($this.parent().prev().prev().prev().prev().prev().text());
-    $("input[name='priceUpdate']").val($this.parent().prev().prev().prev().prev().text());
-    $("input[name='pressUpdate']").val($this.parent().prev().prev().prev().text());
-    $("input[name='publishDateUpdate']").val($this.parent().prev().prev().text());
-    $("input[name='versionUpdate']").val($this.parent().prev().text());
-});
-$(".magazine_button1").click(function(){
-    var $this = $(this);
-    $(".zj_popWindow1").show();
-    $(".zj_shade").show();
-});
-$(".magazine_button2").click(function(){
-    var $this = $(this);
-    $(".zj_popWindow2").show();
-    $(".zj_shade").show();
-    //主要语句
-    $("input[name='idUpdate']").val($this.parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().prev().text());
-    $("input[name='nameUpdate']").val($this.parent().prev().prev().prev().prev().prev().prev().prev().prev().prev().text());
-    $("input[name='authorUpdate']").val($this.parent().prev().prev().prev().prev().prev().prev().prev().prev().text());
-    $("input[name='isbnUpdate']").val($this.parent().prev().prev().prev().prev().prev().prev().text());
-    $("input[name='totalNumberUpdate']").val($this.parent().prev().prev().prev().prev().text());
-    $("input[name='priceUpdate']").val($this.parent().prev().prev().prev().text());
-    $("input[name='pressUpdate']").val($this.parent().prev().prev().text());
-    $("input[name='volumeUpdate']").val($this.parent().prev().text());
 });
 function doHide1(e){
 	$(".zj_popWindow1").hide();
@@ -94,55 +55,7 @@ function doHide2(e){
     $("input[name='majorUpdate']").val("");
     $("input[name='directorUpdate']").val("");
 }
-function doHideBook1(e){
-    $(".zj_popWindow1").hide();
-    $(".zj_shade").hide();
-    $(".input[name='nameAdd']").val("");
-    $(".input[name='authorAdd']").val("");
-    $(".input[name='isbnAdd']").val("");
-    $(".input[name='totalNumberAdd']").val("");
-    $(".input[name='priceAdd']").val("");
-    $(".input[name='pressAdd']").val("");
-    $(".input[name='publishDateAdd']").val("");
-    $(".input[name='versionAdd']").val("");
 
-}
-function doHideBook2(e){
-    $(".zj_popWindow2").hide();
-    $(".zj_shade").hide();
-    $(".input[name='nameUpdate']").val("");
-    $(".input[name='authorUpdate']").val("");
-    $(".input[name='isbnUpdate']").val("");
-    $(".input[name='priceUpdate']").val("");
-    $(".input[name='totalNumberUpdate']").val("");
-    $(".input[name='pressUpdate']").val("");
-    $(".input[name='publishDateUpdate']").val("");
-    $(".input[name='versionUpdate']").val("");
-}
-
-function doHideMagazine1(e){
-    $(".zj_popWindow1").hide();
-    $(".zj_shade").hide();
-    $(".input[name='nameAdd']").val("");
-    $(".input[name='authorAdd']").val("");
-    $(".input[name='isbnAdd']").val("");
-    $(".input[name='totalNumberAdd']").val("");
-    $(".input[name='priceAdd']").val("");
-    $(".input[name='pressAdd']").val("");
-    $(".input[name='volumeAdd']").val("");
-
-}
-function doHideMagazine2(e){
-    $(".zj_popWindow2").hide();
-    $(".zj_shade").hide();
-    $(".input[name='nameUpdate']").val("");
-    $(".input[name='authorUpdate']").val("");
-    $(".input[name='isbnUpdate']").val("");
-    $(".input[name='priceUpdate']").val("");
-    $(".input[name='totalNumberUpdate']").val("");
-    $(".input[name='pressUpdate']").val("");
-    $(".input[name='volumeUpdate']").val("");
-}
 $("#zj_check1").click(function () {
     document.getElementById('add').submit();
     $("#zj_check1").attr("disabled", "disabled");
