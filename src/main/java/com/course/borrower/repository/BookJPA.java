@@ -3,17 +3,8 @@ package com.course.borrower.repository;
 import com.course.borrower.entity.Book;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.jpa.repository.Temporal;
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.TemporalType;
-import javax.persistence.criteria.CriteriaBuilder;
-import java.awt.print.Pageable;
-import java.util.Date;
 import java.util.List;
 
 /**

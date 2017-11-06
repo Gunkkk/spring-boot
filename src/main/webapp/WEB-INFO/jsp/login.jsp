@@ -70,7 +70,7 @@
     </head>
     <body onload="createCode()" >
             <div class="top">
-                <p class="top-head "> 武汉准择科技有限公司</p>
+                <p class="top-head ">图书管管理系统</p>
             </div>
             <div class="col-md-4 col-md-offset-4 text-center">
 

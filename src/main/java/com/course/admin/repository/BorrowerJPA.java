@@ -8,4 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface BorrowerJPA extends JpaRepository<Borrower,Integer> {
     Borrower findByCardNo(String cardNo);
+    Borrower findByUsername(String username);
 }
