@@ -1,5 +1,7 @@
 package com.course.borrower.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -14,6 +16,7 @@ public class Loan {
     @Id
     private int id;
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date loandate;
     @Column(name = "BORROWER_ID")
     private int borrowerId;
@@ -23,6 +26,17 @@ public class Loan {
     public int getId() {
         return id;
     }
+
+//    //Loan() made by YYF for temporary usage.
+//    Loan()
+//    {
+//        LoanStrategy loanStrategy = new LoanStrategy();
+//
+//        Calendar calendar = new GregorianCalendar();
+//        calendar.setTime(loandate);
+//        calendar.add(Calendar.DATE,loanStrategy.getLoanDuration());//把日期往后增加一天.正数往后推,负数往前推
+//        duedate.setDuedate(calendar.getTime());   //这个时间就是日期往后推一天的结果
+//    }
 
     public void setId(int id) {
         this.id = id;
