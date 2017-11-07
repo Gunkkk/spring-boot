@@ -34,6 +34,19 @@ public class LoginService {
             } else {
                 map.put("result", "success");
                 map.put("user", user);
+                int roleId = user.getRoleId();
+                if(roleId == 0)
+                {
+                    map.put("role", "librarian");
+                }
+                else if(roleId == 1)
+                {
+                    map.put("role", "administrator");
+                }
+                else
+                {
+                    map.put("role", "unknown");
+                }
                 return map;
             }
         }

@@ -37,6 +37,7 @@ public class LoginController {
         if (result.get("result").equals("success")){
             HttpSession session=request.getSession();
             session.setAttribute("user",result.get("user"));
+            session.setAttribute("role",result.get("role"));
             modelAndView.setViewName("redirect:/adminBook.action");
             return modelAndView;
         }else{
