@@ -17,12 +17,6 @@ public class Admin {
     private int id;
     private String username;
     private String password;
-    private int roleId;
-
-
-    public Admin() {
-
-    }
 
     public int getId() {
         return id;
@@ -48,11 +42,4 @@ public class Admin {
         this.password = password;
     }
 
-    public int getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
-    }
 }

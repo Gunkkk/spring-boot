@@ -16,4 +16,6 @@ public interface GraduateJPA extends JpaRepository<Graduate,Integer> {
 
     public List<Graduate> findAll (Specification querySpecifi);
 
+    public Graduate findAllByCardNo (String CardNo);
+
 }

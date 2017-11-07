@@ -16,4 +16,6 @@ public interface UndergraduateJPA extends JpaRepository<Undergraduate,Integer> {
 
     public List<Undergraduate> findAll (Specification querySpecifi);
 
+    public Undergraduate findAllByCardNo (String CardNo);
+
 }

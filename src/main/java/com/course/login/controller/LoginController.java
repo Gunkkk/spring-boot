@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -30,17 +31,28 @@ public class LoginController {
 
     @RequestMapping (value = "/toLogin")
     public ModelAndView toLogin(@RequestParam("username")String username,
-                               @RequestParam("password")String password,
-                               HttpServletRequest request){
-        Map<String,Object> result=loginService.login(username,password);
-        ModelAndView modelAndView=new ModelAndView();
-        if (result.get("result").equals("success")){
-            HttpSession session=request.getSession();
+                                @RequestParam("password")String password,
+                                @RequestParam("role")String role,
+                                HttpServletRequest request) {
+
+        System.out.println(role);
+
+        ModelAndView modelAndView = new ModelAndView();
+        Map<String, Object> result = loginService.login(username,password,role);
+        HttpSession session=request.getSession();
+
+        if (result.get("result").equals("successUser"))
+        {
+            session.setAttribute("user",result.get("user"));
+            modelAndView.setViewName("UserWork");
+        }
+        else if(result.get("result").equals("successAdmin"))
+        {
             session.setAttribute("user",result.get("user"));
             modelAndView.setViewName("redirect:/adminBook.action");
-            return modelAndView;
-        }else{
-
+        }
+        else
+        {
             modelAndView.setViewName("/login");
             modelAndView.addObject("msg",result.get("msg"));
         }

@@ -47,6 +47,12 @@ public class GraduateService {
         List<Graduate> graduate = graduateJPA.findAll();
         return graduate;
     }
+
+//    public Graduate findAllByCardNo(String CardNo) {
+//        Graduate graduate = graduateJPA.findAllByCardNo(CardNo);
+//        return graduate;
+//    }
+
     //多条件查询
     public List<Graduate> findGraduateByCondition(String username, String cardNo, String password,
                                                   String department, String major, String director){
