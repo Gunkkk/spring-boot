@@ -72,6 +72,12 @@ $(".magazine_button2").click(function(){
     $("input[name='pressUpdate']").val($this.parent().prev().prev().text());
     $("input[name='volumeUpdate']").val($this.parent().prev().text());
 });
+
+$(".item_button1").click(function(){
+    var $this = $(this);
+    $(".zj_popWindow1").show();
+    $(".zj_shade").show();
+});
 function doHide1(e){
 	$(".zj_popWindow1").hide();
 	$(".zj_shade").hide();
@@ -91,8 +97,8 @@ function doHide2(e){
     $(".input[name='passwordUpdate']").val("");
     $(".input[name='typeUpdate']").val("");
     $(".input[name='departmentUpdate']").val("");
-    $("input[name='majorUpdate']").val("");
-    $("input[name='directorUpdate']").val("");
+    $(".input[name='majorUpdate']").val("");
+    $(".input[name='directorUpdate']").val("");
 }
 function doHideBook1(e){
     $(".zj_popWindow1").hide();
@@ -142,6 +148,13 @@ function doHideMagazine2(e){
     $(".input[name='totalNumberUpdate']").val("");
     $(".input[name='pressUpdate']").val("");
     $(".input[name='volumeUpdate']").val("");
+}
+function doHideItem1(e){
+    $(".zj_popWindow1").hide();
+    $(".zj_shade").hide();
+    $(".input[name='codeAdd']").val("");
+    $("#validateButton").attr("disabled","disabled");
+    $("#validateLabel").text("");
 }
 $("#zj_check1").click(function () {
     document.getElementById('add').submit();
