@@ -28,7 +28,7 @@ public class ValidateService {
     UndergraduateJPA undergraduateJPA;
 
     //系统验证借阅证是否有效
-    public boolean checkCardNo(String cardNo)
+    public Borrower checkCardNo(String cardNo)
     {
         List<Graduate> graduateList = graduateJPA.findAll();
         for(Graduate graduate:graduateList)
@@ -36,7 +36,7 @@ public class ValidateService {
             String cardNo1 = graduate.getCardNo();
             if(cardNo1 == cardNo)
             {
-                return true;
+                return graduateJPA.findAllByCardNo(cardNo);
             }
         }
         List<Undergraduate> undergraduateList = undergraduateJPA.findAll();
@@ -45,11 +45,11 @@ public class ValidateService {
             String cardNo2 = undergraduate.getCardNo();
             if(cardNo2 == cardNo)
             {
-                return true;
+                return undergraduateJPA.findAllByCardNo(cardNo);
             }
         }
 
-        return false;
+        return null;
     }
 
     //检查借阅者借阅的图书是否超过了规定的数量
@@ -79,16 +79,6 @@ public class ValidateService {
             }
         }
         return true;
-    }
-
-    //检查以上两者，用于检验该账户中的借阅信息
-    public boolean checkBorrowerInfo(Borrower borrower){
-        if(checkOutOfNum(borrower) && checkUndue(borrower))
-        {
-            return true;
-        }
-        else
-            return false;
     }
 
 }

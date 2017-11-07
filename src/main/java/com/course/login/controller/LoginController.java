@@ -44,7 +44,7 @@ public class LoginController {
         if (result.get("result").equals("successUser"))
         {
             session.setAttribute("user",result.get("user"));
-            modelAndView.setViewName("redirect:/userWork.action");
+            modelAndView.setViewName("UserWork");
         }
         else if(result.get("result").equals("successAdmin"))
         {
