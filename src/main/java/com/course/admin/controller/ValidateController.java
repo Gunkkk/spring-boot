@@ -21,26 +21,27 @@ public class ValidateController {
         String flag = new String();
         if(borrower == null)
         {
-            flag = "notFound";
+            flag = "未找到用户";
         }
         else
         {
             //检查借阅者借阅的图书是否超过了规定的数量
             if(!validateService.checkOutOfNum(borrower))
             {
-                flag = "OutOfNum";
+                flag = "借书超数";
             }
             //检查借阅者是否有超过规定借阅期限而未归还的图书
             else if(!validateService.checkUndue(borrower))
             {
-                flag = "undue";
+                flag = "有图书过期未换";
             }
             else
             {
-                flag = "pass";
+                flag = "验证通过";
+                modelAndView.addObject("inputFlag",1);
             }
         }
-
+        modelAndView.addObject("cardNo",cardNo);
         modelAndView.addObject("flag",flag);
         return modelAndView;
     }

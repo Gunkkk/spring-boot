@@ -161,13 +161,23 @@
             <form action="/checkCardNo.action" class="form-inline" role="form">
                 <div class="form-group">
                     <input type="text" class="form-control" id="cardNo" name="cardNo"
-                           placeholder="cardNo">
+                           placeholder="cardNo" value="${cardNo}">
                     <button>验证卡号</button>
-                    <div type="text" readonly="readonly" class="form-control" id="flag" name="flag"
-                           placeholder="${flag}">
-                    </div>
                 </div>
             </form>
+            <div>
+                <label>验证结果</label>
+                <input type="text" readonly="readonly" id="flag" name="flag" placeholder="${flag}">
+            </div>
+            <c:if test="${inputFlag == 1}">
+                <form action="#" class="form-inline" role="form">
+                    <div class="form-group">
+                        <label>请输入图书ID</label>
+                        <input type="text" id="bookId" name="bookId" class="form-control" placeholder="bookId">
+                        <button>借阅</button>
+                    </div>
+                </form>
+            </c:if>
 
         </div>
     </div>
