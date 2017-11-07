@@ -43,7 +43,9 @@
                         if(data=='success'){
                         location.reload();
                         }else {
-                            $('#msg').val(data.msg);
+                            $('#msg').html(data.msg);
+                            setTimeout(function (){
+                            },5000);
                         }
                     }
                 });
@@ -51,7 +53,7 @@
                 form.submit();*/
             }
             else {
-                $('#msg').val(msg);
+                $('#msg').html(msg);
             }
         }
 
@@ -202,8 +204,8 @@
                         <input type="password" class="form-control" id="password" name="password">
                     </div>
                     <div class="modal-footer">
-                        <span ><label class="msg" id="msg" name="msg"></label></span>
-                        <button type="submit" class="btn btn-default" onclick="javascript:check();">提交</button>
+                        <span ><label class="msg" id="msg" name="msg" value='msg'></label></span>
+                        <button type="button" class="btn btn-default" onclick="javascript:check();">提交</button>
                         <button type="reset" class="btn btn-primary">重置</button>
                     </div>
                 </div>
