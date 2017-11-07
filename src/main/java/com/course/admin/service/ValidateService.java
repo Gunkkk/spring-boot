@@ -34,7 +34,7 @@ public class ValidateService {
         for(Graduate graduate:graduateList)
         {
             String cardNo1 = graduate.getCardNo();
-            if(cardNo1 == cardNo)
+            if(cardNo1.equals(cardNo))
             {
                 return graduateJPA.findAllByCardNo(cardNo);
             }
@@ -43,7 +43,7 @@ public class ValidateService {
         for(Undergraduate undergraduate:undergraduateList)
         {
             String cardNo2 = undergraduate.getCardNo();
-            if(cardNo2 == cardNo)
+            if(cardNo2.equals(cardNo))
             {
                 return undergraduateJPA.findAllByCardNo(cardNo);
             }

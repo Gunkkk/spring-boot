@@ -4,6 +4,7 @@ package com.course;
 
 import com.course.admin.entity.*;
 import com.course.admin.service.GraduateService;
+import com.course.admin.service.ValidateService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ public class TestServicesTest {
 
     @Autowired
     GraduateService graduateService;
+    @Autowired
+    ValidateService validateService;
 
     @Test
     public void findGraduateByCondition(){
@@ -26,5 +29,15 @@ public class TestServicesTest {
         List<Graduate> GraduateListFound =
                 graduateService.findGraduateByCondition(null,null,null,null,null,null);
         graduateService.showList(GraduateListFound);
+    }
+
+    @Test
+    public void validation(){
+        String cardNo = "002";
+        Borrower borrower = validateService.checkCardNo(cardNo);
+        if(borrower == null)
+        {
+            System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+        }
     }
 }
