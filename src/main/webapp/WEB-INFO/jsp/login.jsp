@@ -77,16 +77,27 @@
                     <form class="form-horizontal login-form " action="/toLogin.action" method="POST">
                         <h1 class="heading">欢迎登录</h1>
                         <div class="form-group">
-                           <div class="label">
+                            <div class="label">
                                <label class="w3" for="username">用户名</label>
                            </div>
-                          <input class="login-input"  type="text" id="username"  name="username">
-                    </div>
+                           <input class="login-input"  type="text" id="username"  name="username">
+                        </div>
                         <div class="form-group">
                             <div class="label">
                                 <label class="w2" for="password">密码</label>
                             </div>
                             <input class="login-input"  type="password" id="password"  name="password">
+                        </div>
+                        <div class="form-group">
+                            <div class="label">
+                                <label>用户类别</label>
+                            </div>
+                            <label>
+                                <input type="radio" id="admin" name="role" value="admin"> 系统管理员
+                            </label>
+                            <label>
+                                <input type="radio" id="user" name="role" value="user"> 图书管理员
+                            </label>
                         </div>
                         <div class="form-group">
                             <div class="label">

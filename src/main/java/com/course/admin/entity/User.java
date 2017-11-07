@@ -14,9 +14,6 @@ public class User {
     private int id;
     private String username;
     private String password;
-    private int roleId;
-    //if roleId == 0, it is a librarian;
-    //if roleId == 1, it is a system administrator;
 
     public User() {
 
@@ -41,16 +38,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public int getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
-    }
-
-
-
 
 }
