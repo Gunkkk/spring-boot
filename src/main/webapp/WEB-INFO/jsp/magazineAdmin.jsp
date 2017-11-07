@@ -133,6 +133,7 @@
                 <ul  class="dropdown-menu" >
                     <li ><a href="/findAllGraduates.action" target="ibody">研究生用户</a></li>
                     <li><a href="/findAllUndergraduates.action" target="ibody" >本科生用户</a></li>
+                    <li><a href="/findAllUser.action" target="ibody" >图书管理员</a></li>
                 </ul>
             </li>
             <li class="dropdown">
