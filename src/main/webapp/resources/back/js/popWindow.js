@@ -30,7 +30,7 @@ $(".zj_button3").click(function(){
     $("input[name='passwordUpdate']").val($this.parent().prev().prev().prev().prev().text());
     $("input[name='typeUpdate']").val($this.parent().prev().prev().prev().text());
     $("input[name='departmentUpdate']").val($this.parent().prev().prev().text());
-    $("input[name='majorUpdate']").val($this.parent().prev().text());
+    $("input[name='majorUpdate']").val($this.parent().prev().ext());
 
 });
 function doHide1(e){
