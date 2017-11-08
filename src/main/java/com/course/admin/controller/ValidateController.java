@@ -33,7 +33,7 @@ public class ValidateController {
             //检查借阅者是否有超过规定借阅期限而未归还的图书
             else if(!validateService.checkUndue(borrower))
             {
-                flag = "有图书过期未换";
+                flag = "有图书过期未还";
             }
             else
             {

@@ -70,6 +70,22 @@ public class ItemAdminService {
             list = itemJPA.findByTitleId(titleId);
             return list;
         }
+
+    /**
+     * 返回可借阅的书项
+     * @param titleId
+     * @return
+     */
+    public List<Item> borrowerQueryItem (int titleId){
+        List<Item> result = new ArrayList<>();
+        List<Item> list = queryItemByTitleId(titleId);
+        for (Item item:list ){
+            if(isAvailable(item.getLibraryCode())){
+                result.add(item);
+            }
+        }
+        return result;
+    }
     /**
      * 输入借阅证号和书籍编码进行借阅
      * 添加借阅记录，借阅时间
@@ -142,6 +158,7 @@ public class ItemAdminService {
         reservation.setReserveDate(new Date());
         reservation.setTitle(title);
         item.setReservation(reservation);
+        title.setBorrowedNumber(title.getBorrowedNumber()+1);
      //   title.getReservations().add(reservation);
         titleJPA.save(title);
 
