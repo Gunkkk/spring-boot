@@ -93,7 +93,6 @@ public class AdminBookController {
      * @param name
      * @param author
      * @param isbn
-     * @param totalNumber
      * @param price
      * @param press
      * @param publishDate
@@ -104,7 +103,7 @@ public class AdminBookController {
     public ModelAndView addBook(@RequestParam ("nameAdd") String name,
                                 @RequestParam ("authorAdd") String author,
                                 @RequestParam ("isbnAdd") String isbn,
-                                @RequestParam ("totalNumberAdd") int totalNumber,
+                              //  @RequestParam ("totalNumberAdd") int totalNumber,
                                 @RequestParam ("priceAdd") float price,
                                 @RequestParam ("pressAdd") String press,
                                 @RequestParam ("publishDateAdd") String publishDate,
@@ -114,7 +113,7 @@ public class AdminBookController {
         book.setName(name);
         book.setAuthor(author);
         book.setIsbn(isbn);
-        book.setTotalNumber(totalNumber);
+        book.setTotalNumber(0);
         book.setPrice(price);
         book.setPress(press);
         book.setPublishDate(string2date(publishDate));
@@ -138,7 +137,7 @@ public class AdminBookController {
     public ModelAndView addMagazine(@RequestParam ("nameAdd") String name,
                                     @RequestParam ("authorAdd") String author,
                                     @RequestParam ("isbnAdd") String isbn,
-                                    @RequestParam ("totalNumberAdd") int totalNumber,
+                                  //  @RequestParam ("totalNumberAdd") int totalNumber,
                                     @RequestParam ("priceAdd") float price,
                                     @RequestParam ("pressAdd") String press,
                                     @RequestParam ("volumeAdd") String volume){
@@ -150,7 +149,7 @@ public class AdminBookController {
         magazine.setPrice(price);
         magazine.setPress(press);
         magazine.setVolume(volume);
-        magazine.setTotalNumber(totalNumber);
+        magazine.setTotalNumber(0);
         magazine.setType("杂志");
         adminBookService.addMagazeine(magazine);
         return modelAndView;

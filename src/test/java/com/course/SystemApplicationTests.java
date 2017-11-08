@@ -53,7 +53,7 @@ public class SystemApplicationTests {
 	}
 	@Test
 	public void deleteItem(){
-		itemAdminService.deleteItem(4,4);
+		itemAdminService.deleteItem(11,4);
 	}
 
 	@Test
@@ -79,5 +79,13 @@ public class SystemApplicationTests {
 		if(itemAdminService.isAvailable("xxxx11"))
 			System.out.print("===================");
 		else System.out.print("----------------------");
+	}
+	@Test
+	public  void  isExist(){
+		if(itemAdminService.isExist("xxxx11")){
+			System.out.print("===================");
+		}else{
+			System.out.print("----------------------");
+		}
 	}
 }
