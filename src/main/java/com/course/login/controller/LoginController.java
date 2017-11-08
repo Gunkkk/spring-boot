@@ -20,8 +20,6 @@ import java.util.Map;
 public class LoginController {
     @Autowired
     LoginService loginService;
-    @Autowired
-    BookJPA bookJPA;
     @RequestMapping(value = "/index")
     public ModelAndView index(){
         ModelAndView modelAndView = new ModelAndView("/index");

@@ -206,7 +206,7 @@
                     <tr>
                         <td>${i.index + 1}</td>
                         <td class="center">${BL.id}</td>
-                        <td class="center">${BL.name}</td>
+                        <td class="center"><a href="/toItems.action?titleId=${BL.id}">${BL.name}</a></td>
                         <td class="center">${BL.author}</td>
                         <td class="center">${BL.type}</td>
                         <td class="center">${BL.isbn}</td>
@@ -286,7 +286,7 @@
             <div class="form-group">
                 <label>总数</label>
                 <input type="text" class="form-control" id="totalNumberAdd" name="totalNumberAdd"
-                       placeholder="请输入总数">
+                       placeholder="请输入总数" readonly>
             </div>
             <div class="form-group">
                 <label>价格</label>
@@ -347,7 +347,7 @@
             <div class="form-group">
                 <label>总数</label>
                 <input type="text" class="form-control" id="totalNumberUpdate" name="totalNumberUpdate"
-                       placeholder="请输入总数">
+                       placeholder="请输入总数" readonly>
             </div>
             <div class="form-group">
                 <label>价格</label>

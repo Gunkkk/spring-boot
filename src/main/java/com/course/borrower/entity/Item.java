@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class Item {
     @Id
     @GeneratedValue
-    private int Id;
+    private int id;
     private String libraryCode;
 /*    private int m_Loan;
     private int m_LoseBook;
@@ -28,11 +28,11 @@ public class Item {
     @JoinColumn(name = "M_LOAN")
     private Loan loan;
     public int getId() {
-        return Id;
+        return id;
     }
 
     public void setId(int id) {
-        Id = id;
+        id = id;
     }
 
     public String getLibraryCode() {

@@ -227,7 +227,7 @@
                     <tr>
                         <td>${i.index + 1}</td>
                         <td class="center">${BL.id}</td>
-                        <td class="center">${BL.name}</td>
+                        <td class="center" ><a href="/toItems.action?titleId=${BL.id}">${BL.name}</a></td>
                         <td class="center">${BL.author}</td>
                         <td class="center">${BL.type}</td>
                         <td class="center">${BL.isbn}</td>
@@ -308,7 +308,7 @@
             <div class="form-group">
                 <label>总数</label>
                 <input type="text" class="form-control" id="totalNumberAdd" name="totalNumberAdd"
-                       placeholder="请输入总数">
+                       placeholder="请输入总数" readonly>
             </div>
             <div class="form-group">
                 <label>价格</label>
@@ -337,7 +337,7 @@
             </button>
         </div>
         <div class="zj_cancle">
-            <button onclick="doHide1(this)">
+            <button onclick="doHideBook1(this)">
                 <img src="${ctx}/resources/back/img/zj_cancle.png">&nbsp;&nbsp;取消
             </button>
         </div>
@@ -373,7 +373,7 @@
             <div class="form-group">
                 <label>总数</label>
                 <input type="text" class="form-control" id="totalNumberUpdate" name="totalNumberUpdate"
-                       placeholder="请输入总数">
+                       placeholder="请输入总数" readonly>
             </div>
             <div class="form-group">
                 <label>价格</label>
@@ -403,7 +403,7 @@
             </button>
         </div>
         <div class="zj_cancle">
-            <button onclick="doHide2(this)">
+            <button onclick="doHideBook2(this)">
                 <img src="${ctx}/resources/back/img/zj_cancle.png">&nbsp;&nbsp;取消
             </button>
         </div>

@@ -9,10 +9,13 @@ import com.course.borrower.repository.LoanJPA;
 import com.course.borrower.repository.TitleJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by 84074 on 2017/11/5.
@@ -48,14 +51,25 @@ public class ItemAdminService {
      * @param itemId
      * @param titleId
      */
+    @Transactional
     public void deleteItem(int itemId , int titleId){
-            itemJPA.delete(itemId);
             Title title = titleJPA.findOne(titleId);
             int curTotalNum = title.getTotalNumber();
             title.setTotalNumber(curTotalNum-1);
             titleJPA.save(title);
+            itemJPA.deleteById(itemId);
     }
 
+    /**
+     * 根据titleid来查询一个书目的所有书项
+     * @param titleId
+     * @return
+     */
+    public List<Item> queryItemByTitleId(int titleId){
+            List <Item> list = new ArrayList<>();
+            list = itemJPA.findByTitleId(titleId);
+            return list;
+        }
     /**
      * 输入借阅证号和书籍编码进行借阅
      * 添加借阅记录，借阅时间
