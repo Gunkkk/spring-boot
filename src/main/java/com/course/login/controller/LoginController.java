@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -46,7 +47,7 @@ public class LoginController {
         }
         else if(result.get("result").equals("successAdmin"))
         {
-            session.setAttribute("user",result.get("user"));
+            session.setAttribute("admin",result.get("user"));
             modelAndView.setViewName("redirect:/adminBook.action");
         }
         else
@@ -56,11 +57,17 @@ public class LoginController {
         }
         return modelAndView;
     }
-
-    @RequestMapping(value = "/login")
+    @RequestMapping(value = "/logout.action")
+    public ModelAndView logout(HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView("redirect:/index");
+        HttpSession session = request.getSession();
+        session.removeAttribute("user");
+        session.removeAttribute("admin");
+        return modelAndView;
+    }
+    @RequestMapping(value = "/login.action")
     public ModelAndView login(){
         ModelAndView modelAndView = new ModelAndView();
-
         modelAndView.setViewName("login");
         return modelAndView;
     }
@@ -100,11 +107,17 @@ public class LoginController {
             return json.toString();
         }
     }
-    @RequestMapping("/borrowerLogout.action")
+    @RequestMapping(value = "/borrowerLogout.action")
     public ModelAndView borrowerLogin (HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView("redirect:/index");
         HttpSession session = request.getSession();
         session.removeAttribute("borrower");
+        return modelAndView;
+    }
+    @RequestMapping(value = "/toError.action")
+    public ModelAndView toError (@RequestParam("error") String error){
+        ModelAndView modelAndView = new ModelAndView("/error");
+        modelAndView.addObject("msg",error);
         return modelAndView;
     }
 

@@ -122,21 +122,41 @@
                 $('#msg').html(msg);
             }
         }
-
+        function borrowerQueryCheck(data) {
+           if (${borrower!=null}){
+           window.location = "/borrowerQueryItem.action?titleId="+data;
+           }else{
+               alert("请先登录！");
+           }
+    }
+        function loanLoginCheck(){
+            if (${borrower!=null}){
+                window.location='/queryLoan.action';
+            }else{
+                alert("请先登录！");
+            }
+        }
+        function reservationLoginCheck(){
+            if (${borrower!=null}){
+                window.location='/toAddReservation.action';
+            }else{
+                alert("请先登录！");
+            }
+        }
     </script>
 </head>
 <body style ="background-image:url(${ctx}/resources/image/bg1.jpg)">
+<img style="margin-left:100px" src="${ctx}/resources/image/logo.png"> </img>
 <div class="container"  style ="background-image:url(${ctx}/resources/image/bg1.jpg)">
     <div  style="height:130px">
-        <img style="margin-left:100px" src="${ctx}/resources/image/logo.png"> </img>
     </div>
 
     <div class="row clearfix" >
         <div class="col-md-12 column" >
             <nav class="navbar navbar-default" role="navigation" style="opacity:0.7">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar">
-                    </span><span class="icon-bar"></span></button> <a class="navbar-brand" href="/index">主页</a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    </button> <a class="navbar-brand" href="/index">主页</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -145,12 +165,12 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">功能菜单<strong class="caret"></strong></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="/toAddReservation.action">预定书籍</a>
+                                    <a href="javascript:reservationLoginCheck()" target="_blank">预定书籍</a>
                                 </li>
                                 <li class="divider">
                                 </li>
                                 <li>
-                                    <a href="/queryLoan.action">查询借阅状况</a>
+                                    <a href="javascript:loanLoginCheck()" target="_blank">查询借阅状况</a>
                                 </li>
                             </ul>
                         </li>
@@ -168,20 +188,20 @@
                             </li>
                         </c:if>
                         <c:if test="${borrower!=null}" >
+                            <li >
+                                <a data-toggle="modal"><%=borrower.getUsername()%>,你好！</a>
+                            </li>
                             <li>
                                 <a id="logout"data-toggle="modal" href="/borrowerLogout.action" >注销</a>
                             </li>
                         </c:if>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">更多<strong class="caret"></strong></a>
-                            <ul class="dropdown-menu">
-
-
-                            </ul>
                         </li>
                     </ul>
                 </div>
             </nav>
+            <div class="row" >
     <div class="container">
         <div class="container-body">
             <div class="box-content">
@@ -190,6 +210,7 @@
                     <tr>
                         <th>序号</th>
                         <th>书名</th>
+                        <th>书目ID</th>
                         <th>作者</th>
                         <th>类型</th>
                         <th>价格</th>
@@ -198,14 +219,14 @@
                     </thead>
                     <tbody>
                     <c:forEach items="${list}" var="BL" varStatus="i">
-                    <tr>
                         <td>${i.index + 1}</td>
                         <td class="center">${BL.name}</td>
+                        <td class="center">${BL.id}</td>
                         <td class="center">${BL.author}</td>
                         <td class="center">${BL.type}</td>
                         <td class="center">${BL.price}</td>
                         <td class="center">
-                            <a class="btn btn-default" href="/borrowerQueryItem.action?titleId=${BL.id}">查询库存</a>
+                            <a class="btn btn-default" href="javascript:borrowerQueryCheck(${BL.id})">查询库存</a>
                         </td>
                     </tr>
                     </tbody>

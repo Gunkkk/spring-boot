@@ -2,13 +2,18 @@ package com.course.borrower.service;
 
 import com.course.admin.entity.Borrower;
 import com.course.admin.service.ValidateService;
+import com.course.borrower.entity.Item;
 import com.course.borrower.entity.Loan;
+import com.course.borrower.entity.Reservation;
 import com.course.borrower.entity.Title;
+import com.course.borrower.repository.ItemJPA;
 import com.course.borrower.repository.LoanJPA;
+import com.course.borrower.repository.ReservationJPA;
 import com.course.borrower.repository.TitleJPA;
 import com.course.libraryAdmin.service.ItemAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +35,13 @@ public class BorrowerTitleService {
     LoanJPA loanJPA;
 
     @Autowired
+    ReservationJPA reservationJPA;
+
+    @Autowired
     ItemAdminService itemAdminService;
+
+    @Autowired
+    ItemJPA itemJPA;
     /**
      * search为书名或者作者
      * @param search
@@ -44,18 +55,17 @@ public class BorrowerTitleService {
     }
 
     /**
-     * 验证该都这是否可以预定
+     * 验证该读者是否可以预定
      * @param borrower
-     * @param libraryCode
      * @return
      */
-    public Map<String,String> validateReservation(Borrower borrower,String libraryCode){
+    public Map<String,String> validateReservation(Borrower borrower){
         Map<String,String> result = new HashMap<>();
-        String msg=null;
+        String msg = new String();
         if(!validateService.checkOutOfNum(borrower)){
             msg=msg+"借书数达到\n";
         }
-        if(validateService.checkUndue(borrower)){
+        if(!validateService.checkUndue(borrower)){
             msg=msg+"有书超期未还\n";
         }
         if (msg==null||msg.isEmpty()){
@@ -76,5 +86,26 @@ public class BorrowerTitleService {
         List<Loan> list = new ArrayList<>();
         list = loanJPA.findByBorrowerId(borrower.getId());
         return list;
+    }
+
+    /**
+     *
+     * @param borrowerId
+     * @return
+     */
+    public List<Reservation> queryReservation(int borrowerId){
+        List<Reservation> list = new ArrayList<>();
+        list = reservationJPA.findByBorrowerId(borrowerId);
+        return list;
+    }
+
+    /**
+     *删除预定记录
+     * @param reservationId
+     */
+    @Transactional
+    public void cancelReservation (int reservationId){
+        itemJPA.updateReservation(reservationId);
+        reservationJPA.delete(reservationId);
     }
 }

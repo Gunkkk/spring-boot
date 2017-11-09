@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.course.admin.entity.User" %><%--
   Created by IntelliJ IDEA.
   User: yanyufeng
   Date: 2017/11/1
@@ -9,6 +9,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <%request.setAttribute("ctx", request.getContextPath()); %>
+<%User user = (User) session.getAttribute("user");%>
 <head>
     <title></title>
 
@@ -148,7 +149,7 @@
     </div>
     <div class="index-top-user">
         <a href="/logout.action"> <span class="index-top-user-info"><span class="glyphicon glyphicon-log-out"></span> 退出</span></a>
-        <span class="index-top-user-info">${user.username}，您好！</span>
+        <span class="index-top-user-info"><%=user.getUsername()%>，您好！</span>
     </div>
 </div>
 

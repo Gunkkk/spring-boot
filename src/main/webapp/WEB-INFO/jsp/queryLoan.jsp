@@ -84,14 +84,14 @@
         <div class="col-md-12 column" >
             <nav class="navbar navbar-default" role="navigation" style="opacity:0.7">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar">
-                    </span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">图书馆</a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    </button> <a class="navbar-brand" href="/index">图书馆</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="active">
-                            <a href="http://www.whut.edu.cn">武汉理工大学主页</a>
+                            <a href="#">借阅查询页面</a>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">功能菜单<strong class="caret"></strong></a>
@@ -120,6 +120,9 @@
                             </li>
                         </c:if>
                         <c:if test="${borrower!=null}" >
+                            <li >
+                                <a data-toggle="modal"><%=borrower.getUsername()%>,你好！</a>
+                            </li>
                             <li>
                                 <a id="logout"data-toggle="modal" href="/borrowerLogout.action" >注销</a>
                             </li>

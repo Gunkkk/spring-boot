@@ -1,5 +1,7 @@
 package com.course.config;
 
+import com.course.admin.entity.Admin;
+import com.course.admin.entity.Borrower;
 import com.course.admin.entity.User;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,15 +21,16 @@ public class UserInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
         //获取请求的URL
         String url = request.getRequestURI();
-        //URL:login.jsp是公开的;这个demo是除了login.jsp是可以公开访问的，其它的URL都进行拦截控制
-        if(url.contains("/login") || url.contains("/index") || url.contains("/toLogin")){
-            return true;
-        }
+//        //URL:login.jsp是公开的;这个demo是除了login.jsp是可以公开访问的，其它的URL都进行拦截控制
+//        if(url.indexOf("/toLogin")>=0){
+//            return true;
+//        }
         //获取Session
         HttpSession session = request.getSession();
+        Borrower borrower = (Borrower)session.getAttribute("borrower");
         User user = (User) session.getAttribute("user");
-
-        if(user!=null){
+        Admin admin = (Admin) session.getAttribute("admin");
+        if(user!=null||admin!=null||borrower!=null){
             return true;
         }
         String error="无权访问";

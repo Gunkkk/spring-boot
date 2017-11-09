@@ -30,7 +30,7 @@ public class Borrower {
     @JoinColumn(name = "BORROWER_ID")
     private List<Reservation> reservationList;
 
-    @OneToMany(targetEntity = Loan.class,cascade = CascadeType.ALL)
+    @OneToMany(targetEntity = Loan.class,cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "BORROWER_ID")
     private List<Loan> loanList;
 
