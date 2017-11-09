@@ -1,16 +1,83 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: 84074
+  Date: 2017/11/8
+  Time: 21:26
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page import="com.course.admin.entity.Borrower" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <%request.setAttribute("ctx", request.getContextPath()); %>
 <%Borrower borrower = (Borrower)session.getAttribute("borrower");%>
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="${ctx}/resources/bootstrap/css/bootstrap.css" />
+    <meta charset="utf-8">
+    <title>搜索结果</title>
+    <link rel="stylesheet" type="text/css" href="${ctx}/resources/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="${ctx}/resources/css/index.css">
+    <link rel="stylesheet" href="${ctx}/resources/css/style.css">
+    <link rel="stylesheet" type="text/css" href="${ctx}/resources/back/css/popWindow.css">
     <script type="text/javascript" src="${ctx}/resources/js/jquery.js"></script>
-    <script type="text/javascript" src="${ctx}/resources/bootstrap/js/bootstrap.js"></script>
+    <script src="${ctx}/resources/bootstrap/js/bootstrap.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+    <link rel="stylesheet" href="${ctx}/resources/css/jquery.paginate.css" />
+    <link rel="stylesheet" href="${ctx}/resources/css/jquery.yhhDataTable.css" />
+    <script type="text/javascript" src="${ctx}/resources/js/jquery.paginate.js" ></script>
+    <script type="text/javascript" src="${ctx}/resources/js/jquery.yhhDataTable.js" ></script>
+    <script type="text/javascript" src="${ctx}/resources/js/indexForPaging.js" ></script>
+    <style>
+        img{
+            float: left;
+        }
+        .content{
+            /*background: #eeeeee;*/
+            padding: 20px 0;
+        }
+        .container{
+            /*padding: 20px 0px;*/
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 3px;
+            margin-bottom: 10px;
+
+        }
+
+        .module-box img{
+            display: inline-block;
+            position: absolute;
+            z-index: 1;
+
+        }
+        .module-box .line {
+            width: 100%;
+            border-bottom: 1px #000 solid;
+            height: 52px;
+            position: absolute;
+            top: 30px;
+            z-index: 0;
+            margin: 0 auto;
+            line-height: 50px;
+        }
+        .module-box .categoryp{
+            width:250px;
+            text-align:center;
+            font-size:18px;
+            color:#666;
+            font-weight:bold;
+            border-bottom:5px #000 solid;
+            margin:0 0 0 50px;
+            line-height:50px ;}
+        .module-box .categoryp p{
+            margin: 0 0;
+        }
+
+        tr>th,td{
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
     <script type="text/javascript">
 
         $(function() {
@@ -32,14 +99,14 @@
             }
 
             if (msg == "") {
-               var data=$('#form2').serialize();
+                var data=$('#form2').serialize();
                 $.ajax({
                     url:'/toBorrowerLogin.action',
                     data:data,
                     type:'post',
                     success:function (data) {
                         if(data=='success'){
-                        location.reload();
+                            location.reload();
                         }else {
                             data=eval("("+data+")");
                             $('#msg').html(data.msg);
@@ -48,59 +115,42 @@
                         }
                     }
                 });
-         /*       form.action = "/toBorrowerLogin.action";
-                form.submit();*/
+                /*       form.action = "/toBorrowerLogin.action";
+                 form.submit();*/
             }
             else {
                 $('#msg').html(msg);
             }
         }
-        function loanLoginCheck(){
-            if (${borrower!=null}){
-                window.location='/queryLoan.action';
-            }else{
-                alert("请先登录！");
-            }
-        }
-        function reservationLoginCheck(){
-            if (${borrower!=null}){
-                window.location='/toAddReservation.action';
-            }else{
-                alert("请先登录！");
-            }
-        }
-    </script>
-    <title>首页</title>
-</head>
 
+    </script>
+</head>
 <body style ="background-image:url(${ctx}/resources/image/bg1.jpg)">
 <div class="container"  style ="background-image:url(${ctx}/resources/image/bg1.jpg)">
     <div  style="height:130px">
         <img style="margin-left:100px" src="${ctx}/resources/image/logo.png"> </img>
     </div>
+
     <div class="row clearfix" >
         <div class="col-md-12 column" >
             <nav class="navbar navbar-default" role="navigation" style="opacity:0.7">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar">
-                    </span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">图书馆</a>
+                    </span><span class="icon-bar"></span></button> <a class="navbar-brand" href="/index">主页</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active">
-                            <a href="http://www.whut.edu.cn" target="_blank">武汉理工大学主页</a>
-                        </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">功能菜单<strong class="caret"></strong></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="javascript:reservationLoginCheck()" target="_blank">预定书籍</a>
+                                    <a href="/toAddReservation.action">预定书籍</a>
                                 </li>
                                 <li class="divider">
                                 </li>
                                 <li>
-                                    <a href="javascript:loanLoginCheck()" target="_blank">查询借阅状况</a>
+                                    <a href="/queryLoan.action">查询借阅状况</a>
                                 </li>
                             </ul>
                         </li>
@@ -113,9 +163,9 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <c:if test="${borrower==null}" >
-                        <li>
-                            <a id="login"data-toggle="modal" href="#" >登录</a>
-                        </li>
+                            <li>
+                                <a id="login"data-toggle="modal" href="#" >登录</a>
+                            </li>
                         </c:if>
                         <c:if test="${borrower!=null}" >
                             <li>
@@ -125,78 +175,48 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">更多<strong class="caret"></strong></a>
                             <ul class="dropdown-menu">
-                                    <a href="#">Something else here</a>
-                                </li>
-                                <li class="divider">
-                                </li>
-                                <li>
-                                    <a href="#">Separated link</a>
-                                </li>
+
+
                             </ul>
                         </li>
                     </ul>
                 </div>
             </nav>
-            <div class="row" >
-            <div id="myCarousel" class="carousel slide col-md-8">
-                <!-- 轮播（Carousel）指标 -->
-                <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                </ol>
-                <!-- 轮播（Carousel）项目 -->
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <img src="${cfx}/resources/image/photo1.jpg" width="600" height="800" align="middle" alt="First slide">
-                        <div class="carousel-caption">图书馆</div>
-                    </div>
-                    <div class="item">
-                        <img src="${cfx}/resources/image/photo2.jpg" width="600" height="800" align="middle" alt="Second slide">
-                    </div>
-                    <div class="item">
-                        <img src="${cfx}/resources/image/photo3.jpg"width="600" height="800" align="middle" alt="Third slide">
-                    </div>
-                </div>
-                <!-- 轮播（Carousel）导航 -->
-                <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;
-                </a>
-                <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;
-                </a>
-            </div>
-            <div class="jumbotron col-md-4" style="opacity:0.7" >
-                <h1>
-                    欢迎！
-                </h1>
-                <p>
-                    这是图书馆首页！
-                </p>
-                <p>
-                    <a class="btn btn-primary btn-large" href="/login.action">管理入口!</a>
-                </p>
+    <div class="container">
+        <div class="container-body">
+            <div class="box-content">
+                <table class="table table-striped table-bordered" id="testtable1">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>书名</th>
+                        <th>作者</th>
+                        <th>类型</th>
+                        <th>价格</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${list}" var="BL" varStatus="i">
+                    <tr>
+                        <td>${i.index + 1}</td>
+                        <td class="center">${BL.name}</td>
+                        <td class="center">${BL.author}</td>
+                        <td class="center">${BL.type}</td>
+                        <td class="center">${BL.price}</td>
+                        <td class="center">
+                            <a class="btn btn-default" href="/borrowerQueryItem.action?titleId=${BL.id}">查询库存</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                    </c:forEach>
+                </table>
+
             </div>
         </div>
     </div>
-</div>
-<div class="row clearfix">
-
-
-    <div class="col-md-4 column">
-
+        </div>
     </div>
-</div>
-<div class="row clearfix">
-
-</div>
-<div class="row clearfix">
-    <div class="col-md-2 column">
-    </div>
-    <div class="col-md-6 column">
-        <address> <strong>联系方式：</strong><br /><br>email:840745950@qq.com</br> </address>
-    </div>
-    <div class="col-md-4 column">
-    </div>
-</div>
 </div>
 <div class="modal fade" id="modallogin" tabindex="-1" role="dialog" aria-labelledby="modallogin" aria-hidden="true">
     <div class="modal-dialog">
