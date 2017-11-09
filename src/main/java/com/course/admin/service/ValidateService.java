@@ -10,6 +10,7 @@ import com.course.config.entity.LoanStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -54,9 +55,10 @@ public class ValidateService {
 
     //检查借阅者借阅的图书是否超过了规定的数量
     public boolean checkOutOfNum(Borrower borrower){
-        List<Loan> LoanedBook = borrower.getLoanList();
+        System.out.print(borrower.getUsername());
+        List<Loan> LoanedBook = new ArrayList<>();
+        LoanedBook = borrower.getLoanList();
         int loanNum = LoanedBook.size();
-
         LoanStrategy loanStrategy = new LoanStrategy();
         int maxNum = loanStrategy.getLoanNumber();
         if(loanNum > maxNum)

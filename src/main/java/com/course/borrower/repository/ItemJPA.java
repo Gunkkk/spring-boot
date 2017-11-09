@@ -16,4 +16,8 @@ public interface ItemJPA extends JpaRepository<Item,Integer> {
         @Modifying
         @Query("delete from Item item where item.id=?1")
         void deleteById(int id);
+
+        @Modifying
+        @Query(value = "update item set m_reservation=null where m_reservation=?1",nativeQuery = true)
+        void updateReservation(int reservationId);
 }

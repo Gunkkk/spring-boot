@@ -43,13 +43,9 @@
                         }else {
                             data=eval("("+data+")");
                             $('#msg').html(data.msg);
-                            setTimeout(function (){
-                            },5000);
                         }
                     }
                 });
-         /*       form.action = "/toBorrowerLogin.action";
-                form.submit();*/
             }
             else {
                 $('#msg').html(msg);
@@ -82,8 +78,8 @@
         <div class="col-md-12 column" >
             <nav class="navbar navbar-default" role="navigation" style="opacity:0.7">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar">
-                    </span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">图书馆</a>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    </button> <a class="navbar-brand" href="#">图书馆</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -113,11 +109,14 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <c:if test="${borrower==null}" >
-                        <li>
-                            <a id="login"data-toggle="modal" href="#" >登录</a>
-                        </li>
+                             <li>
+                                <a id="login"data-toggle="modal" href="#" >登录</a>
+                            </li>
                         </c:if>
                         <c:if test="${borrower!=null}" >
+                            <li >
+                                <a data-toggle="modal"><%=borrower.getUsername()%>,你好！</a>
+                            </li>
                             <li>
                                 <a id="logout"data-toggle="modal" href="/borrowerLogout.action" >注销</a>
                             </li>
@@ -125,6 +124,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">更多<strong class="caret"></strong></a>
                             <ul class="dropdown-menu">
+                                <li>
                                     <a href="#">Something else here</a>
                                 </li>
                                 <li class="divider">

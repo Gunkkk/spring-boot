@@ -49,7 +49,6 @@ public class AdminItemController {
     @RequestMapping(value = "/validateLibraryCode.action")
     public String validateLibraryCode(@RequestParam("libraryCode") String libraryCode){
         if(!itemAdminService.isExist(libraryCode)) {
-            System.out.print("=================================");
             return "yes";
         }
         else

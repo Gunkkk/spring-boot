@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.course.admin.entity.Admin" %><%--
   Created by IntelliJ IDEA.
   User: 84074
   Date: 2017/11/7
@@ -9,6 +9,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <%request.setAttribute("ctx", request.getContextPath()); %>
+<%Admin user = (Admin) session.getAttribute("admin");%>
 <head>
     <meta charset="utf-8">
     <title>首页</title>
@@ -79,7 +80,6 @@
 <script>
     function validateLibraryCode() {
         var code = $('#codeAdd').val();
-      //  window.location="/deleteItem.action?itemId="+itemid+"&titleId="+titleid;
         $.ajax({
             url:'/validateLibraryCode.action',
             data:{
@@ -133,7 +133,7 @@
     </div>
     <div class="index-top-user">
         <a href="/logout.action"> <span class="index-top-user-info"><span class="glyphicon glyphicon-log-out"></span> 退出</span></a>
-        <span class="index-top-user-info">${user.username}，您好！</span>
+        <span class="index-top-user-info"><%=user.getUsername()%>，您好！</span>
     </div>
 </div>
 

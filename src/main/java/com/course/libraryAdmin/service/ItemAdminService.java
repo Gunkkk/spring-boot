@@ -36,6 +36,7 @@ public class ItemAdminService {
      * @param libraryCode
      * @param titleId
      */
+    @Transactional
     public void addItem(String libraryCode , int titleId){
             Item item = new Item();
             item.setLibraryCode(libraryCode);
@@ -94,6 +95,7 @@ public class ItemAdminService {
      * @param cardNo
      * @param libraryCode
      */
+    @Transactional
     public void loanBook(String cardNo, String libraryCode){
         Borrower borrower = borrowerJPA.findByCardNo(cardNo);
         Item item = itemJPA.findByLibraryCode(libraryCode);
@@ -120,6 +122,7 @@ public class ItemAdminService {
      * 还书
      * @param libraryCode
      */
+    @Transactional
     public void returnBook( String libraryCode){
         Item item = itemJPA.findByLibraryCode(libraryCode);
         Title title = item.getTitle();
@@ -135,6 +138,7 @@ public class ItemAdminService {
      * 书项丢失
      * @param libraryCode
      */
+    @Transactional
     public void addLose(String libraryCode){
         Item item = itemJPA.findByLibraryCode(libraryCode);
         Losebook losebook = new Losebook();
@@ -149,6 +153,7 @@ public class ItemAdminService {
      * @param libraryCode
      * @param cardNo
      */
+    @Transactional
     public void addReservation(String libraryCode,String cardNo){
         Borrower borrower = borrowerJPA.findByCardNo(cardNo);
         Item item = itemJPA.findByLibraryCode(libraryCode);
@@ -164,10 +169,10 @@ public class ItemAdminService {
 
     }
 
-    /**
-     * 可以不删除预定
+    /**BorrowerTitleService中实现了
+     * 可以删除预定
      */
-    public void cancelReservation(){
+    public void cancelReservation(int reservationId){
 
 
     }
