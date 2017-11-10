@@ -6,7 +6,7 @@ import com.course.admin.entity.Undergraduate;
 import com.course.admin.repository.GraduateJPA;
 import com.course.admin.repository.UndergraduateJPA;
 import com.course.borrower.entity.Loan;
-import com.course.config.entity.LoanStrategy;
+import com.course.strategy.entity.LoanStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

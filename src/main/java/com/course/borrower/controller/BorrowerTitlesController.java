@@ -108,6 +108,17 @@ public class BorrowerTitlesController {
         borrowerTitleService.cancelReservation(reservationID);
         return modelAndView;
     }
+    /**
+     * 管理员取消预定
+     * @param reservationID
+     * @return
+     */
+    @RequestMapping(value = "/userCancelReservation.action")
+    public ModelAndView userCancelReservation(@RequestParam("reservationId") int reservationID) {
+        ModelAndView modelAndView = new ModelAndView("redirect:/toReservation.action");
+        borrowerTitleService.cancelReservation(reservationID);
+        return modelAndView;
+    }
 
     @RequestMapping(value = "/libraryCodeIsAvailable.action")
     public String libraryCodeIsAvailable(@RequestParam("libraryCode") String libraryCode){

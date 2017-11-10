@@ -43,7 +43,7 @@ public class LoginController {
         if (result.get("result").equals("successUser"))
         {
             session.setAttribute("user",result.get("user"));
-            modelAndView.setViewName("UserWork");
+            modelAndView.setViewName("redirect:/toWork.action");
         }
         else if(result.get("result").equals("successAdmin"))
         {
@@ -68,6 +68,14 @@ public class LoginController {
     @RequestMapping(value = "/login.action")
     public ModelAndView login(){
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("login");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/logout")
+    public ModelAndView logout(){
+        ModelAndView modelAndView = new ModelAndView();
+
         modelAndView.setViewName("login");
         return modelAndView;
     }
