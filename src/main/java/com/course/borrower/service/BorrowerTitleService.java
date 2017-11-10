@@ -2,14 +2,8 @@ package com.course.borrower.service;
 
 import com.course.admin.entity.Borrower;
 import com.course.admin.service.ValidateService;
-import com.course.borrower.entity.Item;
-import com.course.borrower.entity.Loan;
-import com.course.borrower.entity.Reservation;
-import com.course.borrower.entity.Title;
-import com.course.borrower.repository.ItemJPA;
-import com.course.borrower.repository.LoanJPA;
-import com.course.borrower.repository.ReservationJPA;
-import com.course.borrower.repository.TitleJPA;
+import com.course.borrower.entity.*;
+import com.course.borrower.repository.*;
 import com.course.libraryAdmin.service.ItemAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,6 +36,7 @@ public class BorrowerTitleService {
 
     @Autowired
     ItemJPA itemJPA;
+
     /**
      * search为书名或者作者
      * @param search
@@ -108,4 +103,5 @@ public class BorrowerTitleService {
         itemJPA.updateReservation(reservationId);
         reservationJPA.delete(reservationId);
     }
+
 }

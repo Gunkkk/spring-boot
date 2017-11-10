@@ -15,10 +15,20 @@ public class LoanStrategy {
     @Id
     private int id;
 
-    //借阅时长(天)
-    private int loanDuration = 30;
+    //书本类型(默认为all，书本和杂志)
+    private String type;
+    //借阅时长(月)
+    private int loanDuration;
     //借阅书本数量(本)
-    private int loanNumber = 30;
+    private int loanNumber;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public int getId() {
         return id;

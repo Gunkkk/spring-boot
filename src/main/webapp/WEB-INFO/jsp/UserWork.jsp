@@ -116,6 +116,7 @@
 
     </style>
     <script>
+        //还书检查是否逾期
         function checkCompensation() {
             var code = $('#libraryCodeReturn').val();
             $.ajax({
@@ -125,7 +126,15 @@
                 },
                 type:'get',
                 success:function (data) {
-                    if(data==0) {
+                    if(data=='-2')
+                    {
+                        $('#checkCompensation').text('不存在该libraryCode！');
+                    }
+                    else if(data=='-1')
+                    {
+                        $('#checkCompensation').text('该书项未被借出！');
+                    }
+                    else if(data=='0') {
                         $('#checkCompensation').text('在截止日期之前！');
                         $('#returnItem').attr("disabled",false);
                     }else{
@@ -139,6 +148,42 @@
             });
         }
 
+        //丢失书项查看赔偿金额
+        function checkLoseCompensation() {
+            var code = $('#libraryCodeLose').val();
+            var No = $('#cardNoLose').val();
+            $.ajax({
+                url:'/checkLoseCompensation.action',
+                data:{
+                    "libraryCodeLose":code,
+                    "cardNoLose":No,
+                },
+                type:'get',
+                success:function (data) {
+                    if(data=='-3')
+                    {
+                        $('#checkLoseCompensation').text('不存在该libraryCode！');
+                    }
+                    else if(data=='-2')
+                    {
+                        $('#checkLoseCompensation').text('该书项未被借出！');
+                    }
+                    else if(data=='-1')
+                    {
+                        $('#checkLoseCompensation').text('该学生未借过这本书！');
+                    }
+                    else{
+                        $('#checkLoseCompensation').text('丢失+逾期(如果有)，共偿还'+data+'元');
+                        $('#loseItem').attr("disabled",false);
+                    }
+                },
+                error:function () {
+                    alert("图书码输入错误");
+                }
+            });
+        }
+
+        //借书检查卡号是否有效
         function checkCardNo() {
             var code = $('#cardNo').val();
             $.ajax({
@@ -150,9 +195,62 @@
                 success:function (data) {
                     if(data=='验证通过') {
                         $('#checkCardNo').text('验证通过！');
-                        $('#loanItem').attr("disabled",false);
                     }else{
                         $('#checkCardNo').text(data);
+                    }
+                },
+                error:function () {
+                    alert("错误");
+                }
+            });
+        }
+        //丢失书项时 检查卡号是否有效
+        function checkCardNoLose() {
+            var code = $('#cardNoLose').val();
+            $.ajax({
+                url:'/checkCardNo.action',
+                data:{
+                    "cardNo":code,
+                },
+                type:'get',
+                success:function (data) {
+                    if(data=='验证通过') {
+                        $('#checkCardNoLose').text('验证通过！');
+                    }else{
+                        $('#checkCardNoLose').text(data);
+                    }
+                },
+                error:function () {
+                    alert("错误");
+                }
+            });
+        }
+        //借书时查看是否可借阅
+        function checkCanLoan() {
+            var code = $('#libraryCodeLoan').val();
+            var No = $('#cardNo').val();
+            $.ajax({
+                url:'/checkCanLoan.action',
+                data:{
+                    "libraryCodeLoan":code,
+                    "cardNo":No
+                },
+                type:'get',
+                success:function (data) {
+                    if(data=='已预约')
+                    {
+                        $('#checkCanLoan').text('已预约，可以借阅！');
+                        $('#loanItem').attr("disabled",false);
+                    }
+                    else if(data=='可借阅')
+                    {
+                        $('#checkCanLoan').text('可以借阅！');
+                        $('#loanItem').attr("disabled",false);
+                    }
+                    //'已借出或已被预约'或者'不存在'
+                    else
+                    {
+                        $('#checkCanLoan').text(data);
                     }
                 },
                 error:function () {
@@ -193,19 +291,18 @@
         <div class="container-body">
 
             <label>借书</label>
-                <form action="/LoanItem.action" class="form-inline" role="form">
-                    <div class="form-group">
+                <form action="/loanItem.action" class="form-inline" role="form">
+                     <div class="form-group">
                         <label>学生卡号</label>
                         <input type="text" class="form-control" id="cardNo" name="cardNo"
                                placeholder="cardNo" value="${cardNo}">
                         <label id="checkCardNo"></label>
-                    </div>
 
-                    <div class="form-group">
                         <label>请输入libraryCode</label>
-                        <input type="text" id="libraryCodeLoan" name="libraryCode" class="form-control" placeholder="${libraryCode}">
+                        <input type="text" id="libraryCodeLoan" name="libraryCodeLoan" class="form-control" placeholder="${libraryCode}">
                         <button name="loanItem" id="loanItem" disabled>借阅</button>
-                    </div>
+                        <label id="checkCanLoan"></label>
+                     </div>
                 </form>
 
         </div>
@@ -213,12 +310,29 @@
         <div class="container-body">
             <label>还书</label>
             <form action="/returnItem.action" class="form-inline" role="form">
-                <%--<button>重新输入卡号</button>--%>
                 <div class="form-group">
                     <label>请输入libraryCode</label>
                     <input type="text" id="libraryCodeReturn" name="libraryCodeReturn" class="form-control" placeholder="${libraryCodeReturn}">
                     <button name="returnItem" id="returnItem" disabled>返还</button>
                     <label id="checkCompensation"></label>
+                </div>
+            </form>
+
+        </div>
+
+        <div class="container-body">
+            <label>丢失处理</label>
+            <form action="loseItem" class="form-inline" role="form">
+                <div class="form-group">
+                    <label>学生卡号</label>
+                    <input type="text" class="form-control" id="cardNoLose" name="cardNoLose"
+                           placeholder="cardNoLose" value="${cardNoLose}">
+                    <label id="checkCardNoLose"></label>
+
+                    <label>请输入libraryCode</label>
+                    <input type="text" id="libraryCodeLose" name="libraryCodeLose" class="form-control" placeholder="${libraryCodeLose}">
+                    <button name="loseItem" id="loseItem" disabled>上报丢失</button>
+                    <label id="checkLoseCompensation"></label>
                 </div>
             </form>
 
@@ -251,8 +365,9 @@
         checkCompensation();
     });
     $("#libraryCodeReturn").focus(function () {
-        $("#returnItem").attr("disables","disabled");
+        $("#returnItem").attr("disabled","disabled");
     })
+
 
     $("#loanItem").click(function () {
         document.getElementById('loanItem').submit();
@@ -263,6 +378,29 @@
     });
     $("#cardNo").focus(function () {
         $("#loanItem").attr("disabled","disabled");
+    })
+    $("#libraryCodeLoan").blur(function () {
+        checkCanLoan();
+    });
+    $("#libraryCodeLoan").focus(function () {
+        $("#loanItem").attr("disabled","disabled");
+    })
+
+    $("#loseItem").click(function () {
+        document.getElementById('loseItem').submit();
+        $("#loseItem").attr("disabled", "disabled");
+    });
+    $("#cardNoLose").blur(function () {
+        checkCardNoLose();
+    });
+    $("#cardNoLose").focus(function () {
+        $("#loseItem").attr("disabled","disabled");
+    })
+    $("#libraryCodeLose").blur(function () {
+        checkLoseCompensation();
+    });
+    $("#libraryCodeLose").focus(function () {
+        $("#loseItem").attr("disabled","disabled");
     })
 </script>
 

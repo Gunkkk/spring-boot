@@ -228,7 +228,7 @@
         validateLibraryCode();
     });
     $("#codeAdd").focus(function () {
-        $("#addItem").attr("disables","disabled");
+        $("#addItem").attr("disabled","disabled");
     })
 </script>
 <script type="text/javascript" src="${ctx}/resources/back/js/popWindow.js"></script>

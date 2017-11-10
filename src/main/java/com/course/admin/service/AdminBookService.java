@@ -90,7 +90,7 @@ public class AdminBookService {
      * @param magazine
      */
     @Transactional
-    public void addMagazeine(Magazine magazine){
+    public void addMagazine(Magazine magazine){
         magazineJPA.save(magazine);
 
     }

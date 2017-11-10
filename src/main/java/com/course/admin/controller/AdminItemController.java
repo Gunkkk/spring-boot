@@ -69,29 +69,39 @@ public class AdminItemController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/LoanItem.action")
+    @RequestMapping(value = "/loanItem.action")
     public ModelAndView deleteUndergraduate(@RequestParam("cardNo")String cardNo,
-                                            @RequestParam("libraryCode")String libraryCode){
+                                            @RequestParam("libraryCodeLoan")String libraryCode){
 
         ModelAndView modelAndView = new ModelAndView("redirect:/toWork.action");
 
         itemAdminService.loanBook(cardNo,libraryCode);
 
         modelAndView.addObject("cardNo",cardNo);
-        modelAndView.addObject("libraryCode",libraryCode);
+        modelAndView.addObject("libraryCodeLoan",libraryCode);
         return modelAndView;
     }
     @RequestMapping(value = "/checkCompensation.action")
-    public double checkCompensation(@RequestParam("libraryCode") String libraryCode){
-        double compensation = itemAdminService.checkCompensation(libraryCode);
+    public String checkCompensation(@RequestParam("libraryCode") String libraryCode){
+        String compensation = itemAdminService.checkCompensation(libraryCode);
+        return compensation;
+    }
+    @RequestMapping(value = "/checkLoseCompensation.action")
+    public String checkLoseCompensation(@RequestParam("libraryCodeLose") String libraryCode,
+                                        @RequestParam("cardNoLose") String cardNoLose){
+        String compensation = itemAdminService.checkLoseCompensation(libraryCode,cardNoLose);
         return compensation;
     }
     @RequestMapping(value = "/returnItem.action")
     public ModelAndView returnItem(@RequestParam("libraryCodeReturn")String libraryCode){
         ModelAndView modelAndView = new ModelAndView("redirect:/toWork.action");
         itemAdminService.returnBook(libraryCode);
-
-//        modelAndView.addObject("libraryCodeReturn", libraryCode);
+        return modelAndView;
+    }
+    @RequestMapping(value = "/loseItem.action")
+    public ModelAndView loseItem(@RequestParam("libraryCodeLose")String libraryCode){
+        ModelAndView modelAndView = new ModelAndView("redirect:/toWork.action");
+        itemAdminService.addLose(libraryCode);
         return modelAndView;
     }
 }
