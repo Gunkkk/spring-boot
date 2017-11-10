@@ -7,6 +7,7 @@ import com.course.admin.repository.GraduateJPA;
 import com.course.admin.repository.UndergraduateJPA;
 import com.course.borrower.entity.Loan;
 import com.course.strategy.entity.LoanStrategy;
+import com.course.strategy.repository.LoanStrategyJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,8 @@ public class ValidateService {
     GraduateJPA graduateJPA;
     @Autowired
     UndergraduateJPA undergraduateJPA;
+    @Autowired
+    LoanStrategyJPA loanStrategyJPA;
 
     //系统验证借阅证是否有效
     public Borrower checkCardNo(String cardNo)
@@ -59,8 +62,7 @@ public class ValidateService {
         List<Loan> LoanedBook = new ArrayList<>();
         LoanedBook = borrower.getLoanList();
         int loanNum = LoanedBook.size();
-        LoanStrategy loanStrategy = new LoanStrategy();
-        int maxNum = loanStrategy.getLoanNumber();
+        int maxNum = loanStrategyJPA.findByType("all").getLoanNumber();
         if(loanNum > maxNum)
         {
             return false;

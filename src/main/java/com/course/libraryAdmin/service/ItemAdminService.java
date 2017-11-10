@@ -5,14 +5,12 @@ import com.course.admin.repository.BorrowerJPA;
 import com.course.borrower.entity.*;
 import com.course.borrower.repository.*;
 import com.course.strategy.repository.CompensationJPA;
+import com.course.strategy.repository.LoanStrategyJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +27,8 @@ public class ItemAdminService {
     BorrowerJPA borrowerJPA;
     @Autowired
     LoanJPA loanJPA;
+    @Autowired
+    LoanStrategyJPA loanStrategyJPA;
     @Autowired
     CompensationJPA compensationJPA;
     @Autowired
@@ -110,7 +110,8 @@ public class ItemAdminService {
         Date loandate = new Date();
         Date due = new Date();
         loan.setLoandate(loandate);
-        due.setMonth(due.getMonth()+1);
+//        String type = title.getType();
+        due.setMonth(due.getMonth()+loanStrategyJPA.findByType("all").getLoanDuration());
 
         duedate.setDuedate(due);
         loan.setDuedate(duedate);
@@ -128,11 +129,22 @@ public class ItemAdminService {
         return betweenDateInt;
     }
     /**
-     * 还书
+     * 计算超时赔偿
      * @param libraryCode
      */
-    public double checkCompensation(String libraryCode){
+    public String checkCompensation(String libraryCode){
         Item item = itemJPA.findByLibraryCode(libraryCode);
+
+        if(item == null)
+        {
+            return "-2";
+        }
+
+        Loan loan = item.getLoan();
+        if(loan == null)
+        {
+            return "-1";
+        }
 
         Date currentDate = new Date();
         Date dueDate = item.getLoan().getDuedate().getDuedate();
@@ -141,15 +153,55 @@ public class ItemAdminService {
 
         //如果未过期，返回0
         if(currentDate.before(dueDate)) {
-            return 0;
+            return "0";
         }
         //如果过期了，则计算赔偿出compensation
         else
         {
             int betweenDate = betweenDate(currentDate,dueDate);
-            double compensation = betweenDate * compensationJPA.findByItem(itemType).getOvertime();
-            return compensation;
+            double compensation = betweenDate * compensationJPA.findByType(itemType).getOvertime();
+            String compensationString = Double.toString(compensation);
+            return compensationString;
         }
+    }
+
+
+    /**
+     * 计算丢失赔偿
+     * @param libraryCode
+     */
+    public String checkLoseCompensation(String libraryCode,String cardNoLose){
+        Borrower borrower = borrowerJPA.findByCardNo(cardNoLose);
+        Item item = itemJPA.findByLibraryCode(libraryCode);
+
+        if(item == null)
+        {
+            return "-3";
+        }
+
+        Loan loan = item.getLoan();
+        if(loan == null)
+        {
+            return "-2";
+        }
+        //不是卡号对应的人借的这本书
+        if(borrower.getId() != loan.getBorrowerId())
+        {
+            return "-1";
+        }
+
+        Date currentDate = new Date();
+        Date dueDate = item.getLoan().getDuedate().getDuedate();
+        String itemType = item.getTitle().getType();
+
+        double overtime = 0;
+        if(currentDate.after(dueDate)) {
+            int betweenDate = betweenDate(currentDate,dueDate);
+            overtime += betweenDate * compensationJPA.findByType(itemType).getOvertime();
+        }
+        double compensation = 1*compensationJPA.findByType(itemType).getLose() + overtime;
+        String compensationString = Double.toString(compensation);
+        return compensationString;
     }
 
     /**

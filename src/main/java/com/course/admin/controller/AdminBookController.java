@@ -151,7 +151,7 @@ public class AdminBookController {
         magazine.setVolume(volume);
         magazine.setTotalNumber(0);
         magazine.setType("杂志");
-        adminBookService.addMagazeine(magazine);
+        adminBookService.addMagazine(magazine);
         return modelAndView;
     }
     @RequestMapping(value = "/deleteBook.action")

@@ -14,8 +14,8 @@ public class CompensationStrategy {
     @Id
     private int id;
 
-    //定义实用的项目
-    String item;
+    //定义使用的类型
+    private String type;
     //超时返还政策————总赔款=钱*天数
     private double overtime;
     //丢失书项政策————总赔款=钱*本数
@@ -29,12 +29,12 @@ public class CompensationStrategy {
         this.id = id;
     }
 
-    public String getItem() {
-        return item;
+    public String getType() {
+        return type;
     }
 
-    public void setItem(String item) {
-        this.item = item;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public double getOvertime() {
