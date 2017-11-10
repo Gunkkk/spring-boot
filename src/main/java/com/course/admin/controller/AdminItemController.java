@@ -1,10 +1,8 @@
 package com.course.admin.controller;
 
 import com.course.borrower.entity.Item;
-import com.course.borrower.entity.Reservation;
 import com.course.libraryAdmin.service.ItemAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,61 +45,7 @@ public class AdminItemController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/validateLibraryCode.action")
-    public String validateLibraryCode(@RequestParam("libraryCode") String libraryCode){
-        if(!itemAdminService.isExist(libraryCode)) {
-            return "yes";
-        }
-        else
-            return "no";
-    }
 
-    @RequestMapping(value = "/toWork.action")
-    public ModelAndView toLoan(){
-        ModelAndView modelAndView = new ModelAndView("UserWork");
-        return modelAndView;
-    }
-    @RequestMapping(value = "/toReservation.action")
-    public ModelAndView toReservation(){
-        List<Reservation> list = itemAdminService.findAllReservation();
-        ModelAndView modelAndView = new ModelAndView("UserReservation");
-        modelAndView.addObject("list",list);
-        return modelAndView;
-    }
 
-    @RequestMapping(value = "/loanItem.action")
-    public ModelAndView deleteUndergraduate(@RequestParam("cardNo")String cardNo,
-                                            @RequestParam("libraryCodeLoan")String libraryCode){
 
-        ModelAndView modelAndView = new ModelAndView("redirect:/toWork.action");
-
-        itemAdminService.loanBook(cardNo,libraryCode);
-
-        modelAndView.addObject("cardNo",cardNo);
-        modelAndView.addObject("libraryCodeLoan",libraryCode);
-        return modelAndView;
-    }
-    @RequestMapping(value = "/checkCompensation.action")
-    public String checkCompensation(@RequestParam("libraryCode") String libraryCode){
-        String compensation = itemAdminService.checkCompensation(libraryCode);
-        return compensation;
-    }
-    @RequestMapping(value = "/checkLoseCompensation.action")
-    public String checkLoseCompensation(@RequestParam("libraryCodeLose") String libraryCode,
-                                        @RequestParam("cardNoLose") String cardNoLose){
-        String compensation = itemAdminService.checkLoseCompensation(libraryCode,cardNoLose);
-        return compensation;
-    }
-    @RequestMapping(value = "/returnItem.action")
-    public ModelAndView returnItem(@RequestParam("libraryCodeReturn")String libraryCode){
-        ModelAndView modelAndView = new ModelAndView("redirect:/toWork.action");
-        itemAdminService.returnBook(libraryCode);
-        return modelAndView;
-    }
-    @RequestMapping(value = "/loseItem.action")
-    public ModelAndView loseItem(@RequestParam("libraryCodeLose")String libraryCode){
-        ModelAndView modelAndView = new ModelAndView("redirect:/toWork.action");
-        itemAdminService.addLose(libraryCode);
-        return modelAndView;
-    }
 }
