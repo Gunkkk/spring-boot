@@ -1,4 +1,4 @@
-<%@ page import="com.course.admin.entity.Admin" %><%--
+<%@ page import="com.course.login.entity.Admin" %><%--
   Created by IntelliJ IDEA.
   User: 84074
   Date: 2017/10/31
@@ -246,40 +246,6 @@
                     </tbody>
                     </c:forEach>
                 </table>
-
-<%--                <div align="right">
-                    <table>
-                        <tr>
-                            &lt;%&ndash;<form height="16px" class="recode">&ndash;%&gt;
-                            <td><span id="recode1" class="recode">总记录数：${page.getTotalElements()}条</span></td>
-                            <td><a href=""><img src="${ctx}/resources/image/page/page_home.png" class="recode"></a></td>
-                            <c:if test="${page.getNumber()>0}">
-                                <td><a href="/queryBook.action?currentPage=0"><img src="${ctx}/resources/image/page/page_prev.png" class="recode"></a></td>
-                            </c:if>
-                            <c:if test="${page.getNumber()+1<page.getTotalPages()}">
-                                <td><a href=""><img src="${ctx}/resources/image/page/page_next.png" class="recode"></a></td>
-                            </c:if>
-                            <td><a href="javascript:page()"><img src="${ctx}/resources/image/page/page_end.png" class="recode"></a></td>
-                            <td><span id="recode2" class="recode">第${(page.getNumber()+1)}页/共${page.getTotalPages()}页&nbsp;&nbsp;转到</span></td>
-
-
-                            &lt;%&ndash;下面的input标签顺序不要变&ndash;%&gt;
-                            &lt;%&ndash;<input type="hidden" name="no" value="${pb.beanList.no}">&ndash;%&gt;
-                            <td>
-                                <input  type="text" onkeyup="value=value.replace(/[^\d]/g,'')" id="pc">
-                            </td>
-                            <td>
-                                &lt;%&ndash;<input type="hidden" id="url" value="${pb.url}">&ndash;%&gt;
-                                <input type="hidden" id="tp" value="${page.getTotalPages()}">
-                                <input type="image" class="recode" src="${ctx}/resources/image/page/page_go.png" onclick="go();return false;"/>
-                            </td>
-
-                            &lt;%&ndash;<td><a href="checkOneProject.action?no=1&projectId=20170400&pc=${projectUser.pc}"><img src="../../../../image/page/page_go.png"></a></td>&ndash;%&gt;
-
-                        </tr>
-                    </table>
-                </div>--%>
-
             </div>
         </div>
     </div>

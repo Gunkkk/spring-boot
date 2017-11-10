@@ -2,7 +2,6 @@ package com.course.borrower.service;
 
 import com.course.admin.entity.Borrower;
 import com.course.admin.service.ValidateService;
-import com.course.borrower.entity.Item;
 import com.course.borrower.entity.Loan;
 import com.course.borrower.entity.Reservation;
 import com.course.borrower.entity.Title;

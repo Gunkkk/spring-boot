@@ -1,6 +1,6 @@
 package com.course.admin.controller;
 
-import com.course.admin.entity.User;
+import com.course.login.entity.User;
 import com.course.admin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
