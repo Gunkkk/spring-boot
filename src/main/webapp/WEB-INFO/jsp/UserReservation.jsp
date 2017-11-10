@@ -1,8 +1,8 @@
 <%@ page import="com.course.admin.entity.User" %><%--
   Created by IntelliJ IDEA.
-  User: 84074
-  Date: 2017/10/31
-  Time: 9:36
+  User: yanyufeng
+  Date: 2017/11/1
+  Time: 11:33
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -12,8 +12,8 @@
 <%request.setAttribute("ctx", request.getContextPath()); %>
 <%User user = (User) session.getAttribute("user");%>
 <head>
-    <meta charset="utf-8">
-    <title>首页</title>
+    <title></title>
+
     <link rel="stylesheet" type="text/css" href="${ctx}/resources/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="${ctx}/resources/css/index.css">
     <link rel="stylesheet" href="${ctx}/resources/css/style.css">
@@ -24,9 +24,11 @@
     <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
     <link rel="stylesheet" href="${ctx}/resources/css/jquery.paginate.css" />
     <link rel="stylesheet" href="${ctx}/resources/css/jquery.yhhDataTable.css" />
+    <%--<script type="text/javascript" src="${ctx}/resources/js/jquery-1.10.2.min"></script>--%>
     <script type="text/javascript" src="${ctx}/resources/js/jquery.paginate.js" ></script>
     <script type="text/javascript" src="${ctx}/resources/js/jquery.yhhDataTable.js" ></script>
     <script type="text/javascript" src="${ctx}/resources/js/indexForPaging.js" ></script>
+
     <style>
         img{
             float: left;
@@ -115,52 +117,6 @@
         }
 
     </style>
-    <script>
-        function checkCompensation() {
-            var code = $('#libraryCodeReturn').val();
-            $.ajax({
-                url:'/checkCompensation.action',
-                data:{
-                    "libraryCode":code,
-                },
-                type:'get',
-                success:function (data) {
-                    if(data==0) {
-                        $('#checkCompensation').text('在截止日期之前！');
-                        $('#returnItem').attr("disabled",false);
-                    }else{
-                        $('#checkCompensation').text('在截止日期之后！请偿还'+data+'元');
-                        $('#returnItem').attr("disabled",false);
-                    }
-                },
-                error:function () {
-                    alert("图书码输入错误");
-                }
-            });
-        }
-
-        function checkCardNo() {
-            var code = $('#cardNo').val();
-            $.ajax({
-                url:'/checkCardNo.action',
-                data:{
-                    "cardNo":code,
-                },
-                type:'get',
-                success:function (data) {
-                    if(data=='验证通过') {
-                        $('#checkCardNo').text('验证通过！');
-                        $('#loanItem').attr("disabled",false);
-                    }else{
-                        $('#checkCardNo').text(data);
-                    }
-                },
-                error:function () {
-                    alert("错误");
-                }
-            });
-        }
-    </script>
 </head>
 <body>
 <div class="index-top">
@@ -179,6 +135,7 @@
                     <li><a href="/toReservation.action" target="ibody" >浏览预定</a></li>
                 </ul>
             </li>
+
         </ul>
     </div>
     <div class="index-top-user">
@@ -191,40 +148,35 @@
 <div class="content">
     <div class="container">
         <div class="container-body">
+            <div class="box-content">
+                <table class="table table-striped table-bordered" id="testtable1">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>书名</th>
+                        <th>借阅者ID</th>
+                        <th>预定日期</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${list}" var="BL" varStatus="i">
+                    <tr>
+                        <td>${i.index + 1}</td>
+                        <td class="center">${BL.title.name}</td>
+                        <td class="center">${BL.borrowerId}</td>
+                        <td class="center">${BL.reserveDate}</td>
+                        <td class="center">
+                            <a class="btn btn-danger" href="/userCancelReservation.action?reservationId=${BL.id}">取消预定</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                    </c:forEach>
+                </table>
 
-            <label>借书</label>
-                <form action="/LoanItem.action" class="form-inline" role="form">
-                    <div class="form-group">
-                        <label>学生卡号</label>
-                        <input type="text" class="form-control" id="cardNo" name="cardNo"
-                               placeholder="cardNo" value="${cardNo}">
-                        <label id="checkCardNo"></label>
-                    </div>
-
-                    <div class="form-group">
-                        <label>请输入libraryCode</label>
-                        <input type="text" id="libraryCodeLoan" name="libraryCode" class="form-control" placeholder="${libraryCode}">
-                        <button name="loanItem" id="loanItem" disabled>借阅</button>
-                    </div>
-                </form>
-
-        </div>
-
-        <div class="container-body">
-            <label>还书</label>
-            <form action="/returnItem.action" class="form-inline" role="form">
-                <%--<button>重新输入卡号</button>--%>
-                <div class="form-group">
-                    <label>请输入libraryCode</label>
-                    <input type="text" id="libraryCodeReturn" name="libraryCodeReturn" class="form-control" placeholder="${libraryCodeReturn}">
-                    <button name="returnItem" id="returnItem" disabled>返还</button>
-                    <label id="checkCompensation"></label>
-                </div>
-            </form>
-
+            </div>
         </div>
     </div>
-
 </div>
 
 
@@ -242,29 +194,8 @@
         $("#container").width($(window).width() - (235));
     }
 </script>
-<script>
-    $("#returnItem").click(function () {
-        document.getElementById('returnItem').submit();
-        $("#returnItem").attr("disabled", "disabled");
-    });
-    $("#libraryCodeReturn").blur(function () {
-        checkCompensation();
-    });
-    $("#libraryCodeReturn").focus(function () {
-        $("#returnItem").attr("disables","disabled");
-    })
 
-    $("#loanItem").click(function () {
-        document.getElementById('loanItem').submit();
-        $("#loanItem").attr("disabled", "disabled");
-    });
-    $("#cardNo").blur(function () {
-        checkCardNo();
-    });
-    $("#cardNo").focus(function () {
-        $("#loanItem").attr("disabled","disabled");
-    })
-</script>
+<script type="text/javascript" src="${ctx}/resources/back/js/popWindow.js"></script>
 
 </body>
 </html>

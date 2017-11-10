@@ -168,7 +168,8 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">预定<strong class="caret"></strong></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a data-toggle="modal" id="reserve" href="#">预定</a>
+                                    <a id="reserve" href="#">预定</a>
+                                    <%--<a data-toggle="modal" id="reserve" href="#">预定</a>--%>
                                 </li>
                             </ul>
                         </li>

@@ -1,7 +1,9 @@
 package com.course.admin.service;
 
+import com.course.borrower.entity.Reservation;
 import com.course.borrower.repository.BookJPA;
 import com.course.borrower.repository.MagazineJPA;
+import com.course.borrower.repository.ReservationJPA;
 import com.course.borrower.repository.TitleJPA;
 import com.course.borrower.entity.Book;
 import com.course.borrower.entity.Magazine;
@@ -14,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -142,3 +145,4 @@ public class AdminBookService {
         return magazineJPA.findOne(id);
     }
 }
+

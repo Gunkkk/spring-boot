@@ -3,10 +3,8 @@ package com.course.libraryAdmin.service;
 import com.course.admin.entity.Borrower;
 import com.course.admin.repository.BorrowerJPA;
 import com.course.borrower.entity.*;
-import com.course.borrower.repository.BookJPA;
-import com.course.borrower.repository.ItemJPA;
-import com.course.borrower.repository.LoanJPA;
-import com.course.borrower.repository.TitleJPA;
+import com.course.borrower.repository.*;
+import com.course.strategy.repository.CompensationJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +29,10 @@ public class ItemAdminService {
     BorrowerJPA borrowerJPA;
     @Autowired
     LoanJPA loanJPA;
+    @Autowired
+    CompensationJPA compensationJPA;
+    @Autowired
+    ReservationJPA reservationJPA;
     /**
      * 新增书项
      * 每个书项对应一个书目
@@ -117,6 +120,37 @@ public class ItemAdminService {
         titleJPA.save(title); //自动修改item
     }
 
+    public int betweenDate(Date nowDate, Date dueDate) {
+        long nowDateLong = nowDate.getTime();
+        long dueDateLong = dueDate.getTime();
+        long betweenDate = (nowDateLong - dueDateLong) / (1000 * 60 * 60 * 24); //计算间隔多少天，则除以毫秒到天的转换公式
+        int betweenDateInt = (int)betweenDate;
+        return betweenDateInt;
+    }
+    /**
+     * 还书
+     * @param libraryCode
+     */
+    public double checkCompensation(String libraryCode){
+        Item item = itemJPA.findByLibraryCode(libraryCode);
+
+        Date currentDate = new Date();
+        Date dueDate = item.getLoan().getDuedate().getDuedate();
+
+        String itemType = item.getTitle().getType();
+
+        //如果未过期，返回0
+        if(currentDate.before(dueDate)) {
+            return 0;
+        }
+        //如果过期了，则计算赔偿出compensation
+        else
+        {
+            int betweenDate = betweenDate(currentDate,dueDate);
+            double compensation = betweenDate * compensationJPA.findByItem(itemType).getOvertime();
+            return compensation;
+        }
+    }
 
     /**
      * 还书
@@ -167,6 +201,12 @@ public class ItemAdminService {
      //   title.getReservations().add(reservation);
         titleJPA.save(title);
 
+    }
+    @Transactional
+    public List<Reservation> findAllReservation(){
+        List<Reservation> list = new ArrayList<>();
+        list = reservationJPA.findAll();
+        return list;
     }
 
     /**BorrowerTitleService中实现了

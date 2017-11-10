@@ -15,34 +15,28 @@ public class ValidateController {
     ValidateService validateService;
 
     @RequestMapping(value = "/checkCardNo.action")
-    public ModelAndView checkCardNo(@RequestParam("cardNo") String cardNo){
-        ModelAndView modelAndView = new ModelAndView("UserWork");
+    public String checkCardNo(@RequestParam("cardNo") String cardNo){
         Borrower borrower = validateService.checkCardNo(cardNo);
-        String flag = new String();
         if(borrower == null)
         {
-            flag = "未找到用户";
+            return "未找到用户";
         }
         else
         {
             //检查借阅者借阅的图书是否超过了规定的数量
             if(!validateService.checkOutOfNum(borrower))
             {
-                flag = "借书超数";
+                return "借书超数";
             }
             //检查借阅者是否有超过规定借阅期限而未归还的图书
             else if(!validateService.checkUndue(borrower))
             {
-                flag = "有图书过期未还";
+                return "有图书过期未还";
             }
             else
             {
-                flag = "验证通过";
-                modelAndView.addObject("inputFlag",1);
+                return "验证通过";
             }
         }
-        modelAndView.addObject("cardNo",cardNo);
-        modelAndView.addObject("flag",flag);
-        return modelAndView;
     }
 }

@@ -1,12 +1,9 @@
 package com.course.borrower.entity;
 
-import com.course.config.entity.LoanStrategy;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 /**
  * Created by 84074 on 2017/10/24.

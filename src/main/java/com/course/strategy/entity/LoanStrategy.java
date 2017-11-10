@@ -1,4 +1,4 @@
-package com.course.config.entity;
+package com.course.strategy.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

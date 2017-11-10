@@ -17,7 +17,7 @@ class AdaptedErrorController implements ErrorController {
         return "/error";
     }
 
-    @RequestMapping
+    @RequestMapping(value = "/error")
     public ModelAndView error(){
         ModelAndView modelAndView = new ModelAndView(getErrorPath());
         modelAndView.addObject("msg","404");
