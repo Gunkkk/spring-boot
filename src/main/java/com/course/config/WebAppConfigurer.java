@@ -17,6 +17,7 @@ public class WebAppConfigurer extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
         //按顺序执行拦截器。  .action不可缺少
         registry.addInterceptor(new UserInterceptor()).addPathPatterns("/**")
+                .excludePathPatterns("/")
                 .excludePathPatterns("/index")
                 .excludePathPatterns("/toBorrowerLogin*")
                 .excludePathPatterns("/borrowerSearch*")

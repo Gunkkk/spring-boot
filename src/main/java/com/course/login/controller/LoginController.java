@@ -18,7 +18,7 @@ import java.util.Map;
 public class LoginController {
     @Autowired
     LoginService loginService;
-    @RequestMapping(value = "/index")
+    @RequestMapping(value = {"/index","/"})
     public ModelAndView index(){
         ModelAndView modelAndView = new ModelAndView("/index");
         return modelAndView;
