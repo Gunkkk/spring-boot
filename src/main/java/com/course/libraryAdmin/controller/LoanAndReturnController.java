@@ -84,7 +84,7 @@ public class LoanAndReturnController {
             return flag;
         }
 
-        flag = "已借出或已被预约";
+        flag = "已借出 或 已被预约 或 已丢失";
         return flag;
     }
 
