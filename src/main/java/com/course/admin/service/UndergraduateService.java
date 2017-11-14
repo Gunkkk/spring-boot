@@ -37,8 +37,8 @@ public class UndergraduateService {
     }
 
     @Transactional
-    public void updateGraduateById(String username, String cardNo, String password, String type,
-                                   String department, String major, int id)
+    public void updateUndergraduateById(int id,String username, String cardNo, String password, String type,
+                                   String department, String major)
     {
         undergraduateJPA.updateUndergraduateById(username,cardNo,password,type,department,major,id);
     }

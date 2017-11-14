@@ -322,7 +322,7 @@
 
         <div class="container-body">
             <label>丢失处理</label>
-            <form action="loseItem" class="form-inline" role="form">
+            <form action="loseItem.action" class="form-inline" role="form">
                 <div class="form-group">
                     <label>学生卡号</label>
                     <input type="text" class="form-control" id="cardNoLose" name="cardNoLose"

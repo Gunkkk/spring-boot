@@ -47,18 +47,17 @@ public class UnderGraduateController {
     }
 
     @RequestMapping(value = "/updateUndergraduate.action")
-    public ModelAndView updateUndergraduate(@RequestParam("id")int id,
-                                        @RequestParam("usernameUpdate")String username,
+    public ModelAndView updateUndergraduate(@RequestParam("idUpdate")int id,
+                                        @RequestParam("userNameUpdate")String username,
                                         @RequestParam("cardNoUpdate")String cardNo,
                                         @RequestParam("passwordUpdate")String password,
                                         @RequestParam("typeUpdate")String type,
                                         @RequestParam("departmentUpdate")String department,
                                         @RequestParam("majorUpdate")String major
     ){
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView modelAndView = new ModelAndView("redirect:/findAllUndergraduates.action");
 
-        undergraduateService.updateGraduateById(username,cardNo,password,type,department,major,id);
-        modelAndView.setViewName("redirect:/findAllUndergraduates.action");
+        undergraduateService.updateUndergraduateById(id,username,cardNo,password,type,department,major);
         return modelAndView;
     }
 

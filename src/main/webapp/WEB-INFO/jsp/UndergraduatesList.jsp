@@ -310,8 +310,8 @@
             <div class="form-group">
                 <label>类型</label>
                 <select class="form-control"id="typeUpdate" name="typeUpdate">
-                    <option>graduate</option>
                     <option>undergraduate</option>
+                    <option>graduate</option>
                 </select>
             </div>
             <div class="form-group">
