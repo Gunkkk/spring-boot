@@ -1,7 +1,7 @@
 package com.course.admin.service;
 
-import com.course.admin.entity.User;
-import com.course.admin.repository.UserJPA;
+import com.course.login.entity.User;
+import com.course.login.repository.UserJPA;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

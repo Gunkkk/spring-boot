@@ -1,13 +1,22 @@
 package com.course;
 
+import com.course.admin.entity.Borrower;
+import com.course.admin.repository.BorrowerJPA;
 import com.course.admin.service.AdminBookService;
+import com.course.admin.service.ValidateService;
 import com.course.borrower.entity.Book;
+import com.course.borrower.entity.Item;
+import com.course.borrower.repository.BookJPA;
+import com.course.borrower.service.BorrowerTitleService;
 import com.course.libraryAdmin.service.ItemAdminService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.Date;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -82,6 +91,30 @@ public class SystemApplicationTests {
 			System.out.print("===================");
 		}else{
 			System.out.print("----------------------");
+		}
+	}
+	@Autowired
+	BorrowerJPA borrowerJPA;
+	@Autowired
+	ValidateService validateService;
+	@Test
+	public void checkNum(){
+		Borrower borrower = borrowerJPA.findByUsername("1");
+		if(validateService.checkOutOfNum(borrower))
+			System.out.print("===================");
+	}
+	@Autowired
+	BorrowerTitleService borrowerTitleService;
+	@Test
+	public void deRes(){
+		borrowerTitleService.cancelReservation(6);
+	}
+
+	@Test
+	public void queryItem(){
+		List<Item> list= itemAdminService.borrowerQueryItem(4);
+		for (Item item:list){
+			System.out.print(item.getLibraryCode());
 		}
 	}
 }

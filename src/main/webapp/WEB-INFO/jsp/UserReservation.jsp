@@ -1,4 +1,4 @@
-<%@ page import="com.course.admin.entity.User" %><%--
+<%@ page import="com.course.login.entity.User" %><%--
   Created by IntelliJ IDEA.
   User: yanyufeng
   Date: 2017/11/1
