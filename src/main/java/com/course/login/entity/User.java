@@ -1,13 +1,14 @@
 package com.course.login.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by 84074 on 2017/10/19.
  */
 @Entity
 @Table(name="USER")
-public class User {
+public class User implements Serializable{
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id

@@ -282,6 +282,7 @@ public class ItemAdminService {
     }
     public boolean isAvailable(String libraryCode){
         Item item = itemJPA.findByLibraryCode(libraryCode);
+        if(item==null) return false;
         if (item.getLoan()!=null||item.getLosebook()!=null||item.getReservation()!=null)
             return false;
         return true;

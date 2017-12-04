@@ -4,13 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 /**
  * Created by Yan on 2017/10/24.
  */
 @Entity
 @Table(name="ADMINISTRATOR")
-public class Admin {
+public class Admin implements Serializable{
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @javax.persistence.Id

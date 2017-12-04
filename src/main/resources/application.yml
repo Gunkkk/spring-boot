@@ -4,8 +4,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/boot?useUnicode=true&characterEncoding=utf-8&useSSL=false
-    username: root
-    password: 123456
+    username: username
+    password: password
     platform: mysql
     type: org.apache.tomcat.jdbc.pool.DataSource
     dbcp2:
@@ -24,10 +24,19 @@ spring:
     view:
       prefix: /WEB-INFO/jsp/
       suffix: .jsp
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    pool:
+      max-idle: 20
+      min-idle: 1
+      max-active: 20
+      max-wait: 60000
+    database: 0
 security:
   basic:
     enabled: false
 
-#mybatis:
-#  mapper-locations: classpath:mapper/*.xml
-#  typeAliasesPackage: tk.mapper.model
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+  typeAliasesPackage: tk.mapper.model
