@@ -1,4 +1,5 @@
-<%@ page import="com.course.login.entity.User" %><%--
+<%@ page import="com.course.login.entity.User" %>
+<%@ page import="com.course.login.entity.Admin" %><%--
   Created by IntelliJ IDEA.
   User: yanyufeng
   Date: 2017/11/1
@@ -9,7 +10,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <%request.setAttribute("ctx", request.getContextPath()); %>
-<%User user = (User) session.getAttribute("user");%>
+<%Admin user = (Admin) session.getAttribute("user");%>
 <head>
     <title></title>
 
@@ -257,71 +258,6 @@
         </div>
     </div>
 </div>
-
-<%--<div style="display: none;" class="zj_popWindow2">--%>
-    <%--<div class="zj_popTop">--%>
-        <%--<img onclick="doHide2(this)" src="${ctx}/resources/back/img/zj_end.png">--%>
-    <%--</div>--%>
-    <%--<div class="zj_popBottom">--%>
-        <%--<form action="/updateGraduate.action" class="form-inline" name="editForm" id="editForm">--%>
-            <%--<div class="form-group" hidden="hidden">--%>
-                <%--<label>id</label>--%>
-                <%--<input  readonly="readonly" type="text" class="form-control" id="idUpdate" name="idUpdate"--%>
-                        <%--placeholder="">--%>
-            <%--</div>--%>
-            <%--<div class="form-group">--%>
-                <%--<label>用户名</label>--%>
-                <%--<input type="text" class="form-control" id="userNameUpdate" name="userNameUpdate"--%>
-                       <%--placeholder="请输入用户名">--%>
-            <%--</div>--%>
-            <%--<div class="form-group">--%>
-                <%--<label>卡号</label>--%>
-                <%--<input type="text" class="form-control" id="cardNoUpdate" name="cardNoUpdate"--%>
-                       <%--placeholder="请输入卡号">--%>
-            <%--</div>--%>
-            <%--<div class="form-group">--%>
-                <%--<label>密码</label>--%>
-                <%--<input type="text" class="form-control" id="passwordUpdate" name="passwordUpdate"--%>
-                       <%--placeholder="请输入密码">--%>
-            <%--</div>--%>
-            <%--<div class="form-group">--%>
-                <%--<label>类型</label>--%>
-                <%--<select class="form-control"id="typeUpdate" name="typeUpdate">--%>
-                    <%--<option>graduate</option>--%>
-                    <%--<option>undergraduate</option>--%>
-                <%--</select>--%>
-            <%--</div>--%>
-            <%--<div class="form-group">--%>
-                <%--<label>学院</label>--%>
-                <%--<input type="text" class="form-control" id="departmentUpdate" name="departmentUpdate"--%>
-                       <%--placeholder="请输入学院">--%>
-            <%--</div>--%>
-            <%--<div class="form-group">--%>
-                <%--<label>专业</label>--%>
-                <%--<input type="text" class="form-control" id="majorUpdate" name="majorUpdate"--%>
-                       <%--placeholder="请输入专业">--%>
-            <%--</div>--%>
-            <%--<div class="form-group">--%>
-                <%--<label>导师</label>--%>
-                <%--<input type="text" class="form-control" id="directorUpdate" name="directorUpdate"--%>
-                       <%--placeholder="请输入导师">--%>
-            <%--</div>--%>
-
-        <%--</form>--%>
-        <%--<div class="zj_check1">--%>
-            <%--<button name="edit" id="edit">--%>
-                <%--<img src="${ctx}/resources/back/img/zj_check.png">&nbsp;&nbsp;提交--%>
-            <%--</button>--%>
-        <%--</div>--%>
-        <%--<div class="zj_cancle">--%>
-            <%--<button onclick="doHide2(this)">--%>
-                <%--<img src="${ctx}/resources/back/img/zj_cancle.png">&nbsp;&nbsp;取消--%>
-            <%--</button>--%>
-        <%--</div>--%>
-    <%--</div>--%>
-<%--</div>--%>
-
-
 <div style="display: none;" class="zj_shade"></div>
 <script>
     $(function () {
