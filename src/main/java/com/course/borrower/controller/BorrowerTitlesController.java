@@ -7,7 +7,7 @@ import com.course.borrower.entity.Reservation;
 import com.course.borrower.entity.Title;
 import com.course.borrower.service.BorrowerTitleService;
 import com.course.libraryAdmin.service.ItemAdminService;
-import org.json.JSONObject;
+import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
