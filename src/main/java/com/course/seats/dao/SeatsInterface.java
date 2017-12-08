@@ -23,12 +23,12 @@ public interface SeatsInterface {
 
         SeatStrategy getStrategy(@Param("type") String type, @Param("floorId") int floorId);
 
-        void saveYuyue(Yuyue yuyue);
+        void saveYuyue(@Param("yuyue") Yuyue yuyue);
         void seatAddOrder(@Param("seatId") int seatId,@Param("orderId") int orderId);
         void removeSeatOrder(@Param("seatId") int seatId);
 
         Yuyue getYuyueByStuId(@Param("stuId") int StuId);
-        void updateYuyue(Yuyue yuyue);
+        void updateYuyue(@Param("yuyue") Yuyue yuyue);
 
         Integer getPartIdBySeatId(@Param("seatId") int seatId);
         Integer getFloorIdByPartId(@Param("partId") int partId);

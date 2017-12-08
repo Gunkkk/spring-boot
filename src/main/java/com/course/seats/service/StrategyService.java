@@ -13,11 +13,14 @@ import org.springframework.stereotype.Service;
 @Service
 @CacheConfig(cacheNames = "strategy")
 public class StrategyService {
+
     @Autowired
     SeatsInterface seatsInterface;
 
     @Cacheable
     public SeatStrategy getStratey(int floorId,String type){
-        return seatsInterface.getStrategy(type,floorId);
+        SeatStrategy seatStrategy = new SeatStrategy();
+        seatStrategy = seatsInterface.getStrategy(type,floorId);
+        return seatStrategy;
     }
 }

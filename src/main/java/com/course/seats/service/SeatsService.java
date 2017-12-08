@@ -3,6 +3,7 @@ package com.course.seats.service;
 import com.course.admin.repository.BorrowerJPA;
 import com.course.seats.dao.SeatsInterface;
 import com.course.seats.entity.Floor;
+import com.course.seats.entity.SeatStrategy;
 import com.course.seats.entity.Seatpart;
 import com.course.seats.entity.Yuyue;
 import com.course.seats.strategy.GraduateStrategy;
@@ -30,6 +31,8 @@ public class SeatsService {
     SeatsInterface seatsInterface;
     @Autowired
     BorrowerJPA borrowerJPA;
+    @Autowired
+    StrategyService strategyService;
     /**
      * 选座首页 选择楼层
      * 显示楼层状态 总座位数 被占座位数
@@ -113,26 +116,33 @@ public class SeatsService {
         })
     public String reserveSeats(String row_col,int partId,int floorId,int stuId,String type){
         if (seatsInterface.getSeatsState(row_col)!=null){
-           reserveSeats(row_col,floorId,stuId,type);
+           if(reserveSeats(row_col,floorId,stuId,type)!="")
+               return "错误";
         }else{
             return "已被占用";
         }
         return "成功";
     }
     @Transactional
-    private void reserveSeats(String row_col,int floorId,int stuId,String type){
+    private String reserveSeats(String row_col,int floorId,int stuId,String type){
         int seatId = seatsInterface.getSeatsId(row_col);
         Yuyue yuyue = new Yuyue();
         yuyue.setSeatId(seatId);
         yuyue.setStuId(stuId);
-        if (type=="graduate")
-            yuyue.setSeatStrategies(new GraduateStrategy(floorId));
-        else if (type=="undergraduate")
-            yuyue.setSeatStrategies(new UnderGraduateStrategy(floorId));
+        if (type.equals("graduate")) {
+            SeatStrategy seatStrategy = strategyService.getStratey(floorId,"graduate");
+            yuyue.setSeatStrategies(new GraduateStrategy(floorId,seatStrategy));
+        }
+        else if (type.equals("undergraduate")) {
+            SeatStrategy seatStrategy = strategyService.getStratey(floorId,"undergraduate");
+            yuyue.setSeatStrategies(new UnderGraduateStrategy(floorId,seatStrategy));
+        }
+        else return "错误";
         yuyue.getReserve();
         seatsInterface.saveYuyue(yuyue);
         int orderId = seatsInterface.getYuyueByStuId(stuId).getOrderId();
         seatsInterface.seatAddOrder(seatId,orderId);
+        return "";
     }
 
     /**
@@ -168,10 +178,13 @@ public class SeatsService {
         }else {
             int partId =seatsInterface.getPartIdBySeatId(yuyue.getSeatId());
             int floorId = seatsInterface.getFloorIdByPartId(partId);
-            if (type=="graduate"){
-                yuyue.setSeatStrategies(new GraduateStrategy(floorId));
-            }else if(type=="undergraduate"){
-                yuyue.setSeatStrategies(new UnderGraduateStrategy(floorId));
+            if (type.equals("graduate")) {
+                SeatStrategy seatStrategy = strategyService.getStratey(floorId,"graduate");
+                yuyue.setSeatStrategies(new GraduateStrategy(floorId,seatStrategy));
+            }
+            else if (type.equals("undergraduate")) {
+                SeatStrategy seatStrategy = strategyService.getStratey(floorId,"undergraduate");
+                yuyue.setSeatStrategies(new UnderGraduateStrategy(floorId,seatStrategy));
             }
             String msg = yuyue.getSeats();
             if (msg!="入座失败")
@@ -235,10 +248,13 @@ public class SeatsService {
 
             int partId =seatsInterface.getPartIdBySeatId(yuyue.getSeatId());
             int floorId = seatsInterface.getFloorIdByPartId(partId);
-            if (type=="graduate"){
-                yuyue.setSeatStrategies(new GraduateStrategy(floorId));
-            }else if(type=="undergraduate"){
-                yuyue.setSeatStrategies(new UnderGraduateStrategy(floorId));
+            if (type.equals("graduate")) {
+                SeatStrategy seatStrategy = strategyService.getStratey(floorId,"graduate");
+                yuyue.setSeatStrategies(new GraduateStrategy(floorId,seatStrategy));
+            }
+            else if (type.equals("undergraduate")) {
+                SeatStrategy seatStrategy = strategyService.getStratey(floorId,"undergraduate");
+                yuyue.setSeatStrategies(new UnderGraduateStrategy(floorId,seatStrategy));
             }
             String msg = yuyue.continueSeats();
             if (msg=="续座成功")

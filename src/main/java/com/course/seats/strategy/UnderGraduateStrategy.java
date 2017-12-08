@@ -14,11 +14,10 @@ import java.util.Date;
 public class UnderGraduateStrategy implements SeatStrategiesInterface {
     private SeatStrategy seatStrategy;
     private int floorId;
-    @Autowired
-    StrategyService strategyService;
-    public UnderGraduateStrategy(int floorId){
+
+    public UnderGraduateStrategy(int floorId,SeatStrategy seatStrategy){
         this.floorId=floorId;
-        seatStrategy = strategyService.getStratey(floorId,"undergraduate");
+        this.seatStrategy = seatStrategy;
     }
 
     @Override

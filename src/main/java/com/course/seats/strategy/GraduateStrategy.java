@@ -3,6 +3,7 @@ package com.course.seats.strategy;
 import com.course.seats.dao.SeatsInterface;
 import com.course.seats.entity.SeatStrategy;
 import com.course.seats.entity.Yuyue;
+import com.course.seats.service.SeatsService;
 import com.course.seats.service.StrategyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.Calendar;
@@ -14,13 +15,10 @@ import java.util.Date;
 public class GraduateStrategy implements SeatStrategiesInterface {
     private SeatStrategy seatStrategy;
     private int floorId;
-    @Autowired
-    StrategyService strategyService;
 
-
-    public GraduateStrategy(int floorId){
+    public GraduateStrategy(int floorId,SeatStrategy seatStrategy){
         this.floorId=floorId;
-        seatStrategy = strategyService.getStratey(floorId,"graduate");
+        this.seatStrategy = seatStrategy;
     }
 
 
