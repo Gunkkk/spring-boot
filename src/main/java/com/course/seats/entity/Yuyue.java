@@ -1,5 +1,6 @@
 package com.course.seats.entity;
 
+import com.course.seats.state.*;
 import com.course.seats.strategy.SeatStrategiesInterface;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -101,12 +102,16 @@ public class Yuyue implements Serializable {
         stateInterface=new OrderStateReservting();
         stateInterface.handle(this);
     }
-    public void getSeats(){
+    public String getSeats(){
         stateInterface=new OrderStateSeating();
-        stateInterface.handle(this);
+        return stateInterface.handle(this);
     }
-    public void releaseSeats(){
+    public String releaseSeats(){
         stateInterface=new OrderStateLeaving();
-        stateInterface.handle(this);
+        return stateInterface.handle(this);
+    }
+    public String continueSeats(){
+        stateInterface = new OrderStateContinuing();
+        return stateInterface.handle(this);
     }
 }

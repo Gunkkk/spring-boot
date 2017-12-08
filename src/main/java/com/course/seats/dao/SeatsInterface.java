@@ -10,12 +10,12 @@ import java.util.List;
  * Created by 84074 on 2017/12/6.
  */
 public interface SeatsInterface {
-        int getFloorSNum();
+        Integer getFloorSNum();
         List<Floor> getFloors();
-        int getSeatedNum(@Param("floorId") int floorId);
+        Integer getSeatedNum(@Param("floorId") int floorId);
 
         List<Seatpart> getParts(@Param("floorId") int floorId);
-        int getPartSeatedNum(@Param("partID") int partId);
+        Integer getPartSeatedNum(@Param("partId") int partId);
 
         List<String> getUsedSeats(@Param("partId") int partId);
         Integer getSeatsState(@Param("row_col") String row_col);
@@ -24,7 +24,13 @@ public interface SeatsInterface {
         SeatStrategy getStrategy(@Param("type") String type, @Param("floorId") int floorId);
 
         void saveYuyue(Yuyue yuyue);
+        void seatAddOrder(@Param("seatId") int seatId,@Param("orderId") int orderId);
+        void removeSeatOrder(@Param("seatId") int seatId);
 
-        Yuyue getYuyueByStuId(int StuId);
+        Yuyue getYuyueByStuId(@Param("stuId") int StuId);
         void updateYuyue(Yuyue yuyue);
+
+        Integer getPartIdBySeatId(@Param("seatId") int seatId);
+        Integer getFloorIdByPartId(@Param("partId") int partId);
+        Yuyue getYuyueByCardNo(@Param("cardNo") String cardNo);
 }

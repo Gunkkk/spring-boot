@@ -1,6 +1,7 @@
 package com.course.seats.controller;
 
 import com.course.admin.entity.Borrower;
+import com.course.seats.entity.Yuyue;
 import com.course.seats.service.SeatsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,7 +28,7 @@ public class SeatsController {
      */
     @RequestMapping(value = "/toSeatsIndex.action")
     public ModelAndView toSeatsIndex(){
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView modelAndView = new ModelAndView("toSeatsIndex");
         modelAndView.addObject("floorNum",seatsService.floorNum());
         modelAndView.addObject("floorInfo",seatsService.getFloorInfo());
         return modelAndView;
@@ -71,19 +72,20 @@ public class SeatsController {
     @RequestMapping(value = "/cancelReservation")
     public String cancelReservation(@RequestParam("partId") Integer partId,
                                     @RequestParam("floorId") Integer floorId,HttpServletRequest request){
-        seatsService.cancelReservation(getBorrower(request).getId(),partId,floorId);
-        return "success";
+        String msg = seatsService.cancelReservation(getBorrower(request).getId(),partId,floorId);
+        return msg;
     }
 
     /**
      * 校园卡确认坐下
      * 查询卡号与stuId是否对应
      * @param cardNo
-     * @return
+     * @return json
      */
     @RequestMapping(value = "/getSeat")
     public String getSeat(@RequestParam("cardNo") String cardNo){
-        return "";
+        String json = seatsService.getSeat(cardNo);
+        return json;
     }
 
     /**
@@ -92,21 +94,39 @@ public class SeatsController {
      * @param cardNo
      * @return
      */
-    @RequestMapping(value = "/releaseSeat")
-    public String releaseSeat(@RequestParam("cardNo") String cardNo){
-        return "";
+    @RequestMapping(value = "/releaseSeatByAdmin")
+    public String releaseSeatByAdmin(@RequestParam("cardNo") String cardNo){
+        return seatsService.realseSeat(cardNo);
     }
-
+    /**
+     * 释放座位
+     * 根据卡号查询id然后操作
+     * @param
+     * @return
+     */
+    @RequestMapping(value = "/releaseSeatByStu")
+    public String releaseSeatByStu(@RequestParam("partId") Integer partId,
+            @RequestParam("floorId") Integer floorId,HttpServletRequest request){
+        return seatsService.realseSeat(getBorrower(request).getId(),partId,floorId);
+    }
     /**
      * 展示我的座位的状态
      * 显示座位信息
      * @return 跳转页面
      */
-    @RequestMapping(value = "/showMySeats")
-    public ModelAndView showMySeats( ){
-        ModelAndView modelAndView = new ModelAndView();
+    @RequestMapping(value = "/showMySeats.action")
+    public ModelAndView showMySeats(HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView("showMySeats");
+        Borrower borrower = getBorrower(request);
+        Yuyue yuyue = seatsService.getYuyueByStuId(borrower.getId());
+        modelAndView.addObject("borrower",borrower);
+        if(yuyue!=null){
+            modelAndView.addObject("msg","success");
+            modelAndView.addObject("yuyue",yuyue);
+        }else{
+            modelAndView.addObject("msg","没有座位信息");
+        }
         return modelAndView;
-
     }
 
 
@@ -117,8 +137,11 @@ public class SeatsController {
      */
     @RequestMapping(value = "/continueSeat")
     public String continueSeat(@RequestParam("cardNo") String cardNo){
-        return "";
+        return seatsService.continueSeat(cardNo);
     }
+
+
+
 
     private Borrower getBorrower(HttpServletRequest request){
         HttpSession session = request.getSession();

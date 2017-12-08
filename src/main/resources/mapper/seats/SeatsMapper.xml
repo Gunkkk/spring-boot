@@ -10,6 +10,12 @@
     <select id="getSeatedNum" resultType="int" parameterType="int">
         SELECT COUNT(orderId) from seat WHERE partId=ANY(SELECT partId from seatpart where floorId=#{floorId})
     </select>
+    <select id="getParts" resultType="com.course.seats.entity.Seatpart" parameterType="int">
+        SELECT * FROM seatpart where floorId=#{floorId}
+    </select>
+    <select id="getPartSeatedNum" resultType="Integer" parameterType="int">
+        SELECT count(orderId) from seat WHERE partid=#{partId}
+    </select>
     <select id="getUsedSeats" resultType="String" parameterType="int">
         SELECT row_col from seat where partId=#{partId} AND orderId IS NOT NULL
     </select>
@@ -21,5 +27,26 @@
     </select>
     <select id="saveYuyue" parameterType="com.course.seats.entity.Yuyue">
         INSERT INTO yuyue(stuId,seatId,orderTime,deadTime,state) VALUES (#{stuId},#{seatId},#{orderTime},#{deadTime},#{deadTime},#{state})
+    </select>
+    <update id="seatAddOrder" parameterType="int">
+        UPDATE seat SET orderId=#{orderId} WHERE seatId=#{seatId}
+    </update>
+    <update id="removeSeatOrder" parameterType="int">
+        UPDATE seat SET orderId=NULL WHERE seatId=#{seatId}
+    </update>
+    <select id="getYuyueByStuId" parameterType="int" resultType="com.course.seats.entity.Yuyue">
+        SELECT * from yuyue where stuId=#{stuId} AND state!="已失效"
+    </select>
+    <update id="updateYuyue" parameterType="com.course.seats.entity.Yuyue">
+        UPDATE yuyue SET seatTime=#{seatTime},deadTime=#{deadTime},vainTime=#{vainTime},state=#{state}   WHERE orderId=#{orderId}
+    </update>
+    <select id="getPartIdBySeatId" parameterType="int" resultType="Integer">
+        SELECT partid from seat where seatid=#{seatId}
+    </select>
+    <select id="getFloorIdByPartId" parameterType="int" resultType="Integer">
+        SELECT floorid from seatpart where partid=#{partId}
+    </select>
+    <select id="getYuyueByCardNo" parameterType="String" resultType="com.course.seats.entity.Yuyue">
+        SELECT * from yuyue where stuid=(SELECT id FROM borrower WHERE cardNo=#{cardNo}) AND state!="已失效"
     </select>
 </mapper>

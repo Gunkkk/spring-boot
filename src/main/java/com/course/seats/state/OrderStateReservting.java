@@ -1,6 +1,6 @@
-package com.course.seats.entity;
+package com.course.seats.state;
 
-import com.course.seats.strategy.SeatStrategiesInterface;
+import com.course.seats.entity.Yuyue;
 
 import java.util.Date;
 
@@ -15,10 +15,11 @@ public class OrderStateReservting implements OrderStateInterface {
      * @param yuyue
      */
     @Override
-    public void handle(Yuyue yuyue) {
+    public String handle(Yuyue yuyue) {
         Date reserveTime = new Date();
         yuyue.setOrderTime(reserveTime);
         yuyue.getSeatStrategies().setReserveTime(yuyue);
         yuyue.setState("预约中");
+        return "预约成功";
     }
 }

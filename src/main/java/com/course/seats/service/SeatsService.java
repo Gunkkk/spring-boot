@@ -1,5 +1,6 @@
 package com.course.seats.service;
 
+import com.course.admin.repository.BorrowerJPA;
 import com.course.seats.dao.SeatsInterface;
 import com.course.seats.entity.Floor;
 import com.course.seats.entity.Seatpart;
@@ -7,6 +8,7 @@ import com.course.seats.entity.Yuyue;
 import com.course.seats.strategy.GraduateStrategy;
 import com.course.seats.strategy.UnderGraduateStrategy;
 import net.minidev.json.JSONArray;
+import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.*;
 import org.springframework.stereotype.Service;
@@ -17,15 +19,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
+/**！！不同value只是对应不同的缓存策略，
+ * 不是如网上大多教程所说的缓存，
+ * 所以相同key不同vaule将错误
  * Created by 84074 on 2017/12/6.
  */
 @Service
-@CacheConfig(cacheNames = "seats")
 public class SeatsService {
     @Autowired
     SeatsInterface seatsInterface;
-
+    @Autowired
+    BorrowerJPA borrowerJPA;
     /**
      * 选座首页 选择楼层
      * 显示楼层状态 总座位数 被占座位数
@@ -56,7 +60,7 @@ public class SeatsService {
      * @param floorId
      * @return
      */
-    @Cacheable(key = "partsinfo_+#p0")
+    @Cacheable(value = "parts",key = "'parts_'+#floorId")
     public String getPartsInfo(int floorId){
         List<Map<String,Integer>> partInfo = new ArrayList<>();
         int seatNum,seatedNum;
@@ -73,11 +77,11 @@ public class SeatsService {
     }
 
     /**
-     * 返回一个区域的作为被占用情况
+     * 返回一个区域的座位被占用情况
      * @param partId
      * @return
      */
-    @Cacheable(key = "seatsinfo_+#p0")
+    @Cacheable(value = "seatsInfo",key = "'seatsinfo_'+#partId")
     public String getSeatsInfo(int partId){
         List<String> list = new ArrayList<>();
         list = seatsInterface.getUsedSeats(partId);
@@ -90,7 +94,9 @@ public class SeatsService {
             string.append(i);
             string.append(",");
         }
-        return string.toString();
+        String s = string.toString();
+        s = s.substring(0,string.length()-1);
+        return s;
     }
 
     /**
@@ -102,8 +108,8 @@ public class SeatsService {
      */
     @Caching(
         evict={
-            @CacheEvict(key = "seatsinfo_+#p1"),
-                @CacheEvict(key = "partsinfo_+#p2")
+            @CacheEvict(key = "'seatsinfo_'+#p1",value = "seatsInfo"),
+                @CacheEvict(key = "'parts_'+#p2",value = "parts")
         })
     public String reserveSeats(String row_col,int partId,int floorId,int stuId,String type){
         if (seatsInterface.getSeatsState(row_col)!=null){
@@ -125,6 +131,8 @@ public class SeatsService {
             yuyue.setSeatStrategies(new UnderGraduateStrategy(floorId));
         yuyue.getReserve();
         seatsInterface.saveYuyue(yuyue);
+        int orderId = seatsInterface.getYuyueByStuId(stuId).getOrderId();
+        seatsInterface.seatAddOrder(seatId,orderId);
     }
 
     /**
@@ -134,12 +142,114 @@ public class SeatsService {
     @Transactional
     @Caching(
             evict={
-                    @CacheEvict(key = "seatsinfo_+#p1"),
-                    @CacheEvict(key = "partsinfo_+#p2")
+                    @CacheEvict(key = "'seatsinfo_'+#p1",value = "seatsInfo"),
+                    @CacheEvict(key = "'parts_'+#p2",value = "parts")
             })
-    public void cancelReservation(int stuId,int partId,int floorId){
+    public String cancelReservation(int stuId,int partId,int floorId){
         Yuyue yuyue = seatsInterface.getYuyueByStuId(stuId);
-        yuyue.releaseSeats();
-        seatsInterface.updateYuyue(yuyue);
+        String msg = yuyue.releaseSeats();
+        if (msg!="失败")
+            seatsInterface.updateYuyue(yuyue);
+        return msg;
     }
+
+    /**
+     * 入座
+     * @param cardNo
+     * @return
+     */
+    @Transactional
+    public String getSeat(String cardNo){
+        Yuyue yuyue = seatsInterface.getYuyueByCardNo(cardNo);
+        String type = borrowerJPA.findByCardNo(cardNo).getType();
+        Map<String,String> map = new HashMap<>();
+        if (yuyue==null){
+            map.put("msg","没有预定");
+        }else {
+            int partId =seatsInterface.getPartIdBySeatId(yuyue.getSeatId());
+            int floorId = seatsInterface.getFloorIdByPartId(partId);
+            if (type=="graduate"){
+                yuyue.setSeatStrategies(new GraduateStrategy(floorId));
+            }else if(type=="undergraduate"){
+                yuyue.setSeatStrategies(new UnderGraduateStrategy(floorId));
+            }
+            String msg = yuyue.getSeats();
+            if (msg!="入座失败")
+                seatsInterface.updateYuyue(yuyue);
+            map.put("msg",msg);
+        }
+        return JSONObject.toJSONString(map);
+    }
+
+    /**
+     * 学生端退座
+     * @param stuId
+     * @param partId
+     * @param floorId
+     * @return
+     */
+    @Transactional
+    @Caching(
+            evict={
+                    @CacheEvict(key = "'seatsinfo_'+#p1",value = "seatsInfo"),
+                    @CacheEvict(key = "'parts_'+#p2",value = "parts")
+            })
+    public String realseSeat(int stuId,int partId,int floorId){
+        Yuyue yuyue = seatsInterface.getYuyueByStuId(stuId);
+        Map<String,String> map = new HashMap<>();
+        if(yuyue==null)
+            map.put("msg","未查询到座位信息");
+        else {
+            String msg = yuyue.releaseSeats();
+            if(msg!="失败")
+                seatsInterface.updateYuyue(yuyue);
+            map.put("msp",msg);
+        }
+        return JSONObject.toJSONString(map);
+    }
+
+    /**
+     * 管理员端退座
+     * @param cardNo
+     * @return
+     */
+    public String realseSeat(String cardNo){
+        Map<String,String> map = new HashMap<>();
+        Yuyue yuyue = seatsInterface.getYuyueByCardNo(cardNo);
+        if(yuyue==null){
+            map.put("msg","未查询到座位信息");
+            return JSONObject.toJSONString(map);
+        }
+        int partId =seatsInterface.getPartIdBySeatId(yuyue.getSeatId());
+        int floorId = seatsInterface.getFloorIdByPartId(partId);
+        return realseSeat(yuyue.getStuId(),partId,floorId);
+    }
+    @Transactional
+    public String continueSeat(String cardNo){
+        Yuyue yuyue = seatsInterface.getYuyueByCardNo(cardNo);
+        String type = borrowerJPA.findByCardNo(cardNo).getType();
+        Map<String,String> map = new HashMap<>();
+        if (yuyue==null){
+            map.put("msg","没有信息");
+        }else {
+
+            int partId =seatsInterface.getPartIdBySeatId(yuyue.getSeatId());
+            int floorId = seatsInterface.getFloorIdByPartId(partId);
+            if (type=="graduate"){
+                yuyue.setSeatStrategies(new GraduateStrategy(floorId));
+            }else if(type=="undergraduate"){
+                yuyue.setSeatStrategies(new UnderGraduateStrategy(floorId));
+            }
+            String msg = yuyue.continueSeats();
+            if (msg=="续座成功")
+                seatsInterface.updateYuyue(yuyue);
+            map.put("msg",msg);
+        }
+        return JSONObject.toJSONString(map);
+    }
+
+    public Yuyue getYuyueByStuId(int stuId){
+        return seatsInterface.getYuyueByStuId(stuId);
+    }
+
 }
