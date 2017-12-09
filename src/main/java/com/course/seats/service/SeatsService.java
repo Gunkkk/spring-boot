@@ -177,7 +177,7 @@ public class SeatsService {
         String type = borrowerJPA.findByCardNo(cardNo).getType();
         Map<String,String> map = new HashMap<>();
         if (yuyue==null){
-            map.put("msg","没有预定");
+            map.put("msg","没有预定或预定过期");
         }else {
             int partId =seatsInterface.getPartIdBySeatId(yuyue.getSeatId());
             int floorId = seatsInterface.getFloorIdByPartId(partId);
@@ -221,7 +221,7 @@ public class SeatsService {
                 seatsInterface.removeSeatOrder(yuyue.getSeatId());
                 seatsInterface.updateYuyue(yuyue);
             }
-            map.put("msp",msg);
+            map.put("msg",msg);
         }
         return JSONObject.toJSONString(map);
     }
@@ -254,7 +254,7 @@ public class SeatsService {
         String type = borrowerJPA.findByCardNo(cardNo).getType();
         Map<String,String> map = new HashMap<>();
         if (yuyue==null){
-            map.put("msg","没有信息");
+            map.put("msg","没有信息，可能座位过期");
         }else {
 
             int partId =seatsInterface.getPartIdBySeatId(yuyue.getSeatId());
