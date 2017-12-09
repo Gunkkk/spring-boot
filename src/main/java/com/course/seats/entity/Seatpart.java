@@ -6,7 +6,7 @@ package com.course.seats.entity;
 public class Seatpart {
     private int partId;
     private int floorId;
-    private int seatSum;
+    private int seatNum;
     private String partName;
     private String comment;
 
@@ -26,12 +26,12 @@ public class Seatpart {
         this.floorId = floorId;
     }
 
-    public int getSeatSum() {
-        return seatSum;
+    public int getSeatNum() {
+        return seatNum;
     }
 
-    public void setSeatSum(int seatSum) {
-        this.seatSum = seatSum;
+    public void setSeatNum(int seatNum) {
+        this.seatNum = seatNum;
     }
 
     public String getPartName() {

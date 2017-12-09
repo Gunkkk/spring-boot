@@ -110,6 +110,8 @@ public class SeatsController {
         return seatsService.realseSeat(getBorrower(request).getId(),partId,floorId);
     }
     /**
+     * Sat Dec 09 19:56:54 CST 201
+     * 传出的时间是这种格式
      * 展示我的座位的状态
      * 显示座位信息
      * @return 跳转页面

@@ -21,11 +21,11 @@
     <select id="getUsedSeats" resultType="String" parameterType="int">
         SELECT row_col from seat where partId=#{partId} AND orderId IS NOT NULL
     </select>
-    <select id="getSeatsState" resultType="Integer" parameterType="String">
-        SELECT orderId from seat WHERE row_col=#{row_col}
+    <select id="getSeatsState" resultType="Integer" >
+        SELECT orderId from seat WHERE row_col=#{row_col} AND partid=#{partId}
     </select>
-    <select id="getSeatsId" parameterType="String" resultType="Integer">
-        SELECT seatid from seat WHERE row_col=#{row_col}
+    <select id="getSeatsId"  resultType="Integer">
+        SELECT seatid from seat WHERE row_col=#{row_col} AND partid=#{partId}
     </select>
 
     <select id="getStrategy"  resultType="com.course.seats.entity.SeatStrategy">
@@ -57,6 +57,6 @@
         SELECT floorid from seatpart where partid=#{partId}
     </select>
     <select id="getYuyueByCardNo" parameterType="String" resultType="com.course.seats.entity.Yuyue">
-        SELECT * from yuyue where stuid=(SELECT id FROM borrower WHERE cardNo=#{cardNo}) AND state!="已失效"
+        SELECT * from yuyue where stuid=(SELECT id FROM borrower WHERE card_no=#{cardNo}) AND state!="已失效"
     </select>
 </mapper>

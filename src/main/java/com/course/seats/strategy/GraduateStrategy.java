@@ -44,7 +44,7 @@ public class GraduateStrategy implements SeatStrategiesInterface {
 
     @Override
     public void setContinueTime(Yuyue yuyue) {
-        Date deadTime = yuyue.getSeatTime();
+        Date deadTime = yuyue.getDeadTime();
         int min = seatStrategy.getContinueTime();
         Calendar cd = Calendar.getInstance();
         cd.setTime(deadTime);

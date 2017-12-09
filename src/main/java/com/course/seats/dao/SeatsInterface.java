@@ -18,8 +18,8 @@ public interface SeatsInterface {
         Integer getPartSeatedNum(@Param("partId") int partId);
 
         List<String> getUsedSeats(@Param("partId") int partId);
-        Integer getSeatsState(@Param("row_col") String row_col);
-        Integer getSeatsId(@Param("row_col") String row_col);
+        Integer getSeatsState(@Param("row_col") String row_col,@Param("partId") int partId);
+        Integer getSeatsId(@Param("row_col") String row_col,@Param("partId") int partId);
 
         SeatStrategy getStrategy(@Param("type") String type, @Param("floorId") int floorId);
 

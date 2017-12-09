@@ -10,11 +10,11 @@ import java.util.Date;
 public class OrderStateContinuing implements OrderStateInterface{
     @Override
     public String handle(Yuyue yuyue) {
-        if (yuyue.getState()=="占领中"){
+        if (yuyue.getState().equals("占领中")){
             yuyue.getSeatStrategies().setContinueTime(yuyue);
             return "续座成功";
         }
-        if (yuyue.getState()=="预约中")
+        if (yuyue.getState().equals("预约中"))
             return "请先入座";
         return "错误";
     }

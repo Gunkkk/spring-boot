@@ -10,7 +10,7 @@ import java.util.Date;
 public class OrderStateSeating implements OrderStateInterface {
     @Override
     public String handle(Yuyue yuyue) {
-        if (yuyue.getState()=="预约中") {
+        if (yuyue.getState().equals("预约中")) {
             getSeated(yuyue);
             return "入座成功";
         }
