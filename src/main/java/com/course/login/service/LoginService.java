@@ -33,7 +33,6 @@ public class LoginService {
     @Autowired
     UserLoginInterface userLoginInterface;
 
-    @Cacheable
     public Map<String, Object> login(String userName, String password, String role) {
         Map<String, Object> map = new HashMap<String, Object>();
 
@@ -69,7 +68,7 @@ public class LoginService {
         }
         return map;
     }
-
+    @Cacheable(key = "#p0")
     public Map<String,Object> borrowerLogin(String username,String password){
         Map<String,Object> map = new HashMap<String,Object>();
         Borrower borrower = borrowerJPA.findByUsername(username);

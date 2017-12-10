@@ -98,11 +98,11 @@
 			<artifactId>json-smart</artifactId>
 			<version>RELEASE</version>
 		</dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>com.vaadin.external.google</groupId>
             <artifactId>android-json</artifactId>
             <version>RELEASE</version>
-        </dependency>
+        </dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-cache</artifactId>

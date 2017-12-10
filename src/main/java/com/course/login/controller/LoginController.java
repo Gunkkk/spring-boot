@@ -1,8 +1,7 @@
 package com.course.login.controller;
 
 import com.course.login.service.LoginService;
-
-import org.json.JSONObject;
+import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;

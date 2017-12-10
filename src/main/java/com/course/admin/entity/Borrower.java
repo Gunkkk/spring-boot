@@ -5,12 +5,13 @@ import com.course.borrower.entity.Losebook;
 import com.course.borrower.entity.Reservation;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name="BORROWER")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Borrower {
+public class Borrower implements Serializable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private int id;
