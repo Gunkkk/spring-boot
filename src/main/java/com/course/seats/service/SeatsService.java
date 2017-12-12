@@ -64,20 +64,37 @@ public class SeatsService {
      * @return
      */
     @Cacheable(value = "parts",key = "'parts_'+#floorId")
-    public String getPartsInfo(int floorId){
+    public List<Map<String,Integer>>  getPartsInfo(int floorId){
         List<Map<String,Integer>> partInfo = new ArrayList<>();
-        int seatNum,seatedNum;
+        int seatNum,seatedNum,partId;
         List<Seatpart> partList = seatsInterface.getParts(floorId);
         for(Seatpart i:partList){
             Map<String,Integer> map = new HashMap<>();
             seatNum = i.getSeatNum();
+            partId = i.getPartId();
             seatedNum = seatsInterface.getPartSeatedNum(i.getPartId());
+            map.put("partId",partId);
             map.put("seatNum",seatNum);
             map.put("seatedNum",seatedNum);
             partInfo.add(map);
         }
-        return JSONArray.toJSONString(partInfo);
+        return partInfo;
     }
+//    @Cacheable(value = "parts",key = "'parts_'+#floorId")
+//    public String getPartsInfo(int floorId){
+//        List<Map<String,Integer>> partInfo = new ArrayList<>();
+//        int seatNum,seatedNum;
+//        List<Seatpart> partList = seatsInterface.getParts(floorId);
+//        for(Seatpart i:partList){
+//            Map<String,Integer> map = new HashMap<>();
+//            seatNum = i.getSeatNum();
+//            seatedNum = seatsInterface.getPartSeatedNum(i.getPartId());
+//            map.put("seatNum",seatNum);
+//            map.put("seatedNum",seatedNum);
+//            partInfo.add(map);
+//        }
+//        return JSONArray.toJSONString(partInfo);
+//    }
 
     /**
      * 返回一个区域的座位被占用情况
@@ -94,7 +111,9 @@ public class SeatsService {
     private String list2String(List<String> list){
         StringBuffer string=new StringBuffer();
         for (String i:list){
+            string.append("\'");
             string.append(i);
+            string.append("\'");
             string.append(",");
         }
         String s = string.toString();
