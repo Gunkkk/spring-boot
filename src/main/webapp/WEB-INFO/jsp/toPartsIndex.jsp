@@ -1,23 +1,22 @@
 <%--
   Created by IntelliJ IDEA.
-  User: 84074
-  Date: 2017/11/8
-  Time: 21:27
+  User: yanyufeng
+  Date: 2017/12/7
+  Time: 16:43
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.course.admin.entity.Borrower" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-<%Borrower borrower = (Borrower)session.getAttribute("borrower");%>
 <%request.setAttribute("ctx", request.getContextPath()); %>
 <head>
-    <title>预定处理页面</title>
+    <meta charset="utf-8">
+    <title></title>
     <link rel="stylesheet" type="text/css" href="${ctx}/resources/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="${ctx}/resources/css/index.css">
     <link rel="stylesheet" href="${ctx}/resources/css/style.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/resources/back/css/popWindow.css">
-    <script type="text/javascript" src="${ctx}/resources/js/jquery.js"></script>
+    <script src="${ctx}/resources/js/jquery-3.1.1.min.js"></script>
     <script src="${ctx}/resources/bootstrap/js/bootstrap.js"></script>
 
     <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
@@ -26,6 +25,10 @@
     <script type="text/javascript" src="${ctx}/resources/js/jquery.paginate.js" ></script>
     <script type="text/javascript" src="${ctx}/resources/js/jquery.yhhDataTable.js" ></script>
     <script type="text/javascript" src="${ctx}/resources/js/indexForPaging.js" ></script>
+
+    <link rel="stylesheet" href="${ctx}/resources/seat/css/main.css"/>
+    <script type="text/javascript" src="${ctx}/resources/seat/js/jquery.seat-charts.min.js"></script>
+
     <style>
         img{
             float: left;
@@ -73,57 +76,12 @@
             vertical-align: middle;
         }
     </style>
-    <script type="text/javascript">
+    <script>
 
-        $(function() {
-            $('.dropdown-toggle').dropdown();
-            $('#reserve').click(function(){
-                $('#modallogin').modal('show');
-            });
-
-            $('#myCarousel').carousel('cycle');
-        });
-        function validateReservationLibraryCode(){
-            var code = $('#libraryCode').html();
-            $.ajax({
-                url:'/validateLibraryCode.action',
-                data:{
-                    "libraryCode":code,
-                },
-                type:'get',
-                success:function (data) {
-                    if(data=='yes') {
-                        $('#msg').text('可预定');
-                        $('#submitButton').attr("disabled",false);
-                    }else{
-                        $('#msg').text('不可预定');
-                    }
-                },
-                error:function () {
-                    alert("错误");
-                }
-            });
-        }
-        function check() {
-            var data=$('#form2').serialize();
-                $.ajax({
-                    url:'/addReservation.action',
-                    data:data,
-                    type:'post',
-                    success:function (data) {
-                        data=eval("("+data+")");
-                        if(data.result=='yes'){
-                            location.reload();
-                        }else {
-                            $('#msg').html(data.msg);
-                            setTimeout(function (){
-                            },5000);
-                        }
-                    }
-                });
-        }
     </script>
 </head>
+<body>
+
 <body style ="background-image:url(${ctx}/resources/image/bg1.jpg)">
 <div class="container"  style ="background-image:url(${ctx}/resources/image/bg1.jpg)">
     <div  style="height:130px">
@@ -190,20 +148,18 @@
                             <table class="table table-striped table-bordered" id="testtable1">
                                 <thead>
                                 <tr>
-                                    <th>序号</th>
-                                    <th>书名</th>
-                                    <th>预定日期</th>
+                                    <th>${floorId}楼区域</th>
+                                    <th>座位剩余数/座位总数</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${list}" var="BL" varStatus="i">
+                                <c:forEach items="${floorInfo}" var="BL" varStatus="i">
                                 <tr>
-                                    <td>${i.index + 1}</td>
-                                    <td class="center">${BL.title.name}</td>
-                                    <td class="center">${BL.reserveDate}</td>
+                                    <td>${BL.partId}</td>
+                                    <td class="center">${BL.seatNum - BL.seatedNum}/${BL.seatNum}</td>
                                     <td class="center">
-                                        <a class="btn btn-danger" href="/cancelReservation.action?reservationId=${BL.id}">取消预定</a>
+                                        <a class="btn btn-danger" href="/initSeatsMap.action?partId=${BL.partId}&floorId=${floorId}">进入区域</a>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -211,42 +167,28 @@
                             </table>
 
                         </div>
+
+                        <%--<div class="index-all">--%>
+                            <div class="demo index-demo">
+                                <img class="seat-pic" src='${ctx}/resources/seat/images/seat_bkg.png'/>
+                                <div class="layout">
+                                    <a onmouseover="javascript:this.style.border='1px solid yellow';" onmouseout="javascript:this.style.border='0px';" href="/initSeatsMap.action?partId=${floorId+2}&floorId=${floorId}" class="layout01"></a>
+                                    <a onmouseover="javascript:this.style.border='1px solid yellow';" onmouseout="javascript:this.style.border='0px';" href="/initSeatsMap.action?partId=${floorId+3}&floorId=${floorId}" class="layout02"></a>
+                                    <a onmouseover="javascript:this.style.border='1px solid yellow';" onmouseout="javascript:this.style.border='0px';" href="/initSeatsMap.action?partId=${floorId}&floorId=${floorId}" class="layout03"></a>
+                                    <a onmouseover="javascript:this.style.border='1px solid yellow';" onmouseout="javascript:this.style.border='0px';" href="/initSeatsMap.action?partId=${floorId+1}&floorId=${floorId}" class="layout04"></a>
+                                </div>
+                                <div style="clear:both"></div>
+                            </div>
+                            <br/>
+                        <%--</div>--%>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="modal fade" id="modallogin" tabindex="-1" role="dialog" aria-labelledby="modallogin" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">预定页面</h4>
-            </div>
-            <form name="form2" id="form2" method="post">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label class="control-label">LibraryCode</label>
-                        <input type="text" class="form-control" id="libraryCode" name="libraryCode">
-                    </div>
-                    <div class="modal-footer">
-                        <span ><label class="msg" id="msg" name="msg" value='msg'></label></span>
-                        <button type="button" class="btn btn-default" id="submitButton" onclick="javascript:check(); disabled">提交</button>
-                        <button type="reset" class="btn btn-primary">重置</button>
-                    </div>
-                </div>
-            </form>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal -->
-</div>
-<script>
-    $("#libraryCode").blur(function () {
-        validateReservationLibraryCode();
-    });
-    $("#libraryCode").focus(function () {
-        $("#submitButton").attr("disables","disabled");
-    })
-</script>
+
+
 </body>
 </html>
