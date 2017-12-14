@@ -25,6 +25,10 @@
     <script type="text/javascript" src="${ctx}/resources/js/jquery.paginate.js" ></script>
     <script type="text/javascript" src="${ctx}/resources/js/jquery.yhhDataTable.js" ></script>
     <script type="text/javascript" src="${ctx}/resources/js/indexForPaging.js" ></script>
+
+    <link rel="stylesheet" href="${ctx}/resources/seat/css/main.css"/>
+    <script type="text/javascript" src="${ctx}/resources/seat/js/jquery.seat-charts.min.js"></script>
+
     <style>
         img{
             float: left;
@@ -156,7 +160,6 @@
                                     <td class="center">${BL.seatNum - BL.seatedNum}/${BL.seatNum}</td>
                                     <td class="center">
                                         <a class="btn btn-danger" href="/initSeatsMap.action?partId=${BL.partId}&floorId=${floorId}">进入区域</a>
-
                                     </td>
                                 </tr>
                                 </tbody>
@@ -164,6 +167,21 @@
                             </table>
 
                         </div>
+
+                        <%--<div class="index-all">--%>
+                            <div class="demo index-demo">
+                                <img class="seat-pic" src='${ctx}/resources/seat/images/seat_bkg.png'/>
+                                <div class="layout">
+                                    <a onmouseover="javascript:this.style.border='1px solid yellow';" onmouseout="javascript:this.style.border='0px';" href="/initSeatsMap.action?partId=${floorId+2}&floorId=${floorId}" class="layout01"></a>
+                                    <a onmouseover="javascript:this.style.border='1px solid yellow';" onmouseout="javascript:this.style.border='0px';" href="/initSeatsMap.action?partId=${floorId+3}&floorId=${floorId}" class="layout02"></a>
+                                    <a onmouseover="javascript:this.style.border='1px solid yellow';" onmouseout="javascript:this.style.border='0px';" href="/initSeatsMap.action?partId=${floorId}&floorId=${floorId}" class="layout03"></a>
+                                    <a onmouseover="javascript:this.style.border='1px solid yellow';" onmouseout="javascript:this.style.border='0px';" href="/initSeatsMap.action?partId=${floorId+1}&floorId=${floorId}" class="layout04"></a>
+                                </div>
+                                <div style="clear:both"></div>
+                            </div>
+                            <br/>
+                        <%--</div>--%>
+
                     </div>
                 </div>
             </div>

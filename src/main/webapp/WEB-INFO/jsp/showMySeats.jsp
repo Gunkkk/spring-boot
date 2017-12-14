@@ -168,20 +168,19 @@
                                     <td class="center">${yuyue.deadTime}</td>
                                     <td class="center">${yuyue.vainTime}</td>
                                     <td class="center">${yuyue.state}</td>
-                                    <td class="center">
-                                        <c:if test="${yuyue.seatTime==null}" >
-                                            <a class="btn btn-danger" href="/cancelReservation?partId=${partId}&floorId=${floorId}">取消预约</a>
-                                            <a class="btn btn-info" href="/getSeat?cardNo=${borrower.getCardNo()}">确认入座</a>
-                                        </c:if>
-                                        <c:if test="${yuyue.seatTime!=null}" >
-                                            <a class="btn btn-info" href="/continueSeat?cardNo=${borrower.getCardNo()}">续约座位</a>
-                                            <a class="btn btn-danger" href="/releaseSeatByStu?partId=${partId}&floorId=${floorId}">释放座位</a>
-                                        </c:if>
-                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
-
+                            <c:if test="${yuyue.seatId!=null}" >
+                                <c:if test="${yuyue.seatTime==null}" >
+                                    <a class="btn btn-danger" href="/cancelReservation?partId=${partId}&floorId=${floorId}">取消预约</a>
+                                    <a class="btn btn-info" href="/getSeat?cardNo=${borrower.getCardNo()}">确认入座</a>
+                                </c:if>
+                                <c:if test="${yuyue.seatTime!=null}" >
+                                    <a class="btn btn-info" href="/continueSeat?cardNo=${borrower.getCardNo()}">续约座位</a>
+                                    <a class="btn btn-danger" href="/releaseSeatByStu?partId=${partId}&floorId=${floorId}">释放座位</a>
+                                </c:if>
+                            </c:if>
                         </div>
                     </div>
                 </div>
