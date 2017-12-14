@@ -1,5 +1,5 @@
-<%@ page import="com.course.login.entity.User" %>
 <%@ page import="com.course.login.entity.Admin" %><%--
+
   Created by IntelliJ IDEA.
   User: yanyufeng
   Date: 2017/11/1
@@ -10,7 +10,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <%request.setAttribute("ctx", request.getContextPath()); %>
-<%Admin user = (Admin) session.getAttribute("user");%>
+<%Admin user = (Admin) session.getAttribute("admin");%>
 <head>
     <title></title>
 
@@ -159,40 +159,6 @@
     <div class="container">
         <div class="container-body">
             <button class="zj_button1 btn btn-warning" style="float:right">增加用户</button>
-            <%--<form action="/findGraduatesByConditions.action" class="form-inline" role="form">--%>
-
-                <%--<div class="form-group">--%>
-                    <%--<label>用户名</label>--%>
-                    <%--<input type="text" class="form-control" id="userNameSelect" name="userNameSelect"--%>
-                           <%--placeholder="${username}">--%>
-                <%--</div>--%>
-                <%--<div class="form-group">--%>
-                    <%--<label>密码</label>--%>
-                    <%--<input type="text" class="form-control" id="passwordSelect" name="passwordSelect"--%>
-                           <%--placeholder="${password}">--%>
-                <%--</div>--%>
-                <%--<div class="form-group">--%>
-                    <%--<label>卡号</label>--%>
-                    <%--<input type="text" class="form-control" id="cardNoSelect" name="cardNoSelect"--%>
-                           <%--placeholder="${cardNo}">--%>
-                <%--</div>--%>
-                <%--<div class="form-group">--%>
-                    <%--<label>学院</label>--%>
-                    <%--<input type="text" class="form-control" id="departmentSelect" name="departmentSelect"--%>
-                           <%--placeholder="${department}">--%>
-                <%--</div>--%>
-                <%--<div class="form-group">--%>
-                    <%--<label>专业</label>--%>
-                    <%--<input type="text" class="form-control" id="majorSelect" name="majorSelect"--%>
-                           <%--placeholder="${major}">--%>
-                <%--</div>--%>
-                <%--<div class="form-group">--%>
-                    <%--<label>导师</label>--%>
-                    <%--<input type="text" class="form-control" id="directorSelect" name="directorSelect"--%>
-                           <%--placeholder="${director}">--%>
-                <%--</div>--%>
-                <%--<button onclick="form.submit();" class="btn btn-default">查询</button>--%>
-            <%--</form>--%>
             <div class="box-content">
                 <table id="testtable1">
                     <thead>
@@ -258,6 +224,7 @@
         </div>
     </div>
 </div>
+
 <div style="display: none;" class="zj_shade"></div>
 <script>
     $(function () {

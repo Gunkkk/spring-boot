@@ -65,7 +65,22 @@
                 alert("请先登录！");
             }
         }
+        function reservationSeatLoginCheck(){
+            if (${borrower!=null}){
+                window.location='toSeatsIndex.action';
+            }else{
+                alert("请先登录！");
+            }
+        }
+        function checkSeatLoginCheck(){
+            if (${borrower!=null}){
+                window.location='showMySeats.action';
+            }else{
+                alert("请先登录！");
+            }
+        }
     </script>
+
     <title>首页</title>
 </head>
 
@@ -92,6 +107,12 @@
                             <ul class="dropdown-menu">
                                 <li>
                                     <a href="javascript:reservationLoginCheck()" target="_blank">预定书籍</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:reservationSeatLoginCheck()" target="_blank">预定座位</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:checkSeatLoginCheck()" target="_blank">我的座位</a>
                                 </li>
                                 <li class="divider">
                                 </li>

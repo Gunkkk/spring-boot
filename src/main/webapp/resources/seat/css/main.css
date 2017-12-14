@@ -1,0 +1,160 @@
+html,body{margin:0;padding:0;height: 100%;background:#fff;font-size: 62.5%;}
+#main{padding-top: 20px;}
+ul,li{list-style: none;}
+.index-all{
+	height: 100%;
+	background: #efeedc;
+	width: 100%;
+	padding-top: 20px;
+}
+ul#selected-seats{
+	display: -webkit-box; /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */ 
+	display: -moz-box; /* Firefox 17- */ 
+	display: -webkit-flex; /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */ 
+	display: -moz-flex; /* Firefox 18+ */ 
+	display: -ms-flexbox; /* IE 10 */ 
+	display: flex; /* Chrome 29+, Firefox 22+, IE 11+, Opera 12.1/17/18, Android 4.4+ */
+	flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:space-between;
+}
+#selected-seats li{
+padding:4px 2px 4px 4px;
+border:1px solid #386de8;
+color:#386de8;
+font-size: 1.4rem;
+margin-bottom: 10px;
+height:15px;
+line-height: 15px;
+}
+#selected-seats li span{
+	padding-left:5px;
+	background: url(../images/cancel.jpg) no-repeat center center;
+	display: inline-block;
+	width: 10px;
+	height:10px;
+	background-size:100%;
+}
+.foot-p{
+	font-size: 1.5rem;
+	color:#666;
+	margin:0;
+	margin-top: 10px;
+}
+.foot-pp{
+	font-size: 1.5rem;
+	color:#666;
+	margin:0;
+	margin-bottom: 10px;
+}
+.index-demo{}
+.demo{ margin:0 4%;position: relative;}
+.front{width: 100%;margin: 5px 32px 45px 32px;background-color: #f0f0f0;	color: #666;text-align: center;padding: 3px;border-radius: 5px;}
+.booking-details {float: right;position: relative;width:200px;height: 450px; }
+.booking-details h3 {margin: 5px 5px 0 0;font-size: 16px;}
+.booking-details p{line-height:26px; font-size:16px; color:#999}
+.booking-details p span{color:#666}
+div.seatCharts-cell {color: #666;-moz-box-flex:1.0; /* Firefox */
+-webkit-box-flex:1.0; /* Safari and Chrome */
+box-flex:1.0;text-align: center;outline: none;font-size: 13px;margin:1.5px ;}
+div.seatCharts-seat {color: #fff;cursor: pointer;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 1px;}
+div.seatCharts-row {width: 100%;
+display:-moz-box; /* Firefox */
+display:-webkit-box; /* Safari and Chrome */
+display:box;
+justify-content: flex-start;
+align-items:center;}
+div.seatCharts-seat.available {
+	/* background: #fff;border:1px solid #606060;*/
+	background: url(../images/xixi_01.png) no-repeat center center;
+	background-size: 96%;
+}
+div.seatCharts-seat.focused {background-color: #76B474;border: none;}
+div.seatCharts-seat.selected {
+	/*background-color: #E6CAC4;*/
+	background: url(../images/xixi_02.png) no-repeat center center;
+	background-size: 100%;
+}
+div.seatCharts-seat.unavailable {
+	/*background-color: #472B34;cursor: not-allowed;*/
+	background: url(../images/xixi_03.png) no-repeat center center;
+	background-size: 100%;
+}
+.seat-pic{
+	width: 100%;
+/*	width: 600px;*/
+}
+div.seatCharts-container {
+	position: absolute;
+/*	left:-15px;*/
+	left:15px;
+	width: 300px;
+/*	width: 100%;*/
+	top:0;
+}
+div.seatCharts-legend {padding-left: 0px;position: absolute;bottom: 16px;}
+ul.seatCharts-legendList {padding-left: 0px;}
+.seatCharts-legendItem{float:left; width:90px;margin-top: 10px;line-height: 2;}
+span.seatCharts-legendDescription {margin-left: 5px;line-height: 30px;}
+.checkout-button {display: block;width:80px; height:24px; line-height:20px;margin: 10px auto;border:1px solid #999;font-size: 14px; cursor:pointer}
+#selected-seats {padding:10px 0;margin:0;}
+.seatCharts-row div:first-child{
+	width: 5px;
+	
+}
+#counter,#total{
+	color:red;
+}
+.footer{padding:0 10px;}
+#tree-btn{
+	height: 35px;
+	line-height: 35px;
+	background: #d1d1d1;
+	color:#fff;
+	font-size: 16px;
+	text-align: 16px;
+	width: 100%;
+	border:none;
+}
+.layout{position:absolute;width: 100%;height: 100%;top:0;left:0;}
+.layout01{
+    position: absolute;
+    width: 23%;
+    height: 94%;
+    top: 0.5%;
+    left: 1%;
+}
+.layout02{
+    position: absolute;
+    width: 36%;
+    height: 17%;
+    top: 0.5%;
+    left: 25%;
+}
+.layout03{
+	position: absolute;
+    width: 23%;
+    height: 94%;
+    top: 0.5%;
+    left: 62%;
+}
+.layout04{    position: absolute;
+    width: 36%;
+    height: 17%;
+    top: 78%;
+    left: 25%;
+}
+.layout05{position:absolute;width: 48.7%;height: 18.2%;top:40.6%;left:29.2%;}
+.layout06{position:absolute;width: 13.9%;height: 43.2%;top:40.6%;left:78.9%;}
+.layout07{position:absolute;width: 10.4%;height: 20.7%;top:59%;left:30.4%;}
+.layout08{position:absolute;width: 23.4%;height: 11.7%;top:59%;left:40.8%;}
+.layout09{position:absolute;width: 14.6%;height: 11.7%;top:59%;left:64.2%;}
+.layout10{position:absolute;width: 26.8%;height: 9.2%;top:70.8%;left:41.4%;}
+.layout11{position:absolute;width: 9.3%;height: 13.2%;top:70.8%;left:69%;}
+.layout12{position:absolute;width: 60.1%;height: 3.8%;top:80.5%;left:8.8%;}
+
+
+
+
+
+
