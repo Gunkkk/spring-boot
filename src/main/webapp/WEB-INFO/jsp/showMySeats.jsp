@@ -155,7 +155,6 @@
                                     <th>deadTime</th>
                                     <th>vainTime</th>
                                     <th>state</th>
-                                    <th>operate</th>
                                 </tr>
                                 </thead>
                                 <tbody>

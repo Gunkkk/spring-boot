@@ -68,7 +68,7 @@ public class LoginService {
         }
         return map;
     }
-    @Cacheable(key = "#p0")
+    @Cacheable(key = "#p0+#p1")
     public Map<String,Object> borrowerLogin(String username,String password){
         Map<String,Object> map = new HashMap<String,Object>();
         Borrower borrower = borrowerJPA.findByUsername(username);
