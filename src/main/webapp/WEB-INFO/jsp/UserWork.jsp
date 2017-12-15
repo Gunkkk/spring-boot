@@ -160,23 +160,20 @@
                 },
                 type:'get',
                 success:function (data) {
-                    if(data=='-3')
-                    {
+                    if (data == '-3') {
                         $('#checkLoseCompensation').text('不存在该libraryCode！');
                     }
-                    else if(data=='-2')
-                    {
+                    else if (data == '-2') {
                         $('#checkLoseCompensation').text('该书项未被借出！');
                     }
-                    else if(data=='-1')
-                    {
+                    else if (data == '-1') {
                         $('#checkLoseCompensation').text('该学生未借过这本书！');
                     }
-                    else{
-                        $('#checkLoseCompensation').text('丢失+逾期(如果有)，共偿还'+data+'元');
-                        $('#loseItem').attr("disabled",false);
+                    else {
+                        $('#checkLoseCompensation').text('丢失+逾期(如果有)，共偿还' + data + '元');
+                        $('#loseItem').attr("disabled", false);
                     }
-                },
+                }
                 error:function () {
                     alert("图书码输入错误");
                 }
