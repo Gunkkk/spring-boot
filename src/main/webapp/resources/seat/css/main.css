@@ -80,9 +80,13 @@ div.seatCharts-seat.unavailable {
 	background: url(../images/xixi_03.png) no-repeat center center;
 	background-size: 100%;
 }
-.seat-pic{
+.bkg-pic{
 	width: 100%;
 /*	width: 600px;*/
+}
+.seat-pic{
+/*	width: 100%;*/
+	width: 600px;
 }
 div.seatCharts-container {
 	position: absolute;

@@ -170,7 +170,7 @@
 
                         <%--<div class="index-all">--%>
                             <div class="demo index-demo">
-                                <img class="seat-pic" src='${ctx}/resources/seat/images/seat_bkg.png'/>
+                                <img class="bkg-pic" src='${ctx}/resources/seat/images/seat_bkg.png'/>
                                 <div class="layout">
                                     <a onmouseover="javascript:this.style.border='1px solid yellow';" onmouseout="javascript:this.style.border='0px';" href="/initSeatsMap.action?partId=${floorId+2}&floorId=${floorId}" class="layout01"></a>
                                     <a onmouseover="javascript:this.style.border='1px solid yellow';" onmouseout="javascript:this.style.border='0px';" href="/initSeatsMap.action?partId=${floorId+3}&floorId=${floorId}" class="layout02"></a>

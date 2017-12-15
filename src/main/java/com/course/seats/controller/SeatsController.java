@@ -107,10 +107,11 @@ public class SeatsController {
      * @return
      */
     @RequestMapping(value = "/cancelReservation")
-    public String cancelReservation(@RequestParam("partId") Integer partId,
+    public ModelAndView cancelReservation(@RequestParam("partId") Integer partId,
                                     @RequestParam("floorId") Integer floorId,HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView("redirect:/showMySeats.action");
         String msg = seatsService.cancelReservation(getBorrower(request).getId(),partId,floorId);
-        return msg;
+        return modelAndView;
     }
 
     /**
@@ -148,9 +149,11 @@ public class SeatsController {
      * @return
      */
     @RequestMapping(value = "/releaseSeatByStu")
-    public String releaseSeatByStu(@RequestParam("partId") Integer partId,
+    public ModelAndView releaseSeatByStu(@RequestParam("partId") Integer partId,
                                    @RequestParam("floorId") Integer floorId,HttpServletRequest request){
-        return seatsService.realseSeat(getBorrower(request).getId(),partId,floorId);
+        ModelAndView modelAndView = new ModelAndView("redirect:/showMySeats.action");
+        seatsService.realseSeat(getBorrower(request).getId(),partId,floorId);
+        return modelAndView;
     }
 //    public String releaseSeatByStu(@RequestParam("partId") Integer partId,
 //            @RequestParam("floorId") Integer floorId,HttpServletRequest request){
@@ -195,8 +198,10 @@ public class SeatsController {
 //        modelAndView.addObject("json",json);
 //        return modelAndView;
 //    }
-    public String continueSeat(@RequestParam("cardNo") String cardNo){
-        return seatsService.continueSeat(cardNo);
+    public ModelAndView continueSeat(@RequestParam("cardNo") String cardNo){
+        ModelAndView modelAndView = new ModelAndView("redirect:/showMySeats.action");
+        seatsService.continueSeat(cardNo);
+        return modelAndView;
     }
 
 
