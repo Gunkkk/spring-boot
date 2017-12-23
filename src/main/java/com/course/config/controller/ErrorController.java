@@ -1,4 +1,3 @@
-/*
 package com.course.config.controller;
 
 
@@ -7,10 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-*/
-/**
+/*
  * Created by 84074 on 2017/11/9.
- *//*
+ */
 
 @Controller
 class AdaptedErrorController implements ErrorController {
@@ -26,4 +24,3 @@ class AdaptedErrorController implements ErrorController {
         return modelAndView;
     }
 }
-*/

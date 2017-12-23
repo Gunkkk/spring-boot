@@ -57,6 +57,8 @@
         SELECT floorid from seatpart where partid=#{partId}
     </select>
     <select id="getYuyueByCardNo" parameterType="String" resultType="com.course.seats.entity.Yuyue">
-        SELECT * from yuyue where stuid=(SELECT id FROM borrower WHERE card_no=#{cardNo}) AND state!="已失效"
+        <!--SELECT * from yuyue where stuid=(SELECT id FROM borrower WHERE card_no=#{cardNo}) AND state!="已失效"-->
+        SELECT * FROM yuyue JOIN borrower ON yuyue.stuId=borrower.id WHERE borrower.card_no=#{cardNo} AND yuyue.state!="已失效";
     </select>
+
 </mapper>

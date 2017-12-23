@@ -4,7 +4,7 @@
 
 
     <select id="findByUsername" resultType="com.course.login.entity.Admin" parameterType="String">
-          SELECT * FROM ADMINISTRATOR where username=#{username}
+          SELECT * FROM administrator where username=#{username}
     </select>
 
 </mapper>
