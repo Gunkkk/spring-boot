@@ -7,6 +7,8 @@ It's just a coursework for Database Experiments Course in the first semester of 
 All work is poor for my limited programming ability.
 
 If you want to copy it for your homework, just do it.
+
+
 <foot>
   Copyright (c) 2017 Gunkkk. All Rights Reserved.
 </foot>
