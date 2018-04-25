@@ -1,6 +1,6 @@
 
-<h2>Students And Books Admin System&&
-<h2>Library Seats Admin System.
+<h2>Students And Books Admin System&&</h3>
+<h2>Library Seats Admin System</h3>
 
 A information admin system based in Spring Boot that includes basic components(SSM) and the Cache component replies on Redis.
 It's just a coursework for Database Experiments Course in the first semester of the junior. 
