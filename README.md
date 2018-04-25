@@ -9,6 +9,6 @@ All work is poor for my limited programming ability.
 If you want to copy it for your homework, just do it.
 
 
-<foot>
+<footer>
   Copyright (c) 2017 Gunkkk. All Rights Reserved.
-</foot>
+</footer>
